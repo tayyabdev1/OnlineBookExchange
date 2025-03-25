@@ -1,0 +1,126 @@
+﻿@model OnlineBookExchange.ViewModels.UserViewModel
+
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+    <h2 style="font-weight: bold; display:flex; justify-content: center;">Users</h2>
+
+    <table id="dataTable" class="table p-3">
+        <thead>
+            <tr>
+                <td class="fw-bolder bg-dark bg-gradient text-white">UserID</td>
+                <td class="fw-bolder bg-dark bg-gradient text-white">Username</td>
+                <td class="fw-bolder bg-dark bg-gradient text-white">Email</td>
+                <td class="fw-bolder bg-dark bg-gradient text-white">Password</td>
+                <td class="fw-bolder bg-dark bg-gradient text-white">Address</td>
+                <td class="fw-bolder bg-dark bg-gradient text-white">Role</td>
+                <td class="fw-bolder bg-dark bg-gradient text-white">CreatedAt</td>
+                <td class="fw-bolder bg-dark bg-gradient text-white">IsActive</td>
+                <td class="fw-bolder bg-dark bg-gradient text-white">Action</td>
+            </tr>
+        </thead>
+    </table>
+
+
+@section scripts{
+   @Scripts.Render("~/bundles/jqueryval")
+
+   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+   <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+   <script>
+       var table;
+       $(document).ready(function () {
+           table = $('#dataTable').DataTable({
+               ajax:
+               {
+                   url: '/api/admin',
+                   method: 'GET',
+                   dataSrc: ''
+               },
+               columns: [
+                   { data: 'userID' },
+                   { data: 'username' },
+                   { data: 'email' },
+                   { data: 'password', visible: false },
+                   { data: 'address' },
+                   { data: 'role' },
+                   { data: 'createdAt' },
+                   { data: 'isActive' },
+                   {
+                       data: null,
+                       render: function (data, type, row) {
+                           let actionButtons = '';
+                           if (row.isActive) {
+                               actionButtons += '<button class="btn btn-danger deactivate-btn" onclick="deactivate(' + row.userID + ')">Deactivate</button>';
+                           } else {
+                               actionButtons += '<button class="btn btn-success activate-btn" onclick="activate(' + row.userID + ')">Activate</button>';
+                           }
+                           actionButtons += ' <a href="/Message/Message?receiverId=' + row.userID + '" class="btn btn-primary message-btn m-1">Message</a>';
+
+                           return actionButtons;
+                       },
+                   },
+               ],
+           });
+       });
+
+
+
+       function deactivate(userID) {
+           if (confirm('Are you sure you want to deactivate this user?')) {
+               $.ajax({
+                   url: '/api/admin/deactivate/' + userID,
+                   type: 'PUT',
+                   success: function (response) {
+                       toastr.success('User deactivated successfully');
+                       table.ajax.reload(); // Reload DataTable
+                   },
+                   error: function (error) {
+                       toastr.error('An error occurred while deactivating the user');
+                   }
+               });
+           }
+       };
+
+       function activate(userID) {
+           if (confirm('Are you sure you want to activate this user?')) {
+               $.ajax({
+                   url: '/api/admin/activate/' + userID,
+                   type: 'PUT',
+                   success: function (response) {
+                       toastr.success('User activated successfully');
+                       table.ajax.reload(); // Reload DataTable
+                   },
+                   error: function (error) {
+                       toastr.error('An error occurred while activating the user');
+                   }
+               });
+           }
+       };
+
+       document.addEventListener("DOMContentLoaded", function () {
+           const messageButton = document.getElementById("messageButton");
+
+
+
+           $('#detailsModal').on('show.bs.modal', function (event) {
+               const modal = $(this);
+
+               // Get the UserID dynamically from the input field
+               const userID = modal.find("#userID").val();
+
+               // Set the Message button link dynamically
+               messageButton.href = `/Message/Message?receiverId=${userID}`;
+           });
+       });
+   </script>
+}

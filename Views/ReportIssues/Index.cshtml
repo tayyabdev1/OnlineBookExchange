@@ -1,0 +1,78 @@
+﻿@model OnlineBookExchange.ViewModels.ReportedIssuesViewModel
+
+@{
+    ViewBag.Title = "Reported Issues";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@*This View is use for Admin*@
+<h2>Reported Issues</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Issue ID</th>
+            <th>Reporter ID</th>
+            <th>Subject</th>
+            <th>Book ID</th>
+            <th>User ID</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Reports != null && Model.Reports.Any())
+        {
+            foreach (var report in Model.Reports)
+            {
+                <tr>
+                    <td>@report.IssueID</td>
+                    <td>@report.ReporterID</td>
+                    <td>@report.Subject</td>
+                    <td>@report.BookID</td>
+                    <td>@report.UserID</td>
+                    <td>@report.Description</td>
+                    <td>@report.Status</td>
+                    <td>
+                        @if (report.Status != "Solved")
+                        {
+                        <button type="button" class="btn btn-success" onclick="solved(@report.IssueID)">Solved</button>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="7">No reports available.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function solved(issueId) {
+            $.ajax({
+                url: "/api/reportIssue/solved",
+                method: "POST",
+                data: JSON.stringify({ IssueID: issueId }),
+                contentType: 'application/json',
+                success: function (response) {
+                    Swal.fire({
+                        title: "Solved!",
+                        text: "The Issue get Solved!",
+                        icon: "success"
+                    });
+                },
+                error: function (error) {
+                    alert("Error marking as Solved.");
+                }
+            });
+        }
+    </script>
+}

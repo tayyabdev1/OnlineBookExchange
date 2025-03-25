@@ -1,0 +1,191 @@
+﻿@model OnlineBookExchange.ViewModels.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/LoginLayout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+    <div class="main d-flex flex-column flex-md-row min-vh-100">
+
+        <div class="container d-flex flex-column justify-content-center align-items-center col-md-6 p-4">
+            <div class="card shadow-lg p-4 rounded-4" style="max-width: 400px; width: 100%;">
+                <h2 class="signin-text fw-bold text-center">Sign In</h2>
+                <hr class="w-50 mx-auto">
+
+                @using (Html.BeginForm("Login", "Login", FormMethod.Post, new { @class = "d-flex flex-column gap-3" }))
+                {
+                    <div class="text-danger text-center">
+                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })  <!-- Show general errors -->
+                    </div>
+
+                    <div class="form-group m-3">
+                        @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "fw-bold" })
+                        @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control rounded-4 p-2" } })
+                        @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group m-3">
+                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "fw-bold" })
+                        <div class="position-relative">
+                            @Html.PasswordFor(model => model.Password, new { @class = "form-control rounded-4 p-2 pe-5", id = "passwordInput" })
+                            <button type="button" class="btn btn-link position-absolute top-50 end-0 translate-middle-y"
+                                    aria-label="Toggle Password Visibility" onclick="togglePasswordVisibility()">
+                                <i class="bi bi-eye-slash" id="toggleIcon"></i>
+                            </button>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+
+                    <button type="submit" class="SignIn text-white btn w-100 rounded-4 p-2 fw-bold">Sign In</button>
+                    <a href="~/ForgotPass/Index" class="forgotPass text-muted btn w-100 rounded-4 p-2 fw-bold">Forgot Password?</a>
+
+                    <p class="text-center mt-3">
+                        Don't have an account? <a href="~/Signup/Signup" class="signup-text text-decoration-none fw-bold">Sign Up</a>
+                    </p>
+                }
+            </div>
+        </div>
+
+
+        <!-- Welcome Section -->
+        <div class="red-side text-white col-md-6 d-flex flex-column justify-content-center align-items-center p-4 text-center">
+            <h2>Welcome to</h2>
+            <h2 id="animated-text" class="d-flex">
+                <span class="letter">O</span>
+                <span class="letter">n</span>
+                <span class="letter">l</span>
+                <span class="letter">i</span>
+                <span class="letter">n</span>
+                <span class="letter">e</span>
+                &nbsp;
+                <span class="letter">B</span>
+                <span class="letter">o</span>
+                <span class="letter">o</span>
+                <span class="letter">k</span>
+                &nbsp;
+                <span class="letter">E</span>
+                <span class="letter">x</span>
+                <span class="letter">c</span>
+                <span class="letter">h</span>
+                <span class="letter">a</span>
+                <span class="letter">n</span>
+                <span class="letter">g</span>
+                <span class="letter">e</span>
+            </h2>
+            <p>Don't have an account?</p>
+            <a href="~/Signup/Signup" class="btn Signup-button rounded-5 w-100">Sign Up</a>
+        </div>
+    </div>
+
+}
+<style>
+
+    .forgotPass{
+        font-size: 13px;
+    }
+
+    #toggleIcon {
+        cursor: pointer;
+        font-size: 1.2rem;
+        color: #6c757d !important;
+    }
+
+    .pe-5 {
+        padding-right: 3rem !important;
+    }
+
+
+    .signup-text {
+        background-image: linear-gradient(to bottom right, #FF4858, #FF4580);
+        color: transparent;
+        background-clip: text;
+    }
+
+    .signin-text {
+        background-image: linear-gradient(to bottom right, #FF4858, #FF4580);
+        color: transparent;
+        background-clip: text;
+    }
+
+    .letter {
+        position: relative;
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    .text-container {
+        position: relative;
+    }
+
+    .input {
+        background-color: #f2f2f2;
+    }
+
+    .red-side {
+        background-image: linear-gradient(to bottom right, #FF4858, #FF4580);
+    }
+
+    .main {
+        font-family: 'Poppins';
+    }
+
+    .SignIn {
+        background-image: linear-gradient(to bottom right, #FF4858, #FF4580);
+    }
+
+    .Signup-button {
+        border: 2px solid white;
+        background-color: transparent;
+        max-width: 100px;
+        color: white;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+        .Signup-button:hover {
+            background-color: white;
+            color: black;
+            cursor: pointer;
+        }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+
+    function togglePasswordVisibility() {
+        const passwordInput = document.getElementById('passwordInput');
+        const toggleIcon = document.getElementById('toggleIcon');
+
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            toggleIcon.classList.remove('bi-eye-slash');
+            toggleIcon.classList.add('bi-eye');
+        } else {
+            passwordInput.type = 'password';
+            toggleIcon.classList.remove('bi-eye');
+            toggleIcon.classList.add('bi-eye-slash');
+        }
+    }
+
+
+    const letters = document.querySelectorAll('.letter');
+
+    gsap.fromTo(letters,
+        { opacity: 0, y: 50 },  // Start position (bottom)
+        {
+            opacity: 1,
+            y: 0,
+            stagger: 0.1,  // Delay each letter
+            duration: 0.5,
+            ease: "power2.out",
+            onUpdate: function () {
+                gsap.to(letters, { stagger: 0.1, duration: 0.5, ease: "power2.out" });
+            }
+        }
+    );
+</script>

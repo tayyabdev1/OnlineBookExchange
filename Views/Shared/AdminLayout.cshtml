@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Online Book Exchange</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-black m-2 rounded-4">
+
+        @*<a class="navbar-brand text-white" href="/Developer/Developer">Online Book Exchange</a>*@
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle p-0" href="#" id="profileDropdown" role="button">
+                        <img id="profilePic" class="profile-logo rounded-circle" src="@Url.Action("GetProfilePicture", "Profile")" width="40" height="40">
+                    </a>
+                    <ul class="dropdown-menu border-0" aria-labelledby="profileDropdown">
+                        <li><a class="dropdown-item" href="/Profile/AdminProfile">My Profile</a></li>
+                        <li><a class="dropdown-item" href="/Developer/Tayyab">Developer</a></li>
+                        <li>
+                            <form action="/Login/Logout" method="post">
+                                <button class="dropdown-item text-danger" type="submit">Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/Books/AdminBookView">Books</a>
+
+                <li class="nav-item">
+                    <a class="nav-link" id="notificationIcon" href="/Notifications/Index">
+                        Notifications
+                        <i class="fas fa-bell"></i>
+                        <span id="notificationBadge" class="badge badge-danger" style="display: none;">●</span>
+                    </a>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/Exchanges/AdminView">Exchanges</a>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/ReportIssues/Index">Reported Issues</a>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/Message/ChatList">Chats</a>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/Admin/Index">Users</a>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="/Dashboard/Index">Dashboard</a>
+            </ul>
+        </div>
+    </nav>
+    <div class="body-content pt-2 p-lg-0 p-rg-0 mt-0 m-0 container-fluid d-flex flex-column align-items-center">
+    @RenderBody()
+        <hr style="border-top: none" />
+        <footer class="">
+            <p class="mb-0 ms-3 pb-3">&copy; @DateTime.Now.Year - Online Book Exchange</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+<style>
+    .nav-item.dropdown .nav-link::after {
+        content: none;
+    }
+
+    .nav-item.dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0;
+    }
+
+    .profile-logo {
+        width: 100%;
+    }
+
+    .nav-link {
+        color: white;
+        display: inline-block;
+        position: relative;
+        cursor: pointer;
+    }
+
+        .nav-link:hover {
+            color: wheat;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #fcdb9c;
+            transition: transform 0.25s ease-out;
+            transform-origin: bottom center;
+        }
+
+        .nav-link:hover::after {
+            transform: scaleX(0.5);
+            transform-origin: bottom center;
+        }
+</style>

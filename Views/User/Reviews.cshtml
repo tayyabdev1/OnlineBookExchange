@@ -1,0 +1,40 @@
+﻿@model List<OnlineBookExchange.ViewModels.RatingsViewModel>
+
+@{
+    ViewBag.Title = "User Reviews";
+}
+
+<h2>User Reviews</h2>
+
+@if (ViewBag.Message != null)
+{
+    <p>@ViewBag.Message</p>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Reviewer</th>
+                <th>Book</th>
+                <th>Book Condition Rating</th>
+                <th>Exchange Partner Rating</th>
+                <th>Review</th>
+                <th>Created At</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var review in Model)
+            {
+                <tr>
+                    <td>@review.RaterID</td> 
+                    <td>@review.BookID</td>
+                    <td>@review.BookConditionRating</td>
+                    <td>@review.ExchangePartnerRating</td>
+                    <td>@review.Rview</td>
+                    <td>@review.CreatedAt</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

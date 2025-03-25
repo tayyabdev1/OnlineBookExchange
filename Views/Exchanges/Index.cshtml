@@ -1,0 +1,180 @@
+﻿@model IEnumerable<OnlineBookExchange.ViewModels.ExchangesViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Exchange Tracking</h2>
+
+@if (!Model.Any())
+{
+    <p>No exchanges found.</p>
+}
+else
+{
+    <input type="hidden" id="currentUserId" value="@Session["UserID"]" />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Book</th>
+                <th>Requester</th>
+                <th>Owner</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var exchange in Model)
+            {
+                <tr>
+                    <td>@exchange.BookID</td>
+                    <td>@exchange.RequestorID</td>
+                    <td>@exchange.OwnerID</td>
+                    <td>@exchange.Status</td>
+                    <td>
+                        @if (Convert.ToInt32(Session["UserID"]) == exchange.RequestorID && exchange.Status == "In Progress")
+                        {
+                            <button class="btn btn-success" onclick="markAsDelivered(@exchange.ExchangeID)">Received</button>
+                        }
+                        @if (Convert.ToInt32(Session["UserID"]) == exchange.RequestorID && exchange.Status == "Delivered")
+                        {
+                            <button class="btn btn-warning" onclick="markAsOutForReturn(@exchange.ExchangeID)">Return</button>
+                        }
+                        @if (Convert.ToInt32(Session["UserID"]) == exchange.OwnerID && exchange.Status == "Out for Return")
+                        {
+                            <button class="btn btn-primary" onclick="markAsReturned(@exchange.ExchangeID)">Returned</button>
+                        }
+                        @if (exchange.Status == "Returned")
+                        {
+                            <button class="btn btn-info"
+                                    onclick="openReviewForm(@exchange.ExchangeID, @exchange.BookID, @exchange.OwnerID, @exchange.RequestorID)">
+                                Review
+                            </button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div id="reviewModal" style="display: none;">
+        <h3>Submit Review</h3>
+        <form id="reviewForm">
+            <input type="hidden" id="exchangeID" name="exchangeID" />
+            <input type="hidden" id="raterID" name="raterID" />
+            <input type="hidden" id="rateeID" name="rateeID" />
+            <input type="hidden" id="bookID" name="bookID" />
+
+            <label for="bookCondition">Book Condition Rating (1-10):</label>
+            <input type="number" id="bookCondition" name="bookCondition" min="1" max="10" required />
+
+            <label for="partnerRating">Exchange Partner Rating (1-10):</label>
+            <input type="number" id="partnerRating" name="partnerRating" min="1" max="10" required />
+
+            <label for="review">Review:</label>
+            <textarea id="review" name="review"></textarea>
+
+            <button type="button" onclick="submitReview()">Submit</button>
+            <button type="button" onclick="closeReviewForm()">Cancel</button>
+        </form>
+    </div>
+}
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+
+        function markAsDelivered(exchangeId) {
+            $.ajax({
+                url: "/api/exchanges/delivered",
+                method: "POST",
+                data: JSON.stringify({ ExchangeID: exchangeId }),
+                contentType: 'application/json',
+                success: function (response) {
+                    alert("Marked as Delivered!");
+                    location.reload();
+                },
+                error: function (error) {
+                    alert("Error marking as Delivered.");
+                }
+            });
+        }
+
+        function markAsOutForReturn(exchangeId) {
+            $.ajax({
+                url: "/api/exchanges/outForReturn",
+                method: "POST",
+                data: { exchangeId: exchangeId },
+                success: function (response) {
+                    alert("Marked as Out for Return!");
+                    location.reload();
+                },
+                error: function (error) {
+                    alert("Error marking as Out for Return.");
+                }
+            });
+        }
+
+        function markAsReturned(exchangeId) {
+            $.ajax({
+                url: "/api/exchanges/returned",
+                method: "POST",
+                data: { exchangeId: exchangeId },
+                success: function (response) {
+                    alert("Marked as Returned!");
+                    location.reload();
+                },
+                error: function (error) {
+                    alert("Error marking as Returned.");
+                }
+            });
+        }
+
+
+        function openReviewForm(exchangeID, bookID, ownerID, requestorID) {
+            const currentUserID = parseInt($("#currentUserId").val());
+
+            $("#exchangeID").val(exchangeID);
+            $("#bookID").val(bookID);
+            $("#raterID").val(currentUserID);
+            $("#rateeID").val(currentUserID === ownerID ? requestorID : ownerID);
+
+            $("#reviewModal").show();
+        }
+
+        function closeReviewForm() {
+            $("#reviewModal").hide();
+        }
+
+        function submitReview() {
+            const reviewData = {
+                Exchange_id: $("#exchangeID").val(),
+                RaterID: $("#raterID").val(),
+                RateeID: $("#rateeID").val(),
+                BookID: $("#bookID").val(),
+                BookConditionRating: $("#bookCondition").val(),
+                ExchangePartnerRating: $("#partnerRating").val(),
+                Rview: $("#review").val()
+            };
+
+            $.ajax({
+                url: "/api/ratings/add",
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(reviewData),
+                success: function (response) {
+                    toastr.success("Review submitted successfully!");
+                    closeReviewForm();
+                    location.reload();
+                },
+                error: function (error) {
+                    toastr.error("Error submitting review.");
+                }
+            });
+        }
+
+    </script>
+}

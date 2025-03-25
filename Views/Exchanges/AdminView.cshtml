@@ -1,0 +1,30 @@
+﻿@model IEnumerable<OnlineBookExchange.ViewModels.ExchangesViewModel>
+
+@{
+    ViewBag.Title = "AdminView";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<h2>All Exchanges</h2>
+<table>
+    <tr>
+        <th>Exchange ID</th>
+        <th>Book ID</th>
+        <th>Owner ID</th>
+        <th>Requestor ID</th>
+        <th>Status</th>
+    </tr>
+    @foreach (var exchange in Model)
+    {
+        <tr>
+            <td>@exchange.ExchangeID</td>
+            <td>@exchange.BookID</td>
+            <td>@exchange.OwnerID</td>
+            <td>@exchange.RequestorID</td>
+            <td>@exchange.Status</td>
+        </tr>
+    }
+
+</table>
+

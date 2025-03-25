@@ -1,0 +1,303 @@
+﻿@model OnlineBookExchange.ViewModels.BooksViewModel
+@{
+    ViewBag.Title = "AdminBookView";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<body class="overflow-x-hidden body">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <div class="top-img w-100 d-flex align-items-center justify-content-center gap-5">
+        <div class="top-img-text text-start">
+            <h1 class="fw-bolder text-info">Swap, Share, Read</h1>
+            <h1 class="fw-bolder">Your Gateway to a Smarter Book Exchange!</h1>
+        </div>
+        <img class="w-30" src="https://softicera.com/wp-content/uploads/2022/11/SofticEra-Software-House-Faisalabad-Pakistan.png" />
+    </div>
+    <h1 class="books d-flex justify-content-center mt-5 fw-bolder">BOOKS</h1>
+    <hr class="w-50" />
+    <div class="books-container d-flex justify-content-center">
+        <div class="row w-75">
+            @foreach (var item in Model.book)
+            {
+                <div class="col-4 w-25 p-3">
+                    <img class="card-img rounded-4" src="https://cdn.pixabay.com/photo/2023/10/05/11/57/book-8295812_1280.jpg" alt="card-img" />
+                    <div class="card" onclick="showDetails(@item.BookID)">
+                        <div class="card-body">
+                            <h6 class="card-title fw-bolder">@item.Title</h6>
+                            <p class="card-genre text-secondary">@item.Genre</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group mb-3">
+                        <a id="userProfile" class="form-control text-primary text-decoration-underline" href="#" target="_blank">View Profile</a>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="title">UserName</label>
+                        <input type="text" id="username" class="form-control" name="username" readonly>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="bookID">Book ID</label>
+                                <input type="text" id="bookID" class="form-control" name="bookID" readonly>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="userID">User ID</label>
+                                <input type="text" id="userID" class="form-control" name="userID" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="form-label" for="title">Book Title</label>
+                            <input type="text" id="title" class="form-control" name="title" readonly>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="form-label" for="author">Author</label>
+                            <input type="text" id="author" class="form-control" name="author" readonly>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="form-label" for="genre">Genre</label>
+                            <input type="text" id="genre" class="form-control" name="genre" readonly>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="condition">Condition</label>
+                                <input type="text" id="condition" class="form-control" name="condition" readonly>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="status">Status</label>
+                                <input type="text" id="status" class="form-control" name="status" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="form-label" for="addedDate">Added Date</label>
+                            <input type="text" id="addedDate" class="form-control" name="addedDate" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group d-flex mt-4">
+                        <a href="#" id="messageButton" class="btn btn-primary">Message</a>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<style>
+    .books {
+        font-weight: 700;
+    }
+
+    .top-img {
+        background-size: 100%;
+        height: 500px;
+        overflow: hidden;
+        background-image: url(https://softicera.com/wp-content/uploads/2022/11/slider-grident-bg.png);
+    }
+
+        .top-img img {
+            width: 30%;
+        }
+
+    .top-img-text {
+        width: 38%;
+    }
+
+        .top-img-text h1 {
+            font-size: 50px;
+        }
+
+    .card {
+        border: none;
+        transition: transform 0.3s ease, border 0.3s ease;
+    }
+
+        .card:hover {
+            transform: scale(1.1);
+            border: 1px solid var(--light-color);
+            cursor: pointer;
+        }
+
+    .bookbtn {
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
+
+        .bookbtn:hover {
+            background-color: lightgray;
+        }
+
+    .label {
+        color: grey;
+    }
+
+    .form-group {
+        align-items: baseline;
+        display: flex;
+        gap: 2%;
+    }
+
+    .form-control {
+        width: 50%;
+        font-size: 17px;
+        font-weight: 700;
+        border: none;
+    }
+
+        .form-control:focus {
+            box-shadow: none;
+        }
+
+    #messageButton {
+        width: 25%;
+    }
+
+    #exchangeRequestButton {
+        width: 26%;
+    }
+
+    bg-remove:focus {
+        background-color: transparent !important;
+    }
+
+    .body {
+        font-family: 'Poppins';
+    }
+</style>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script>
+
+        var table;
+        $(document).ready(function () {
+            table = $('#dataTable').DataTable({
+                ajax:
+                {
+                    url: '/api/books/adminbooks',
+                    method: 'GET',
+                    dataSrc: ''
+                },
+                columns: [
+                    
+                    { data: 'bookID', visible: false },
+                    { data: 'userID', visible: false },
+                    {
+                        data: 'title',
+                        render: function (data, type, row) {
+                            // Truncate the title to 20 characters and add ellipses
+                            if (data.length > 20) {
+                                return `<span title="${data}">${data.substring(0, 20)}...</span>`;
+                            }
+                            return data;
+                        },
+                        // apply Bootstrap class
+                        createdCell: function (cell) {
+                            $(cell).addClass('fw-bold text-danger fs-6');
+                        }
+                    },
+                    { data: 'author', visible: false },
+                    {
+                        data: 'genre',
+                        render: function (data, type, row) {
+                            if (data.length > 20) {
+                                return `<span title="${data}">${data.substring(0, 20)}...</span>`;
+                            }
+                            return data;
+                        },
+                        createdCell: function (cell) {
+                            $(cell).addClass('text-info fw-normal');
+                        }
+                    },
+                    { data: 'condition' },
+                    { data: 'status' },
+                    { data: 'addedDate', visible: false },
+                ],
+            });
+        });
+
+        function showDetails(bookID) {
+            $("#username").val("");
+            $("#bookID").val("");
+            $("#userID").val("");
+            $("#title").val("");
+            $("#author").val("");
+            $("#genre").val("");
+            $("#condition").val("");
+            $("#status").val("");
+            $("#addedDate").val("");
+            $("#userProfile").attr("href", "#").text("View Profile");
+
+            // Fetch new data and filter the specific book
+            $.ajax({
+                url: '/api/books/' + bookID,
+                method: 'GET',
+                success: function (data) {
+                    console.log(data); // Confirm data received
+
+                    var book = data.find(b => b.bookID === bookID);
+
+                    if (book) {
+                        // Populate the modal fields
+                        $("#username").val(book.username);
+                        $("#bookID").val(book.bookID);
+                        $("#userID").val(book.userID);
+                        $("#title").val(book.title);
+                        $("#author").val(book.author);
+                        $("#genre").val(book.genre);
+                        $("#condition").val(book.condition);
+                        $("#status").val(book.status);
+                        $("#addedDate").val(book.addedDate);
+
+                        // Set the User Profile link
+                        var profileUrl = "/User/Profile/" + book.userID; // Generate the profile URL
+                        $("#userProfile").attr("href", profileUrl).text("View Profile");
+
+                        // Show the modal
+                        $('#detailsModal').modal('show');
+                    } else {
+                        console.error("Book not found in API response.");
+                        toastr.error("The selected book details could not be found.");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.log(xhr.responseText);
+                    toastr.error("Error: " + error + " Status: " + status);
+                }
+            });
+        }
+    </script>
+}

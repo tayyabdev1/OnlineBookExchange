@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<body class="d-flex flex-column justify-content-center align-items-center">
+    <div class="container">
+        <div class="card shadow-lg w-100 rounded-4 p-5">
+            <h4 class="text-center mb-3">Forgot Password</h4>
+            <div id="responseMessage" class="alert" role="alert"></div>
+            <form id="forgotPasswordForm">
+                <div class="mb-3">
+                    <label class="form-label">Enter Your Username</label>
+                    <input type="text" id="username" class="form-control" placeholder="your username (case sensitive)" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Enter Your Email</label>
+                    <input type="email" id="email" class="form-control" placeholder="email linked to your account" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 fw-bold">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+<style>
+
+    .card {
+        max-width: 400px;
+        background: #ffffff;
+    }
+
+    .form-control {
+        border-radius: 8px;
+    }
+
+    .btn-primary {
+        transition: 0.3s;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#forgotPasswordForm").submit(function (event) {
+            event.preventDefault();
+
+            var data = {
+                Username: $("#username").val(),
+                Email: $("#email").val()
+            };
+
+            $.ajax({
+                url: "/api/ForgotPassword", // Your API Controller URL
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function (response) {
+                    $("#responseMessage").removeClass("alert-danger").addClass("alert-success")
+                        .text(response.message).show();
+                    location.reload();
+                },
+                error: function (xhr) {
+                    $("#responseMessage").removeClass("alert-success").addClass("alert-danger")
+                        .text("Error: " + xhr.responseText).show();
+                }
+            });
+        });
+    });
+</script>

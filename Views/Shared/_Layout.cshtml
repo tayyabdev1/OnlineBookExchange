@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Online Book Exchange</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light m-2">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav text-black fw-bold">
+                @if (Request.Cookies["jwt"] != null)
+                {
+                    <!-- Profile Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle p-0" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img id="profilePic" class="profile-logo rounded-circle" src="@Url.Action("GetProfilePicture", "Profile")" width="40" height="40">
+                        </a>
+
+                        <ul class="dropdown-menu border-0" aria-labelledby="profileDropdown">
+                            <li><a class="dropdown-item" href="/Profile/Index">My Profile</a></li>
+                            <li><a class="dropdown-item" href="/Developer/Tayyab">Developer</a></li>
+                            <li><a class="dropdown-item" href="/Message/Message?receiverId=1">Admin</a></li>
+                            <li>
+                                <form action="/Login/Logout" method="post">
+                                    <button class="dropdown-item text-danger" type="submit">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+
+                    </li>
+
+                    <!-- Other Nav Items -->
+                    <li class="nav-item"><a class="nav-link" href="/Books/Index">Books</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Notifications/Index">Notifications</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Exchanges/Index">Exchanges</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/ReportIssues/UserView">Reported Issues</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Message/ChatList">Chats</a></li>
+                }
+                else
+                {
+                     <li class="nav-item"><a class="nav-link" href="/Login/Login">Login</a></li>
+                     <li class="nav-item"><a class="nav-link" href="/Developer/Tayyab">Developer</a></li>
+                     <li class="nav-item"><a class="nav-link" href="/Default/Index">About Us</a></li>
+
+                }
+                </ul>
+        </div>
+    </nav>
+
+
+    <div class="body-content pt-2 p-lg-0 p-rg-0 mt-0 m-0 container-fluid d-flex flex-column align-items-center">
+        @RenderBody()
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+<style>
+
+    .nav-item.dropdown .nav-link::after {
+        content: none;
+    }
+
+    .nav-item.dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0;
+    }
+
+    .profile-logo {
+        width: 100%;
+    }
+
+    /*.navbar {
+        transform: translateY(-100%);
+        opacity: 0;
+    }*/
+
+    .nav-link {
+        
+        display: inline-block;
+        position: relative;
+        cursor: pointer;
+    }
+
+        .nav-link:hover {
+            color: #00bfc5;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #00bfc5;
+            transition: transform 0.25s ease-out;
+            transform-origin: bottom center;
+        }
+
+        .nav-link:hover::after {
+            transform: scaleX(0.5);
+            transform-origin: bottom center;
+        }
+</style>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+
+<script>
+    // Wait for the DOM to be fully loaded before running the animation
+    //document.addEventListener("DOMContentLoaded", function () {
+    //    // Animate the navbar to come down
+    //    gsap.to(".navbar", {
+    //        duration: 1,  // Time in seconds
+    //        y: 0,  // Move from top to original position
+    //        opacity: 1,  // Fade in
+    //        ease: "power4.inOut"  // Smooth easing
+    //    });
+    //});
+</script>

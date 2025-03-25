@@ -1,0 +1,67 @@
+﻿@model OnlineBookExchange.ViewModels.UserViewModel
+
+@{
+    ViewBag.Title = "User Profile";
+}
+
+<h2>@Model.Username's Profile</h2>
+<div class="container my-2">
+    <div class="mx-auto shadow-lg d-flex flex-column flex-md-row gap-3 bg-body text-start border-2 my-4 p-3 rounded"
+         id="user-profile" style="background-color: #f4f4f4; max-width: 600px;">
+
+        <!-- Profile Picture -->
+        <div class="profile-header d-flex justify-content-center align-items-center">
+            @if (!string.IsNullOrEmpty(Model?.ProfilePicture))
+            {
+                <img class="rounded-circle border" src="@Model.ProfilePicture" alt="Profile Picture" width="100" height="100" />
+            }
+            else
+            {
+                <p class="text-muted">No Profile Picture</p>
+            }
+        </div>
+
+        <!-- Profile Details -->
+        <div class="p-3 flex-grow-1">
+            <p class="text-secondary fw-medium">ID</p>
+            <strong>@Model.UserID</strong>
+            <hr class="w-50" />
+            <p class="text-secondary fw-medium">Name</p>
+            <strong>@Model.Username</strong>
+            <hr class="w-50" />
+            <p class="text-secondary fw-medium">Email</p>
+            <strong>@Model.Email</strong>
+            <hr class="w-50" />
+            <p class="text-secondary fw-medium">Address</p>
+            <strong>@Model.Address</strong>
+            <hr class="w-50" />
+            <p class="text-secondary fw-medium">Joined</p>
+            <strong>@Model.CreatedAt</strong>
+        </div>
+    </div>
+    <a href="@Url.Action("Message", "Message", new { receiverId = Model.UserID })" class="btn btn-primary">Message</a>
+    <a href="@Url.Action("Reviews", "User", new { userId = Model.UserID })" class="btn btn-secondary">Reviews</a>
+</div>
+
+
+<style>
+    .profile-heading-text p {
+        font-size: 13px;
+    }
+
+    .profile-header {
+        padding: 9%;
+    }
+
+    .mx-auto {
+        border-radius: 20px;
+    }
+
+    .btn {
+        margin: 1%;
+        border: none;
+        background: none;
+        color: gray;
+        font-weight: 700;
+    }
+</style>

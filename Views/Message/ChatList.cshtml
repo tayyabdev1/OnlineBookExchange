@@ -1,0 +1,17 @@
+﻿
+<h2>Recent Chats</h2>
+    @foreach (var user in Model)
+    {
+        <div class="chat-div w-100 d-flex align-items-center m-1 border border-dark">
+            <a class="text-dark fw-bold text-decoration-none m-4" href="@Url.Action("Message", "Message", new { receiverId = user.SenderID })">
+                @user.Username
+            </a>
+        </div>
+    }
+
+<style>
+
+    .chat-div:hover {
+        background-color: #f2f2f2
+    }
+</style>

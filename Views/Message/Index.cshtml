@@ -1,0 +1,26 @@
+﻿@model IEnumerable<OnlineBookExchange.ViewModels.MessageViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>Your Chats</h2>
+
+@foreach (var chat in Model)
+{
+    <div class="chat-container">
+        <h3>Chat with User @chat.SenderID</h3>
+        <div class="messages">
+            @foreach (var message in chat.Message)
+            {
+                <div class="message">
+                    <strong>@(message.SenderID == (int)Session["UserID"] ? "You" : "User " + message.SenderID)</strong>:
+                    @message.Content <br />
+                    <small>@message.CreatedAt</small>
+                </div>
+            }
+        </div>
+        <a href="@Url.Action("Message", "Message", new { receiverId = chat.ReceiverID })">Open Chat</a>
+    </div>
+}

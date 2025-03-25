@@ -1,0 +1,394 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+</head>
+<body class="body overflow-x-hidden">
+    <div class="container-fluid bg-light">
+        <div class="row main d-flex justify-content-end text-end gap-5">
+            <div class="col-md-6 col-12 d-flex flex-column align-items-end p-5">
+                <h2 class="fw-medium">Welcome to</h2>
+                <h1 class="fw-bold">ONLINE BOOK EXCHANGE</h1>
+                <hr class="w-25 hr-line border-0 opacity-100" />
+                <p>
+                    Your Online Book Exchange Platform is a web application built using ASP .NET MVC that allows users to buy, sell, and exchange books with others.
+                    The platform provides a user-friendly interface where people can list books they no longer need and find books they want
+                    at affordable prices or through direct exchange.
+                </p>
+                <div class="d-flex gap-3">
+                    <a class="signin d-flex justify-content-center align-items-center p-3 rounded-5 text-decoration-none" href="/Login/Login">Sign In</a>
+                    <a class="signup d-flex justify-content-center align-items-center p-3 rounded-5 text-decoration-none" href="/Signup/Signup">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <div class="row justify-content-center gap-4">
+            <div class="col-md-4 col-12 feature p-4 text-center">
+                <img class="icon-img w-25" src="~/Images/book.png" alt="Book Exchange" />
+                <h5 class="fw-bold mt-3">Book Listing & Exchange</h5>
+                <p class="fw-lighter">Users can list books they want to exchange, add descriptions, and specify exchange preferences.</p>
+            </div>
+            <div class="col-md-4 col-12 feature p-4 text-center">
+                <img class="icon-img w-25" src="~/Images/chat.png" alt="Chat System" />
+                <h5 class="fw-bold mt-3">Chat System</h5>
+                <p class="fw-lighter">A messaging system to facilitate direct communication between users for book exchanges.</p>
+            </div>
+            <div class="col-md-4 col-12 feature p-4 text-center">
+                <img class="icon-img w-25" src="~/Images/rating-stars.png" alt="Review & Rating System" />
+                <h5 class="fw-bold mt-3">Review & Rating System</h5>
+                <p class="fw-lighter">Users can rate and review other members based on successful exchanges to build trust in the platform.</p>
+            </div>
+            
+            <div class="col-md-4 col-12 feature p-4 text-center">
+                <img class="icon-img w-25" src="~/Images/security.png" alt="Review & Rating System" />
+                <h5 class="fw-bold mt-3">User Security</h5>
+                <p class="fw-lighter">We prioritize user safety with hashed passwords, JWT authentication, and email verification, ensuring a secure and trustworthy platform for book exchanges.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="developer container-fluid text-white p-5">
+        <div class="row align-items-center">
+            <div class="col-md-6 col-12 d-flex flex-column gap-4">
+                <h1 class="fw-bold">A word from <span class="developer-text">Developer</span></h1>
+                <p class="fw-light">
+                    Creating a seamless book exchange experience was my primary goal. This platform ensures that readers can easily find, share, and exchange books in a hassle-free way.
+                    I hope this project benefits book lovers and creates a strong reading community.
+                </p>
+
+                <div class="icons d-flex gap-3">
+                    <a class="d-flex justify-content-center" href="https://www.linkedin.com/in/tayyab-softwaredeveloper/" target="_blank" rel="noopener noreferrer">
+                        <img class="img-fluid social-icon" src="~/Images/LinkedInwhite.png" alt="LinkedIn Profile" asp-append-version="true" />
+                    </a>
+                    <a class="d-flex justify-content-center" href="https://www.facebook.com/mirza.tayyab.9028" target="_blank" rel="noopener noreferrer">
+                        <img class="img-fluid social-icon" src="~/Images/facebook.png" alt="Facebook Profile" asp-append-version="true" />
+                    </a>
+                    <a class="d-flex justify-content-center" href="https://www.instagram.com/m.tayyab.0/" target="_blank" rel="noopener noreferrer">
+                        <img class="img-fluid social-icon" src="~/Images/Insta.png" alt="Instagram Profile" asp-append-version="true" />
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6 col-12 text-center">
+                <img class="img-fluid developer-img rounded" src="~/Images/tayyabweb2.jpg" alt="Tayyab img" />
+            </div>
+        </div>
+    </div>
+
+
+    @*Our Services*@
+    <div class="container py-5">
+        <div class="text-center text-white bg-dark py-4 rounded-3 shadow">
+            <h2 class="fw-bold">Our Services</h2>
+        </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
+            <div class="col">
+                <div class="card border-0 shadow-lg p-4 text-center h-100 service-card">
+                    <h5 class="fw-bold">Web Application Development</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li>Custom ASP .NET MVC web applications</li>
+                        <li>.NET Core web apps for scalability</li>
+                        <li>Enterprise-level applications</li>
+                        <li>SPA with React, Angular, or Vue.js</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card border-0 shadow-lg p-4 text-center h-100 service-card">
+                    <h5 class="fw-bold">API Development & Integration</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li>RESTful API development using .NET Web API</li>
+                        <li>Third-party API integration</li>
+                        <li>Authentication with JWT, OAuth</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card border-0 shadow-lg p-4 text-center h-100 service-card">
+                    <h5 class="fw-bold">E-commerce Solutions</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li>Custom e-commerce web applications</li>
+                        <li>Shopping cart & payment integration</li>
+                        <li>Inventory & order management</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card border-0 shadow-lg p-4 text-center h-100 service-card">
+                    <h5 class="fw-bold">Admin Dashboard & Management Systems</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li>Accounting software (like the one you built)</li>
+                        <li>HR, CRM, and ERP solutions</li>
+                        <li>Data visualization using charts and graphs</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card border-0 shadow-lg p-4 text-center h-100 service-card">
+                    <h5 class="fw-bold">Real-time Applications</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li>Chat systems (like the one in your project) using SignalR</li>
+                        <li>Real-time notifications and live updates</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card border-0 shadow-lg p-4 text-center h-100 service-card">
+                    <h5 class="fw-bold">Migration & Upgradation</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li>Migrate from ASP .NET MVC to .NET Core</li>
+                        <li>Upgrade legacy applications to the latest .NET framework</li>
+                        <li>Database migration (SQL Server, PostgreSQL, MySQL)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card border-0 shadow-lg p-4 text-center h-100 service-card">
+                    <h5 class="fw-bold">Mobile-Friendly Web Applications</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li>Responsive web apps using Bootstrap & Tailwind CSS</li>
+                        <li>Progressive Web Apps (PWAs)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card border-0 shadow-lg p-4 text-center h-100 service-card">
+                    <h5 class="fw-bold">Freelance & Consultation Services</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li>Technical consultation for businesses</li>
+                        <li>Debugging and fixing ASP .NET issues</li>
+                        <li>Optimizing performance & security</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card border-0 shadow-lg p-4 text-center h-100 service-card">
+                    <h5 class="fw-bold">Deployment & Maintenance</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li>Hosting on Azure, AWS, or VPS</li>
+                        <li>Setting up CI/CD pipelines</li>
+                        <li>Regular updates and bug fixes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container my-5">
+        <div class="row align-items-center">
+            <div class="col-md-6 col-12">
+                <img class="img-fluid rounded" src="~/Images/strength.png" alt="Tayyab img" />
+            </div>
+            <div class="col-md-6 col-12 d-flex flex-column gap-2">
+                <h1 class="fw-bold">Strengthen Your Knowledge</h1>
+                <p class="fw-light">
+                    Expand your understanding by accessing a vast collection of books available for exchange and purchase.
+                    Whether you're a student, a book enthusiast, or someone looking to explore new topics, our platform helps
+                    you gain knowledge effortlessly.
+                </p>
+                <a class="signin w-50 text-center p-2 rounded-5 text-decoration-none" href="/Books/Index">Explore More</a>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="text-center m-5">
+            <h1 class="fw-bold">User Reviews</h1>
+        </div>
+        <div class="row justify-content-center gap-3">
+            <div class="col-md-4 p-3">
+                <p class="fw-bold">Muhammad Tayyab</p>
+                <p class="">Thanks for this platform. Always here to learn new things, share books, ideas, and humanity.</p>
+            </div>
+            <div class="col-md-4 p-3">
+                <p class="fw-bold">Hashim Baig</p>
+                <p class="">Helps me search more and more without spending anything. Motivates me to learn more things.</p>
+            </div>
+            <div class="col-md-4 p-3">
+                <p class="fw-bold">Hafiz Tahir</p>
+                <p class="">Free to use and exchange. Everyday, new things to learn free of cost.</p>
+            </div>
+            <div class="col-md-4 p-3">
+                <p class="fw-bold">Qasim</p>
+                <p class="">A great platform for sharing knowledge and books. Encourages lifelong learning.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid bg-light py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-12">
+                <h2 class="text-center mb-3">About Us</h2>
+                <p class="text-muted text-justify">
+                    Welcome to Online Book Exchange, a platform dedicated to making book sharing easier and more accessible.
+                    Our mission is to connect book lovers, students, and readers by allowing them to exchange, donate, or sell books effortlessly.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <div class="row align-items-center">
+            <div class="col-md-6 col-12 text-center">
+                <img class="img-fluid" src="~/Images/WhyUs.jpg" alt="Why Choose Us?" />
+            </div>
+            <div class="col-md-6 col-12">
+                <h1 class="fw-bolder mb-4">Why Choose Us?</h1>
+            </div>
+        </div>
+
+        <div class="row justify-content-center gap-2 mt-5">
+            <div class="col-md-5 p-3">
+                <p class="fw-bold">Easy Book Exchange</p>
+                <p class="text-muted">Find and swap books with others in just a few clicks.</p>
+            </div>
+            <div class="col-md-5 p-3">
+                <p class="fw-bold">Community-Driven</p>
+                <p class="text-muted">Join a growing network of readers and knowledge seekers.</p>
+            </div>
+            <div class="col-md-5 p-3">
+                <p class="fw-bold">Save Money</p>
+                <p class="text-muted">Get books at little to no cost while giving your old ones a new home.</p>
+            </div>
+            <div class="col-md-5 p-3">
+                <p class="fw-bold">Secure & Reliable</p>
+                <p class="text-muted">Our platform ensures safe transactions and user trust.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-8 col-12 text-center mx-auto mt-4">
+                <p class="text-muted">
+                    Whether you're a student looking for textbooks or an avid reader searching for your next adventure,
+                    <strong>Online Book Exchange</strong> is here to help. Start exchanging books today!
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="container-fluid bg-dark py-5">
+        <div class="container text-center text-white my-5">
+
+            <h5 class="fw-bold">Online Book Exchange</h5>
+
+            <div class="d-flex flex-wrap justify-content-center gap-3 my-3">
+                <a href="https://www.instagram.com/m.tayyab.0/" target="_blank" class="social text-secondary text-decoration-none">Instagram</a>
+                <a href="https://www.facebook.com/mirza.tayyab.9028" target="_blank" class="social text-secondary text-decoration-none">Facebook</a>
+                <a href="" class="social text-secondary text-decoration-none">Twitter</a>
+                <a href="https://www.linkedin.com/in/tayyab-softwaredeveloper/" target="_blank" class="social text-secondary text-decoration-none">LinkedIn</a>
+            </div>
+
+            <div class="row justify-content-center my-2">
+                <div class="col-12 col-md-auto">
+                    <p class="mb-0 text-secondary">EMAIL:</p>
+                </div>
+                <div class="col-12 col-md-auto">
+                    <a class="email-link text-decoration-none text-secondary" href="mailto:tmirza217@gmail.com">
+                        tmirza217@gmail.com
+                    </a>
+                </div>
+            </div>
+            <p class="my-5 text-secondary">&copy; @DateTime.Now.Year - Online Book Exchange</p>
+        </div>
+    </footer>
+
+</body>
+ <style>
+
+     .service-card {
+         transition: transform 0.3s, box-shadow 0.3s;
+         border-radius: 12px;
+         background: linear-gradient(135deg, #ffffff, #f8f9fa);
+     }
+
+    .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+     .social{
+         transition: color 0.3s ease-in-out;
+     }
+     .social:hover{
+         color: white !important;
+     }
+     .email-link:hover {
+         transition: color 0.3s ease-in-out;
+     }
+     .email-link:hover {
+         color: white !important;
+     }
+
+     .developer-img {
+         max-width: 80%;
+         border-radius: 10px;
+         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+     }
+
+     .social-icon {
+         width: 40px;
+         height: auto;
+         transition: transform 0.3s ease-in-out;
+     }
+
+     .social-icon:hover {
+         transform: scale(1.1);
+     }
+
+     .whychooseUs {
+         color: #00bfc5;
+     }
+     .body {
+         font-family: 'Poppins';
+     }
+     .main {
+         background-image: url("https://susan-demo.myshopify.com/cdn/shop/files/Home-2-Slider-2.png?v=1613600507");
+         background-size: cover;
+         background-repeat: no-repeat;
+     }
+     .developer-text {
+         color: #ffd600;
+     }
+     .developer {
+         background-color: #08080a;
+     }
+     .signin {
+         background-color: transparent;
+         color: black;
+         border: 2px solid black;
+         transition: background-color 0.3s, color 0.3s ease-in-out;
+     }
+     .signin:hover {
+         background-color: black;
+         color: white;
+         /*transform: scale(1.1);*/
+     }
+
+     .signup {
+         background-color: #00bfc5;
+         transition: background-color 0.3s, border 0.3s, color 0.3s ease-in-out;
+         color: white;
+         border: 2px solid #00bfc5;
+     }
+     .signup:hover {
+         background-color: transparent;
+         color: #008a8f;
+         border: 2px solid;
+     }
+     .hr-line {
+         background-color: black;
+         height: 5px;
+     }
+     .feature {
+         transition: box-shadow 0.3s ease-in-out;
+     }
+         .feature:hover {
+             box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+         }
+ </style>

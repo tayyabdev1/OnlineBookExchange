@@ -1,0 +1,70 @@
+D:\FYP\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\OnlineBookExchange.DAL.dll.config
+D:\FYP\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\OnlineBookExchange.DAL.dll
+D:\FYP\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\OnlineBookExchange.DAL.pdb
+D:\FYP\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\EntityFramework.dll
+D:\FYP\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\FYP\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\EntityFramework.xml
+D:\FYP\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\FYP\OnlineBookExchange\OnlineBookExchange.DAL\obj\Debug\OnlineBookExchange.DAL.csproj.AssemblyReference.cache
+D:\FYP\OnlineBookExchange\OnlineBookExchange.DAL\obj\Debug\OnlineBookExchange.DAL.csproj.CoreCompileInputs.cache
+D:\FYP\OnlineBookExchange\OnlineBookExchange.DAL\obj\Debug\OnlineBo.FA7B34E4.Up2Date
+D:\FYP\OnlineBookExchange\OnlineBookExchange.DAL\obj\Debug\OnlineBookExchange.DAL.dll
+D:\FYP\OnlineBookExchange\OnlineBookExchange.DAL\obj\Debug\OnlineBookExchange.DAL.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\OnlineBookExchange.DAL.dll.config
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\OnlineBookExchange.DAL.dll
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\OnlineBookExchange.DAL.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\BouncyCastle.Cryptography.dll
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\EntityFramework.dll
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\MailKit.dll
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\MimeKit.dll
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\System.Buffers.dll
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\System.Formats.Asn1.dll
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\System.Memory.dll
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\System.Numerics.Vectors.dll
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\System.ValueTuple.dll
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\BouncyCastle.Cryptography.xml
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\EntityFramework.xml
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\MailKit.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\MailKit.xml
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\MailKit.dll.config
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\MimeKit.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\MimeKit.xml
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\System.Buffers.xml
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\System.Formats.Asn1.xml
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\System.Memory.xml
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\System.Numerics.Vectors.xml
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\System.ValueTuple.xml
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\obj\Debug\OnlineBookExchange.DAL.csproj.AssemblyReference.cache
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\obj\Debug\OnlineBookExchange.DAL.csproj.CoreCompileInputs.cache
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\obj\Debug\OnlineBo.FA7B34E4.Up2Date
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\obj\Debug\OnlineBookExchange.DAL.dll
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\obj\Debug\OnlineBookExchange.DAL.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\Microsoft.IdentityModel.Logging.dll
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\Microsoft.IdentityModel.Tokens.dll
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\Microsoft.Owin.dll
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\Microsoft.Owin.Security.dll
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\Microsoft.Owin.Security.Jwt.dll
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\Microsoft.Owin.Security.OAuth.dll
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\Newtonsoft.Json.dll
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\Owin.dll
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\System.IdentityModel.Tokens.Jwt.dll
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.xml
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\Microsoft.IdentityModel.Logging.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\Microsoft.IdentityModel.Logging.xml
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\Microsoft.IdentityModel.Tokens.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\Microsoft.IdentityModel.Tokens.xml
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\Microsoft.Owin.xml
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\Microsoft.Owin.Security.xml
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\Microsoft.Owin.Security.Jwt.xml
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\Microsoft.Owin.Security.OAuth.xml
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\Newtonsoft.Json.xml
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\System.IdentityModel.Tokens.Jwt.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\OnlineBookExchange.DAL\bin\Debug\System.IdentityModel.Tokens.Jwt.xml

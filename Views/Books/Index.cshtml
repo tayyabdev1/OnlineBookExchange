@@ -1,0 +1,586 @@
+﻿@model OnlineBookExchange.ViewModels.BooksViewModel
+
+@{
+    ViewBag.Title = "Book Listing";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<body class="overflow-x-hidden body">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <div class="top-img bg-dark container-fluid d-flex flex-column justify-content-center align-items-center">
+        <div class="row align-items-center text-center text-md-start">
+            <div class="col-md-6">
+                <h1 class="fw-bolder text-info">
+                    <span class="animate-word">Swap, </span>
+                    <span class="animate-word">Share, </span>
+                    <span class="animate-word">Read</span>
+                </h1>
+                <h1 class="fw-bolder text-white">Your Gateway to a Smarter Book Exchange!</h1>
+            </div>
+            <div class="col-md-6 d-flex justify-content-center">
+                <img class="img-fluid w-100" src="~/Images/bookmockup.png" alt="Book Exchange Image" style="max-width: 300px;">
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center mt-5">
+        <h1 class="fw-bolder">BOOKS</h1>
+        <hr class="w-50 mx-auto" />
+
+        <div class="d-flex justify-content-center m-1">
+            @if (Request.Cookies["jwt"] != null)
+            {
+                <button type="button" id="addModalButton" class="btn btn-primary m-2 border"
+                        data-bs-toggle="modal" data-bs-target="#addModal">
+                    Add Book
+                </button>
+            }
+        </div>
+
+        <div class="row justify-content-center w-75 mx-auto">
+            @foreach (var item in Model.books)
+            {
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-4">
+                    <!-- Adjusted column sizes -->
+                    <div class="card book-card" onclick="showDetails(@item.BookID)">
+                        <img class="card-img-top rounded-4 border border-black"
+                             src="@Url.Action("GetBookPicture", "Books", new {bookID = item.BookID})"
+                             alt="Book Cover Image" />
+                        <div class="card-body">
+                            <h6 class="card-title fw-bolder">@item.Title</h6>
+                            <p class="card-text text-secondary">@item.Genre</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+
+    <!-- Details Modal -->
+    <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <!-- Center modal & keep it large -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body container-fluid">
+                    <div class="form-group mb-3">
+                        <a id="userProfile" class="form-control text-primary text-decoration-underline text-truncate"
+                           href="#" target="_blank">View Profile</a>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="username">UserName</label>
+                        <input type="text" id="username" class="form-control" name="username" readonly>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="bookID">Book ID</label>
+                                <input type="text" id="bookID" class="form-control" name="bookID" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="userID">User ID</label>
+                                <input type="text" id="userID" class="form-control" name="userID" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="title">Book Title</label>
+                        <input type="text" id="title" class="form-control" name="title" readonly>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="author">Author</label>
+                        <input type="text" id="author" class="form-control" name="author" readonly>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="genre">Genre</label>
+                        <input type="text" id="genre" class="form-control" name="genre" readonly>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="condition">Condition</label>
+                                <input type="text" id="condition" class="form-control" name="condition" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="status">Status</label>
+                                <input type="text" id="status" class="form-control" name="status" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="addedDate">Added Date</label>
+                        <input type="text" id="addedDate" class="form-control" name="addedDate" readonly>
+                    </div>
+
+                    <div class="form-group d-flex flex-wrap gap-2 mt-4 justify-content-center">
+                        <a href="#" id="messageButton" class="btn btn-primary">Message</a>
+                        @if (Request.Cookies["jwt"] != null)
+                        {
+                            <button id="exchangeRequestButton" class="btn btn-danger" name="exchangeRequestButton">Exchange Request</button>
+                        }
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Add Book Modal -->
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <!-- Center modal -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Book</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addForm" method="post">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group mb-3">
+                                    <label class="form-label" for="userid">User ID</label>
+                                    <input type="text" class="form-control" id="userid" name="userid" value="@Model.UserID" required readonly>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label class="form-label" for="title">Title</label>
+                                    <input type="text" class="form-control" id="title" name="title" required placeholder="Enter title">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label class="form-label" for="author">Author</label>
+                                    <input type="text" class="form-control" id="author" name="author" required placeholder="Enter author">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label class="form-label" for="genre">Genre</label>
+                                    <input type="text" class="form-control" id="genre" name="genre" required placeholder="Enter genre">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label class="form-label" for="condition">Condition</label>
+                                    <input type="text" class="form-control" id="condition" name="condition" required placeholder="Enter condition">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label class="form-label" for="status">Status</label>
+                                    <input type="text" class="form-control" id="status" name="status" required placeholder="Enter status">
+                                </div>
+                            </div>
+
+                            <div class="d-flex flex-column" asp-action="UploadProfilePicture" asp-controller="User" enctype="multipart/form-data" method="post">
+                                <input type="hidden" id="BookID" name="BookID" />
+                                <input class="m-3" type="file" id="bookImage" name="bookImage" />
+                                <p style="font-size: 10px;" class="p-2"><span>&#9888;</span> Kindly crop the image to square before upload</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-center mt-3">
+                            <button type="submit" class="btn btn-primary me-2">Submit</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="container-fluid bg-dark py-5">
+        <div class="container text-center text-white my-5">
+
+            <h5 class="fw-bold">Online Book Exchange</h5>
+
+            <div class="d-flex flex-wrap justify-content-center gap-3 my-3">
+                <a href="https://www.instagram.com/m.tayyab.0/" target="_blank" class="social text-secondary text-decoration-none">Instagram</a>
+                <a href="https://www.facebook.com/mirza.tayyab.9028" target="_blank" class="social text-secondary text-decoration-none">Facebook</a>
+                <a href="" class="social text-secondary text-decoration-none">Twitter</a>
+                <a href="https://www.linkedin.com/in/tayyab-softwaredeveloper/" target="_blank" class="social text-secondary text-decoration-none">LinkedIn</a>
+            </div>
+
+            <div class="row justify-content-center my-2">
+                <div class="col-12 col-md-auto">
+                    <p class="mb-0 text-secondary">EMAIL:</p>
+                </div>
+                <div class="col-12 col-md-auto">
+                    <a class="email-link text-decoration-none text-secondary" href="mailto:tmirza217@gmail.com">
+                        tmirza217@gmail.com
+                    </a>
+                </div>
+            </div>
+            <p class="my-5 text-secondary">&copy; @DateTime.Now.Year - Online Book Exchange</p>
+        </div>
+    </footer>
+
+
+</body>
+
+<style>
+
+
+    .social {
+        transition: color 0.3s ease-in-out;
+    }
+
+    .social:hover {
+        color: white !important;
+    }
+
+    .email-link{
+        transition: color 0.3s ease-in-out;
+    }
+
+    .email-link:hover {
+        color: white !important;
+    }
+
+    .top-img{
+        background-image: url(~/Images/bg1.jpg);
+    }
+    .animate-word {
+        opacity: 0;
+        transform: translateY(20px);
+        display: inline-block;
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .animate-word.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+
+    .books {
+        font-weight: 700;
+    }
+    .card-img-top{
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+    .card-img-top:hover {
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    .card {
+        border: none;
+        transition: transform 0.3s ease, border 0.3s ease;
+    }
+
+    .card:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+    }
+
+    .bookbtn {
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
+
+    .bookbtn:hover {
+        background-color: lightgray;
+    }
+
+    .label {
+        color: grey;
+    }
+
+    .form-group {
+        align-items: baseline;
+        display: flex;
+        gap: 2%;
+    }
+
+    .form-control {
+        width: 50%;
+        font-size: 17px;
+        font-weight: 700;
+        border: none;
+    }
+
+        .form-control:focus {
+            box-shadow: none;
+        }
+
+    #messageButton {
+        width: 25%;
+    }
+
+    #exchangeRequestButton {
+        width: 26%;
+    }
+
+    bg-remove:focus {
+        background-color: transparent !important;
+    }
+
+    .body {
+        font-family: 'Poppins';
+    }
+</style>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script>
+
+        var table;
+        $(document).ready(function () {
+            table = $('#dataTable').DataTable({
+                ajax:
+                {
+                    url: '/api/books',
+                    method: 'GET',
+                    dataSrc: ''
+                },
+                columns: [
+                    { data: 'bookID', visible: false },
+                    { data: 'userID', visible: false },
+                    { data: 'username' },
+                    {
+                        data: 'title',
+                        render: function (data, type, row) {
+                            // Truncate the title to 20 characters and add ellipses
+                            if (data.length > 20) {
+                                return `<span title="${data}">${data.substring(0, 20)}...</span>`;
+                            }
+                            return data;
+                        },
+                        // apply Bootstrap class
+                        createdCell: function (cell) {
+                            $(cell).addClass('fw-bold text-danger fs-6');
+                        }
+                    },
+                    { data: 'author', visible: false },
+                    {
+                        data: 'genre',
+                        render: function (data, type, row) {
+                            if (data.length > 20) {
+                                return `<span title="${data}">${data.substring(0, 20)}...</span>`;
+                            }
+                            return data;
+                        },
+                        createdCell: function (cell) {
+                            $(cell).addClass('text-info fw-normal');
+                        }
+                    },
+                    { data: 'condition' },
+                    { data: 'status' },
+                    { data: 'addedDate', visible: false },
+                ],
+                dom: 'Bfrtip', // Enables search bar and entries
+                searching: true
+            });
+        });
+
+        function showDetails(bookID) {
+            $("#username").val("");
+            $("#bookID").val("");
+            $("#userID").val("");
+            $("#title").val("");
+            $("#author").val("");
+            $("#genre").val("");
+            $("#condition").val("");
+            $("#status").val("");
+            $("#addedDate").val("");
+            $("#userProfile").attr("href", "#").text("View Profile");
+
+            // Fetch new data and filter the specific book
+            $.ajax({
+                url: '/api/books/' + bookID,
+                method: 'GET',
+                success: function (data) {
+                    console.log(data); // Confirm data received
+
+                    var book = data.find(b => b.bookID === bookID);
+
+                    if (book) {
+                        // Populate the modal fields
+                        $("#username").val(book.username);
+                        $("#bookID").val(book.bookID);
+                        $("#userID").val(book.userID);
+                        $("#title").val(book.title);
+                        $("#author").val(book.author);
+                        $("#genre").val(book.genre);
+                        $("#condition").val(book.condition);
+                        $("#status").val(book.status);
+                        $("#addedDate").val(book.addedDate);
+
+                        // Set the User Profile link
+                        var profileUrl = "/User/Profile/" + book.userID; // Generate the profile URL
+                        $("#userProfile").attr("href", profileUrl).text("View Profile");
+
+                        // Show the modal
+                        $('#detailsModal').modal('show');
+                    } else {
+                        console.error("Book not found in API response.");
+                        toastr.error("The selected book details could not be found.");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.log(xhr.responseText);
+                    toastr.error("Error: " + error + " Status: " + status);
+                }
+            });
+        }
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const messageButton = document.getElementById("messageButton");
+
+
+
+            $('#detailsModal').on('show.bs.modal', function (event) {
+                const modal = $(this);
+
+                // Get the UserID dynamically from the input field
+                const userID = modal.find("#userID").val();
+
+                // Set the Message button link dynamically
+                messageButton.href = `/Message/Message?receiverId=${userID}`;
+            });
+        });
+
+        $(document).ready(function () {
+            $('#addModalButton').on('click', function () {
+                $('#addModal').modal('show');
+            });
+        });
+
+
+        $("#addForm").validate({
+
+            submitHandler: function () {
+                var formData = new FormData(document.getElementById("addForm"));
+
+                $.ajax({
+                    url: "/api/books",
+                    method: "POST",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        Swal.fire({
+                            title: "Book Added",
+                            text: "You Book Added Succesfully",
+                            icon: "success"
+                        });
+                        $("#addForm")[0].reset();
+                        $('#addModal').modal('hide');
+                        table.ajax.reload(null, false);
+                    },
+                    error: function (xhr) {
+                        toastr.error("Please Try Again");
+                    }
+                });
+            }
+        });
+
+
+
+        // Upload Profile Picture
+        function uploadBookPicture() {
+            var fileInput = document.getElementById('profilePictureInput');
+            var file = fileInput.files[0];
+            var bookId = document.getElementById("BookID").value;
+
+            if (!file) {
+                alert("Please select an image.");
+                return;
+            }
+
+            var formData = new FormData();
+            formData.append("imageFile", file);
+            formData.append("BookID", bookId);
+
+            $.ajax({
+                url: '/api/books/UploadBookPicture',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    toastr.success("Profile picture updated successfully!");
+                    $("#profileImage").attr("src", response.ProfilePicture + "?t=" + new Date().getTime());
+                },
+                error: function () {
+                    toastr.error("Error uploading profile picture.");
+                }
+            });
+        }
+
+
+
+        $('#exchangeRequestButton').click(function () {
+            var notifications = {
+                UserID: @Model.UserID, // Sender ID
+                ReceiverId: $("#userID").val(), // Receiver ID
+                BookID: $("#bookID").val(),
+                Message: 'new exchange request for your book',
+            };
+
+            $.ajax({
+                url: "/api/notifications/send",
+                method: "POST",
+                data: JSON.stringify(notifications),
+                contentType: 'application/json',
+                success: function (response) {
+                    toastr.success('Exchange request sent successfully.');
+                },
+                error: function (error) {
+                    toastr.error('Error sending exchange request.');
+                }
+            });
+        });
+
+
+        // Swap Share Read animation
+        document.addEventListener('DOMContentLoaded', function () {
+            const words = document.querySelectorAll('.animate-word');
+            words.forEach((word, index) => {
+                setTimeout(() => {
+                    word.classList.add('visible');
+                }, index * 600); // 600ms delay between each word
+            });
+        });
+
+    </script>
+}

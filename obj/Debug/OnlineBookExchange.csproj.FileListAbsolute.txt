@@ -1,0 +1,267 @@
+D:\FYP\OnlineBookExchange\bin\OnlineBookExchange.dll.config
+D:\FYP\OnlineBookExchange\bin\OnlineBookExchange.dll
+D:\FYP\OnlineBookExchange\bin\OnlineBookExchange.pdb
+D:\FYP\OnlineBookExchange\bin\roslyn\csc.exe
+D:\FYP\OnlineBookExchange\bin\roslyn\csc.exe.config
+D:\FYP\OnlineBookExchange\bin\roslyn\csc.rsp
+D:\FYP\OnlineBookExchange\bin\roslyn\csi.exe
+D:\FYP\OnlineBookExchange\bin\roslyn\csi.exe.config
+D:\FYP\OnlineBookExchange\bin\roslyn\csi.rsp
+D:\FYP\OnlineBookExchange\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\FYP\OnlineBookExchange\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\FYP\OnlineBookExchange\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\FYP\OnlineBookExchange\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\FYP\OnlineBookExchange\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\FYP\OnlineBookExchange\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\FYP\OnlineBookExchange\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\FYP\OnlineBookExchange\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\FYP\OnlineBookExchange\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\FYP\OnlineBookExchange\bin\roslyn\Microsoft.Managed.Core.CurrentVersions.targets
+D:\FYP\OnlineBookExchange\bin\roslyn\Microsoft.Managed.Core.targets
+D:\FYP\OnlineBookExchange\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\FYP\OnlineBookExchange\bin\roslyn\System.Buffers.dll
+D:\FYP\OnlineBookExchange\bin\roslyn\System.Collections.Immutable.dll
+D:\FYP\OnlineBookExchange\bin\roslyn\System.Memory.dll
+D:\FYP\OnlineBookExchange\bin\roslyn\System.Numerics.Vectors.dll
+D:\FYP\OnlineBookExchange\bin\roslyn\System.Reflection.Metadata.dll
+D:\FYP\OnlineBookExchange\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
+D:\FYP\OnlineBookExchange\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\FYP\OnlineBookExchange\bin\roslyn\System.Threading.Tasks.Extensions.dll
+D:\FYP\OnlineBookExchange\bin\roslyn\vbc.exe
+D:\FYP\OnlineBookExchange\bin\roslyn\vbc.exe.config
+D:\FYP\OnlineBookExchange\bin\roslyn\vbc.rsp
+D:\FYP\OnlineBookExchange\bin\roslyn\VBCSCompiler.exe
+D:\FYP\OnlineBookExchange\bin\roslyn\VBCSCompiler.exe.config
+D:\FYP\OnlineBookExchange\bin\Antlr3.Runtime.dll
+D:\FYP\OnlineBookExchange\bin\Emby.Media.Model.dll
+D:\FYP\OnlineBookExchange\bin\Emby.Web.GenericEdit.dll
+D:\FYP\OnlineBookExchange\bin\EntityFramework.dll
+D:\FYP\OnlineBookExchange\bin\EntityFramework.SqlServer.dll
+D:\FYP\OnlineBookExchange\bin\MediaBrowser.Common.dll
+D:\FYP\OnlineBookExchange\bin\MediaBrowser.Model.dll
+D:\FYP\OnlineBookExchange\bin\Microsoft.AspNet.Identity.Core.dll
+D:\FYP\OnlineBookExchange\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\FYP\OnlineBookExchange\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\FYP\OnlineBookExchange\bin\Microsoft.Owin.dll
+D:\FYP\OnlineBookExchange\bin\Microsoft.Owin.Security.Cookies.dll
+D:\FYP\OnlineBookExchange\bin\Microsoft.Owin.Security.dll
+D:\FYP\OnlineBookExchange\bin\Microsoft.Owin.Security.OAuth.dll
+D:\FYP\OnlineBookExchange\bin\Microsoft.Web.Infrastructure.dll
+D:\FYP\OnlineBookExchange\bin\Newtonsoft.Json.Bson.dll
+D:\FYP\OnlineBookExchange\bin\Newtonsoft.Json.dll
+D:\FYP\OnlineBookExchange\bin\OnlineBookExchange.BLL.dll
+D:\FYP\OnlineBookExchange\bin\OnlineBookExchange.DAL.dll
+D:\FYP\OnlineBookExchange\bin\Owin.dll
+D:\FYP\OnlineBookExchange\bin\System.Buffers.dll
+D:\FYP\OnlineBookExchange\bin\System.Memory.dll
+D:\FYP\OnlineBookExchange\bin\System.Net.Http.Formatting.dll
+D:\FYP\OnlineBookExchange\bin\System.Numerics.Vectors.dll
+D:\FYP\OnlineBookExchange\bin\System.Runtime.CompilerServices.Unsafe.dll
+D:\FYP\OnlineBookExchange\bin\System.Threading.Tasks.Extensions.dll
+D:\FYP\OnlineBookExchange\bin\System.Web.Helpers.dll
+D:\FYP\OnlineBookExchange\bin\System.Web.Http.dll
+D:\FYP\OnlineBookExchange\bin\System.Web.Http.WebHost.dll
+D:\FYP\OnlineBookExchange\bin\System.Web.Mvc.dll
+D:\FYP\OnlineBookExchange\bin\System.Web.Optimization.dll
+D:\FYP\OnlineBookExchange\bin\System.Web.Razor.dll
+D:\FYP\OnlineBookExchange\bin\System.Web.WebPages.Deployment.dll
+D:\FYP\OnlineBookExchange\bin\System.Web.WebPages.dll
+D:\FYP\OnlineBookExchange\bin\System.Web.WebPages.Razor.dll
+D:\FYP\OnlineBookExchange\bin\WebGrease.dll
+D:\FYP\OnlineBookExchange\bin\OnlineBookExchange.BLL.pdb
+D:\FYP\OnlineBookExchange\bin\OnlineBookExchange.BLL.dll.config
+D:\FYP\OnlineBookExchange\bin\OnlineBookExchange.DAL.pdb
+D:\FYP\OnlineBookExchange\bin\OnlineBookExchange.DAL.dll.config
+D:\FYP\OnlineBookExchange\bin\Emby.Media.Model.pdb
+D:\FYP\OnlineBookExchange\bin\Emby.Media.Model.xml
+D:\FYP\OnlineBookExchange\bin\Emby.Web.GenericEdit.pdb
+D:\FYP\OnlineBookExchange\bin\Emby.Web.GenericEdit.xml
+D:\FYP\OnlineBookExchange\bin\EntityFramework.xml
+D:\FYP\OnlineBookExchange\bin\EntityFramework.SqlServer.xml
+D:\FYP\OnlineBookExchange\bin\MediaBrowser.Common.pdb
+D:\FYP\OnlineBookExchange\bin\MediaBrowser.Common.xml
+D:\FYP\OnlineBookExchange\bin\MediaBrowser.Model.pdb
+D:\FYP\OnlineBookExchange\bin\MediaBrowser.Model.xml
+D:\FYP\OnlineBookExchange\bin\Microsoft.AspNet.Identity.Core.xml
+D:\FYP\OnlineBookExchange\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\FYP\OnlineBookExchange\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\FYP\OnlineBookExchange\bin\Microsoft.Owin.xml
+D:\FYP\OnlineBookExchange\bin\Microsoft.Owin.Security.xml
+D:\FYP\OnlineBookExchange\bin\Microsoft.Owin.Security.Cookies.xml
+D:\FYP\OnlineBookExchange\bin\Microsoft.Owin.Security.OAuth.xml
+D:\FYP\OnlineBookExchange\bin\Newtonsoft.Json.Bson.pdb
+D:\FYP\OnlineBookExchange\bin\Newtonsoft.Json.Bson.xml
+D:\FYP\OnlineBookExchange\bin\System.Buffers.xml
+D:\FYP\OnlineBookExchange\bin\System.Memory.xml
+D:\FYP\OnlineBookExchange\bin\System.Net.Http.Formatting.xml
+D:\FYP\OnlineBookExchange\bin\System.Numerics.Vectors.xml
+D:\FYP\OnlineBookExchange\bin\System.Runtime.CompilerServices.Unsafe.xml
+D:\FYP\OnlineBookExchange\bin\System.Threading.Tasks.Extensions.xml
+D:\FYP\OnlineBookExchange\bin\System.Web.Helpers.xml
+D:\FYP\OnlineBookExchange\bin\System.Web.Http.xml
+D:\FYP\OnlineBookExchange\bin\System.Web.Http.WebHost.xml
+D:\FYP\OnlineBookExchange\bin\System.Web.Mvc.xml
+D:\FYP\OnlineBookExchange\bin\System.Web.Razor.xml
+D:\FYP\OnlineBookExchange\bin\System.Web.WebPages.xml
+D:\FYP\OnlineBookExchange\bin\System.Web.WebPages.Deployment.xml
+D:\FYP\OnlineBookExchange\bin\System.Web.WebPages.Razor.xml
+D:\FYP\OnlineBookExchange\bin\System.Web.Optimization.xml
+D:\FYP\OnlineBookExchange\bin\Newtonsoft.Json.xml
+D:\FYP\OnlineBookExchange\bin\Antlr3.Runtime.pdb
+D:\FYP\OnlineBookExchange\obj\Debug\OnlineBookExchange.csproj.AssemblyReference.cache
+D:\FYP\OnlineBookExchange\obj\Debug\OnlineBookExchange.csproj.CoreCompileInputs.cache
+D:\FYP\OnlineBookExchange\obj\Debug\OnlineBo.E52A3A5D.Up2Date
+D:\FYP\OnlineBookExchange\obj\Debug\OnlineBookExchange.dll
+D:\FYP\OnlineBookExchange\obj\Debug\OnlineBookExchange.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\bin\OnlineBookExchange.dll.config
+D:\CS519 Final Year Project\OnlineBookExchange\bin\OnlineBookExchange.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\OnlineBookExchange.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\csc.exe
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\csc.exe.config
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\csc.rsp
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\csi.exe
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\csi.exe.config
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\csi.rsp
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\Microsoft.Managed.Core.CurrentVersions.targets
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\Microsoft.Managed.Core.targets
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\System.Buffers.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\System.Collections.Immutable.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\System.Memory.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\System.Numerics.Vectors.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\System.Reflection.Metadata.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\System.Threading.Tasks.Extensions.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\vbc.exe
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\vbc.exe.config
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\vbc.rsp
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\VBCSCompiler.exe
+D:\CS519 Final Year Project\OnlineBookExchange\bin\roslyn\VBCSCompiler.exe.config
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Antlr3.Runtime.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\BouncyCastle.Cryptography.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Emby.Media.Model.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Emby.Web.GenericEdit.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\EntityFramework.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\EntityFramework.SqlServer.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\MailKit.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\MediaBrowser.Common.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\MediaBrowser.Model.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNet.Identity.Core.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Owin.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Owin.Security.Cookies.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Owin.Security.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Owin.Security.OAuth.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Web.Infrastructure.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\MimeKit.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Newtonsoft.Json.Bson.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Newtonsoft.Json.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\OnlineBookExchange.BLL.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\OnlineBookExchange.DAL.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Owin.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Buffers.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Formats.Asn1.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Memory.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Net.Http.Formatting.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Numerics.Vectors.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Runtime.CompilerServices.Unsafe.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Threading.Tasks.Extensions.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.ValueTuple.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Web.Helpers.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Web.Http.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Web.Http.WebHost.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Web.Mvc.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Web.Optimization.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Web.Razor.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Web.WebPages.Deployment.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Web.WebPages.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Web.WebPages.Razor.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\WebGrease.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\OnlineBookExchange.BLL.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\bin\OnlineBookExchange.BLL.dll.config
+D:\CS519 Final Year Project\OnlineBookExchange\bin\OnlineBookExchange.DAL.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\bin\OnlineBookExchange.DAL.dll.config
+D:\CS519 Final Year Project\OnlineBookExchange\bin\BouncyCastle.Cryptography.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Emby.Media.Model.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Emby.Media.Model.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Emby.Web.GenericEdit.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Emby.Web.GenericEdit.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\EntityFramework.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\EntityFramework.SqlServer.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\MailKit.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\bin\MailKit.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\MailKit.dll.config
+D:\CS519 Final Year Project\OnlineBookExchange\bin\MediaBrowser.Common.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\bin\MediaBrowser.Common.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\MediaBrowser.Model.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\bin\MediaBrowser.Model.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNet.Identity.Core.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Owin.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Owin.Security.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Owin.Security.Cookies.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Owin.Security.OAuth.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\MimeKit.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\bin\MimeKit.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Newtonsoft.Json.Bson.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Newtonsoft.Json.Bson.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Buffers.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Formats.Asn1.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Memory.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Net.Http.Formatting.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Numerics.Vectors.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Runtime.CompilerServices.Unsafe.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Threading.Tasks.Extensions.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.ValueTuple.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Web.Helpers.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Web.Http.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Web.Http.WebHost.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Web.Mvc.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Web.Razor.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Web.WebPages.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Web.WebPages.Deployment.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Web.WebPages.Razor.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Web.Optimization.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Newtonsoft.Json.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Antlr3.Runtime.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\obj\Debug\OnlineBookExchange.csproj.AssemblyReference.cache
+D:\CS519 Final Year Project\OnlineBookExchange\obj\Debug\OnlineBookExchange.csproj.CoreCompileInputs.cache
+D:\CS519 Final Year Project\OnlineBookExchange\obj\Debug\OnlineBo.E52A3A5D.Up2Date
+D:\CS519 Final Year Project\OnlineBookExchange\obj\Debug\OnlineBookExchange.dll
+D:\CS519 Final Year Project\OnlineBookExchange\obj\Debug\OnlineBookExchange.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNetCore.Http.Features.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Extensions.Primitives.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.IO.Pipelines.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNetCore.Http.Features.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Extensions.Primitives.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.IO.Pipelines.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Configuration.ConfigurationBuilders.Base.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Configuration.ConfigurationBuilders.UserSecrets.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.IdentityModel.Logging.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.IdentityModel.Tokens.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Owin.Security.Jwt.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.IdentityModel.Tokens.Jwt.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Configuration.ConfigurationBuilders.Base.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Configuration.ConfigurationBuilders.UserSecrets.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.IdentityModel.JsonWebTokens.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.IdentityModel.JsonWebTokens.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.IdentityModel.Logging.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.IdentityModel.Logging.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.IdentityModel.Tokens.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.IdentityModel.Tokens.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Owin.Security.Jwt.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.IdentityModel.Tokens.Jwt.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\bin\System.IdentityModel.Tokens.Jwt.xml

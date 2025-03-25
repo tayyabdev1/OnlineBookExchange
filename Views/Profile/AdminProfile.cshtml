@@ -1,0 +1,119 @@
+﻿@model OnlineBookExchange.ViewModels.UserViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+    <h2>Admin</h2>
+    <div class="container my-2">
+        <div class="mx-auto shadow-lg d-flex gap-3 bg-body text-start border-2 my-4 w-50" id="user-profile" style="background-color: #f4f4f4;">
+            <div class="ms-3 p-5 profile-heading-text">
+                <p class="text-secondary fw-medium">ID</p>
+                <strong>@Model.UserID</strong>
+                <hr class="w-100" />
+                <p class="text-secondary fw-medium">Name</p>
+                <strong>@Model.Username</strong>
+                <hr class="w-100" />
+                <p class="text-secondary fw-medium">Email</p>
+                <strong>@Model.Email</strong>
+                <hr class="w-100" />
+                <p class="text-secondary fw-medium">Address</p>
+                <strong>@Model.Address</strong>
+                <hr class="w-100" />
+                <p class="text-secondary fw-medium">Joined</p>
+                <strong>@Model.CreatedAt</strong>
+                <hr class="w-100" />
+            </div>
+            <div class="profile-header position-relative d-flex">
+                @if (!string.IsNullOrEmpty(Model?.ProfilePicture))
+                {
+                    <img class="rounded-circle" src="@Model.ProfilePicture" alt="Profile Picture" width="100" height="100" />
+                }
+                else
+                {
+                    <p>No Profile Picture</p>
+                }
+            </div>
+        </div>
+
+        <form class="d-flex flex-column" asp-action="UploadProfilePicture" asp-controller="User" enctype="multipart/form-data" method="post">
+            <input class="m-3" type="file" id="profilePictureInput" />
+            <button class="uploadbutton border-0 w-25 rounded-3 fw-medium" onclick="uploadProfilePicture()">Upload</button>
+            <p style="font-size: 10px;" class="p-2"><span>&#9888;</span> Kindly crop the image to square before upload</p>
+        </form>
+        <p class="text-muted">For any queries contact tmirza217@gmail.com</p>
+    </div>
+
+
+<style>
+
+    .uploadbutton:hover {
+        background-color: #dedede;
+    }
+    .profile-heading-text p {
+        font-size: 13px;
+    }
+
+    .profile-header {
+        padding: 9%;
+    }
+
+    .mx-auto {
+        border-radius: 20px;
+    }
+
+    .btn {
+        margin: 1%;
+        border: none;
+        background: none;
+        color: gray;
+        font-weight: 700;
+    }
+</style>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+
+
+        // Upload Profile Picture
+        function uploadProfilePicture() {
+            var fileInput = document.getElementById('profilePictureInput');
+            var file = fileInput.files[0];
+
+            if (!file) {
+                alert("Please select an image.");
+                return;
+            }
+
+            var formData = new FormData();
+            formData.append("imageFile", file);
+            formData.append("UserID", @Model.UserID); // Replace with dynamic user ID
+
+            $.ajax({
+                url: '/api/profile/UploadProfilePicture',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    toastr.success("Profile picture updated successfully!");
+                    table.ajax.reload(null, false);
+                    location.reload();
+                },
+                error: function () {
+                    toastr.error("Error uploading profile picture.");
+                }
+            });
+        }
+
+    </script>
+}

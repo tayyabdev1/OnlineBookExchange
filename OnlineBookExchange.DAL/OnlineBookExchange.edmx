@@ -1,0 +1,792 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="OnlineBookExchangeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Books">
+          <Key>
+            <PropertyRef Name="BookID" />
+          </Key>
+          <Property Name="BookID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Title" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Author" Type="varchar" MaxLength="100" />
+          <Property Name="Genre" Type="varchar" MaxLength="50" />
+          <Property Name="Condition" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="20" />
+          <Property Name="AddedDate" Type="datetime" />
+          <Property Name="BookPicture" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Exchanges">
+          <Key>
+            <PropertyRef Name="ExchangeID" />
+          </Key>
+          <Property Name="ExchangeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookID" Type="int" />
+          <Property Name="OwnerID" Type="int" />
+          <Property Name="RequestorID" Type="int" />
+          <Property Name="ExchangeDate" Type="datetime" />
+          <Property Name="ReturnDate" Type="datetime" />
+          <Property Name="Status" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Name="MessageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SenderID" Type="int" />
+          <Property Name="ReceiverID" Type="int" />
+          <Property Name="Content" Type="text" />
+          <Property Name="CreatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Notifications">
+          <Key>
+            <PropertyRef Name="NotificationID" />
+          </Key>
+          <Property Name="NotificationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Message" Type="varchar" MaxLength="500" />
+          <Property Name="ReadStatus" Type="bit" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="ReceiverId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="BookID" Type="int" />
+          <Property Name="IsHandled" Type="bit" />
+        </EntityType>
+        <EntityType Name="Ratings">
+          <Key>
+            <PropertyRef Name="RatingID" />
+          </Key>
+          <Property Name="RatingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Exchange_id" Type="int" />
+          <Property Name="RaterID" Type="int" />
+          <Property Name="Rview" Type="text" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="RateeID" Type="int" />
+          <Property Name="BookID" Type="int" />
+          <Property Name="ExchangePartnerRating" Type="int" />
+          <Property Name="BookConditionRating" Type="int" />
+        </EntityType>
+        <EntityType Name="ReportedIssues">
+          <Key>
+            <PropertyRef Name="IssueID" />
+          </Key>
+          <Property Name="IssueID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReporterID" Type="int" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="100" />
+          <Property Name="BookID" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Description" Type="text" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ContactNumber" Type="varchar" MaxLength="15" />
+          <Property Name="Address" Type="text" />
+          <Property Name="Role" Type="varchar" MaxLength="10" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="ProfilePicture" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <Association Name="FK__Books__UserID__4E88ABD4">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Exchanges__BookI__59FA5E80">
+          <End Role="Books" Type="Self.Books" Multiplicity="0..1" />
+          <End Role="Exchanges" Type="Self.Exchanges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="Exchanges">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Exchanges__Owner__5AEE82B9">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Exchanges" Type="Self.Exchanges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Exchanges">
+              <PropertyRef Name="OwnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Exchanges__Reque__5BE2A6F2">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Exchanges" Type="Self.Exchanges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Exchanges">
+              <PropertyRef Name="RequestorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Message__Receive__6FE99F9F">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="ReceiverID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Message__SenderI__6EF57B66">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="SenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notificat__BookI__02FC7413">
+          <End Role="Books" Type="Self.Books" Multiplicity="0..1" />
+          <End Role="Notifications" Type="Self.Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notificat__UserI__6B24EA82">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Notifications" Type="Self.Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ratings__BookID__4E53A1AA">
+          <End Role="Books" Type="Self.Books" Multiplicity="0..1" />
+          <End Role="Ratings" Type="Self.Ratings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="Ratings">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ratings__Exchang__656C112C">
+          <End Role="Exchanges" Type="Self.Exchanges" Multiplicity="0..1" />
+          <End Role="Ratings" Type="Self.Ratings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exchanges">
+              <PropertyRef Name="ExchangeID" />
+            </Principal>
+            <Dependent Role="Ratings">
+              <PropertyRef Name="Exchange_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ratings__RateeID__4D5F7D71">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Ratings" Type="Self.Ratings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Ratings">
+              <PropertyRef Name="RateeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ratings__RaterID__66603565">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Ratings" Type="Self.Ratings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Ratings">
+              <PropertyRef Name="RaterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ReportedI__Repor__3C34F16F">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ReportedIssues" Type="Self.ReportedIssues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ReportedIssues">
+              <PropertyRef Name="ReporterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OnlineBookExchangeModelStoreContainer">
+          <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Exchanges" EntityType="Self.Exchanges" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notifications" EntityType="Self.Notifications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ratings" EntityType="Self.Ratings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReportedIssues" EntityType="Self.ReportedIssues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Books__UserID__4E88ABD4" Association="Self.FK__Books__UserID__4E88ABD4">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Exchanges__BookI__59FA5E80" Association="Self.FK__Exchanges__BookI__59FA5E80">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="Exchanges" EntitySet="Exchanges" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Exchanges__Owner__5AEE82B9" Association="Self.FK__Exchanges__Owner__5AEE82B9">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Exchanges" EntitySet="Exchanges" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Exchanges__Reque__5BE2A6F2" Association="Self.FK__Exchanges__Reque__5BE2A6F2">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Exchanges" EntitySet="Exchanges" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Message__Receive__6FE99F9F" Association="Self.FK__Message__Receive__6FE99F9F">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Message__SenderI__6EF57B66" Association="Self.FK__Message__SenderI__6EF57B66">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notificat__BookI__02FC7413" Association="Self.FK__Notificat__BookI__02FC7413">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notificat__UserI__6B24EA82" Association="Self.FK__Notificat__UserI__6B24EA82">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ratings__BookID__4E53A1AA" Association="Self.FK__Ratings__BookID__4E53A1AA">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="Ratings" EntitySet="Ratings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ratings__Exchang__656C112C" Association="Self.FK__Ratings__Exchang__656C112C">
+            <End Role="Exchanges" EntitySet="Exchanges" />
+            <End Role="Ratings" EntitySet="Ratings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ratings__RateeID__4D5F7D71" Association="Self.FK__Ratings__RateeID__4D5F7D71">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Ratings" EntitySet="Ratings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ratings__RaterID__66603565" Association="Self.FK__Ratings__RaterID__66603565">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Ratings" EntitySet="Ratings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReportedI__Repor__3C34F16F" Association="Self.FK__ReportedI__Repor__3C34F16F">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ReportedIssues" EntitySet="ReportedIssues" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OnlineBookExchangeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Books">
+          <Key>
+            <PropertyRef Name="BookID" />
+          </Key>
+          <Property Name="BookID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Author" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Genre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Condition" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AddedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Books__UserID__4E88ABD4" FromRole="Books" ToRole="Users" />
+          <NavigationProperty Name="Exchanges" Relationship="Self.FK__Exchanges__BookI__59FA5E80" FromRole="Books" ToRole="Exchanges" />
+          <NavigationProperty Name="Notifications" Relationship="OnlineBookExchangeModel.FK__Notificat__BookI__02FC7413" FromRole="Books" ToRole="Notifications" />
+          <NavigationProperty Name="Ratings" Relationship="OnlineBookExchangeModel.FK__Ratings__BookID__4E53A1AA" FromRole="Books" ToRole="Ratings" />
+          <Property Name="BookPicture" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Exchanges">
+          <Key>
+            <PropertyRef Name="ExchangeID" />
+          </Key>
+          <Property Name="ExchangeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookID" Type="Int32" />
+          <Property Name="OwnerID" Type="Int32" />
+          <Property Name="RequestorID" Type="Int32" />
+          <Property Name="ExchangeDate" Type="DateTime" Precision="3" />
+          <Property Name="ReturnDate" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Books" Relationship="Self.FK__Exchanges__BookI__59FA5E80" FromRole="Exchanges" ToRole="Books" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Exchanges__Owner__5AEE82B9" FromRole="Exchanges" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK__Exchanges__Reque__5BE2A6F2" FromRole="Exchanges" ToRole="Users" />
+          <NavigationProperty Name="Ratings" Relationship="Self.FK__Ratings__Exchang__656C112C" FromRole="Exchanges" ToRole="Ratings" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Name="MessageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SenderID" Type="Int32" />
+          <Property Name="ReceiverID" Type="Int32" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Message__Receive__6FE99F9F" FromRole="Message" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK__Message__SenderI__6EF57B66" FromRole="Message" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Notifications">
+          <Key>
+            <PropertyRef Name="NotificationID" />
+          </Key>
+          <Property Name="NotificationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ReadStatus" Type="Boolean" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Notificat__UserI__6B24EA82" FromRole="Notifications" ToRole="Users" />
+          <Property Name="ReceiverId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="BookID" Type="Int32" />
+          <NavigationProperty Name="Books" Relationship="OnlineBookExchangeModel.FK__Notificat__BookI__02FC7413" FromRole="Notifications" ToRole="Books" />
+          <Property Name="IsHandled" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Ratings">
+          <Key>
+            <PropertyRef Name="RatingID" />
+          </Key>
+          <Property Name="RatingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Exchange_id" Type="Int32" />
+          <Property Name="RaterID" Type="Int32" />
+          <Property Name="Rview" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Exchanges" Relationship="Self.FK__Ratings__Exchang__656C112C" FromRole="Ratings" ToRole="Exchanges" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Ratings__RaterID__66603565" FromRole="Ratings" ToRole="Users" />
+          <Property Name="RateeID" Type="Int32" />
+          <Property Name="BookID" Type="Int32" />
+          <Property Name="ExchangePartnerRating" Type="Int32" />
+          <Property Name="BookConditionRating" Type="Int32" />
+          <NavigationProperty Name="Books" Relationship="OnlineBookExchangeModel.FK__Ratings__BookID__4E53A1AA" FromRole="Ratings" ToRole="Books" />
+          <NavigationProperty Name="Users1" Relationship="OnlineBookExchangeModel.FK__Ratings__RateeID__4D5F7D71" FromRole="Ratings" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ContactNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Role" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Books" Relationship="Self.FK__Books__UserID__4E88ABD4" FromRole="Users" ToRole="Books" />
+          <NavigationProperty Name="Exchanges" Relationship="Self.FK__Exchanges__Owner__5AEE82B9" FromRole="Users" ToRole="Exchanges" />
+          <NavigationProperty Name="Exchanges1" Relationship="Self.FK__Exchanges__Reque__5BE2A6F2" FromRole="Users" ToRole="Exchanges" />
+          <NavigationProperty Name="Message" Relationship="Self.FK__Message__Receive__6FE99F9F" FromRole="Users" ToRole="Message" />
+          <NavigationProperty Name="Message1" Relationship="Self.FK__Message__SenderI__6EF57B66" FromRole="Users" ToRole="Message" />
+          <NavigationProperty Name="Notifications" Relationship="Self.FK__Notificat__UserI__6B24EA82" FromRole="Users" ToRole="Notifications" />
+          <NavigationProperty Name="Ratings" Relationship="Self.FK__Ratings__RaterID__66603565" FromRole="Users" ToRole="Ratings" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="ReportedIssues" Relationship="OnlineBookExchangeModel.FK__ReportedI__Repor__3C34F16F" FromRole="Users" ToRole="ReportedIssues" />
+          <NavigationProperty Name="Ratings1" Relationship="OnlineBookExchangeModel.FK__Ratings__RateeID__4D5F7D71" FromRole="Users" ToRole="Ratings" />
+          <Property Name="ProfilePicture" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK__Books__UserID__4E88ABD4">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Exchanges__BookI__59FA5E80">
+          <End Role="Books" Type="Self.Books" Multiplicity="0..1" />
+          <End Role="Exchanges" Type="Self.Exchanges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="Exchanges">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Exchanges__Owner__5AEE82B9">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Exchanges" Type="Self.Exchanges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Exchanges">
+              <PropertyRef Name="OwnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Exchanges__Reque__5BE2A6F2">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Exchanges" Type="Self.Exchanges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Exchanges">
+              <PropertyRef Name="RequestorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ratings__Exchang__656C112C">
+          <End Role="Exchanges" Type="Self.Exchanges" Multiplicity="0..1" />
+          <End Role="Ratings" Type="Self.Ratings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exchanges">
+              <PropertyRef Name="ExchangeID" />
+            </Principal>
+            <Dependent Role="Ratings">
+              <PropertyRef Name="Exchange_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Message__Receive__6FE99F9F">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="ReceiverID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Message__SenderI__6EF57B66">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="SenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notificat__UserI__6B24EA82">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Notifications" Type="Self.Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ratings__RaterID__66603565">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Ratings" Type="Self.Ratings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Ratings">
+              <PropertyRef Name="RaterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OnlineBookExchangeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Books" EntityType="Self.Books" />
+          <EntitySet Name="Exchanges" EntityType="Self.Exchanges" />
+          <EntitySet Name="Message" EntityType="Self.Message" />
+          <EntitySet Name="Notifications" EntityType="Self.Notifications" />
+          <EntitySet Name="Ratings" EntityType="Self.Ratings" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK__Books__UserID__4E88ABD4" Association="Self.FK__Books__UserID__4E88ABD4">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Exchanges__BookI__59FA5E80" Association="Self.FK__Exchanges__BookI__59FA5E80">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="Exchanges" EntitySet="Exchanges" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Exchanges__Owner__5AEE82B9" Association="Self.FK__Exchanges__Owner__5AEE82B9">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Exchanges" EntitySet="Exchanges" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Exchanges__Reque__5BE2A6F2" Association="Self.FK__Exchanges__Reque__5BE2A6F2">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Exchanges" EntitySet="Exchanges" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ratings__Exchang__656C112C" Association="Self.FK__Ratings__Exchang__656C112C">
+            <End Role="Exchanges" EntitySet="Exchanges" />
+            <End Role="Ratings" EntitySet="Ratings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Message__Receive__6FE99F9F" Association="Self.FK__Message__Receive__6FE99F9F">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Message__SenderI__6EF57B66" Association="Self.FK__Message__SenderI__6EF57B66">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notificat__UserI__6B24EA82" Association="Self.FK__Notificat__UserI__6B24EA82">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ratings__RaterID__66603565" Association="Self.FK__Ratings__RaterID__66603565">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Ratings" EntitySet="Ratings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notificat__BookI__02FC7413" Association="OnlineBookExchangeModel.FK__Notificat__BookI__02FC7413">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
+          <EntitySet Name="ReportedIssues" EntityType="OnlineBookExchangeModel.ReportedIssues" />
+          <AssociationSet Name="FK__ReportedI__Repor__3C34F16F" Association="OnlineBookExchangeModel.FK__ReportedI__Repor__3C34F16F">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ReportedIssues" EntitySet="ReportedIssues" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ratings__BookID__4E53A1AA" Association="OnlineBookExchangeModel.FK__Ratings__BookID__4E53A1AA">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="Ratings" EntitySet="Ratings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ratings__RateeID__4D5F7D71" Association="OnlineBookExchangeModel.FK__Ratings__RateeID__4D5F7D71">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Ratings" EntitySet="Ratings" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK__Notificat__BookI__02FC7413">
+          <End Type="OnlineBookExchangeModel.Books" Role="Books" Multiplicity="0..1" />
+          <End Type="OnlineBookExchangeModel.Notifications" Role="Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ReportedIssues">
+          <Key>
+            <PropertyRef Name="IssueID" />
+          </Key>
+          <Property Name="IssueID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReporterID" Type="Int32" />
+          <Property Name="Subject" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BookID" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Users" Relationship="OnlineBookExchangeModel.FK__ReportedI__Repor__3C34F16F" FromRole="ReportedIssues" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK__ReportedI__Repor__3C34F16F">
+          <End Type="OnlineBookExchangeModel.Users" Role="Users" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="OnlineBookExchangeModel.ReportedIssues" Role="ReportedIssues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ReportedIssues">
+              <PropertyRef Name="ReporterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ratings__BookID__4E53A1AA">
+          <End Type="OnlineBookExchangeModel.Books" Role="Books" Multiplicity="0..1" />
+          <End Type="OnlineBookExchangeModel.Ratings" Role="Ratings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="Ratings">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ratings__RateeID__4D5F7D71">
+          <End Type="OnlineBookExchangeModel.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="OnlineBookExchangeModel.Ratings" Role="Ratings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Ratings">
+              <PropertyRef Name="RateeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OnlineBookExchangeModelStoreContainer" CdmEntityContainer="OnlineBookExchangeEntities">
+          <EntitySetMapping Name="Books">
+            <EntityTypeMapping TypeName="OnlineBookExchangeModel.Books">
+              <MappingFragment StoreEntitySet="Books">
+                <ScalarProperty Name="BookPicture" ColumnName="BookPicture" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+                <ScalarProperty Name="Condition" ColumnName="Condition" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Exchanges">
+            <EntityTypeMapping TypeName="OnlineBookExchangeModel.Exchanges">
+              <MappingFragment StoreEntitySet="Exchanges">
+                <ScalarProperty Name="ExchangeID" ColumnName="ExchangeID" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+                <ScalarProperty Name="RequestorID" ColumnName="RequestorID" />
+                <ScalarProperty Name="ExchangeDate" ColumnName="ExchangeDate" />
+                <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Message">
+            <EntityTypeMapping TypeName="OnlineBookExchangeModel.Message">
+              <MappingFragment StoreEntitySet="Message">
+                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+                <ScalarProperty Name="SenderID" ColumnName="SenderID" />
+                <ScalarProperty Name="ReceiverID" ColumnName="ReceiverID" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notifications">
+            <EntityTypeMapping TypeName="OnlineBookExchangeModel.Notifications">
+              <MappingFragment StoreEntitySet="Notifications">
+                <ScalarProperty Name="IsHandled" ColumnName="IsHandled" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ReceiverId" ColumnName="ReceiverId" />
+                <ScalarProperty Name="NotificationID" ColumnName="NotificationID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="ReadStatus" ColumnName="ReadStatus" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ratings">
+            <EntityTypeMapping TypeName="OnlineBookExchangeModel.Ratings">
+              <MappingFragment StoreEntitySet="Ratings">
+                <ScalarProperty Name="BookConditionRating" ColumnName="BookConditionRating" />
+                <ScalarProperty Name="ExchangePartnerRating" ColumnName="ExchangePartnerRating" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="RateeID" ColumnName="RateeID" />
+                <ScalarProperty Name="RatingID" ColumnName="RatingID" />
+                <ScalarProperty Name="Exchange_id" ColumnName="Exchange_id" />
+                <ScalarProperty Name="RaterID" ColumnName="RaterID" />
+                <ScalarProperty Name="Rview" ColumnName="Rview" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="OnlineBookExchangeModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReportedIssues">
+            <EntityTypeMapping TypeName="OnlineBookExchangeModel.ReportedIssues">
+              <MappingFragment StoreEntitySet="ReportedIssues">
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="ReporterID" ColumnName="ReporterID" />
+                <ScalarProperty Name="IssueID" ColumnName="IssueID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

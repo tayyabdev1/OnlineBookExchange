@@ -1,0 +1,92 @@
+﻿@model OnlineBookExchange.ViewModels.MessageViewModel
+@{
+    ViewBag.Title = "Message";
+}
+
+<div class="main w-100 d-flex flex-column">
+    <p class="d-flex justify-content-center">Chat with <strong>@Model.Receivername</strong></p>
+    <div id="chatbox">
+        @foreach (var message in Model.Messages)
+        {
+            if (message.SenderID == Model.SenderID)
+            {
+                <div class="sent">
+                    <strong>You:</strong> @message.Content
+                </div>
+            }
+            else
+            {
+                <div class="received">
+                    @message.Content<strong>: @Model.Receivername</strong>
+                </div>
+            }
+        }
+    </div>
+    <div class="msg-area">
+        <textarea id="message-content" placeholder="Type Your Message here..."></textarea>
+        <button class="rounded-3 fw-medium border-0 w-25" id="send-button">Send</button>
+    </div>
+</div>
+
+<script>
+    document.getElementById('send-button').addEventListener('click', function() {
+        const content = document.getElementById('message-content').value;
+
+        fetch('/api/message/send', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                SenderID: @Model.SenderID,
+                ReceiverID: @Model.ReceiverID,
+                Content: content
+            })
+        }).then(() => {
+            // Append the new message to the chat box
+            const newMessage = document.createElement('div');
+            newMessage.className = 'sent';
+            newMessage.textContent = content;
+            chatbox.appendChild(newMessage);
+
+            // Clear the message input field
+            document.getElementById('message-content').value = '';
+        });
+    });
+</script>
+
+<style>
+
+    .msg-area {
+        display: flex;
+        margin-top: 2%;
+        gap: 1%;
+    }
+    textarea {
+        resize: vertical;
+        width: 30%;
+        height: 30px;
+        border-radius: 10px;
+    }
+    #chatbox {
+        display: flex;
+        flex-direction: column
+    }
+    .sent {
+        text-align: left;
+        background-color: #d1f7c4;
+        padding: 5px;
+        margin: 5px;
+        border-radius: 10px;
+        display: inline-block;
+    }
+
+    .received {
+        text-align: right;
+        background-color: #f1f1f1;
+        padding: 5px;
+        margin: 5px;
+        border-radius: 10px;
+        display: inline-block;
+    }
+</style>
+
+
