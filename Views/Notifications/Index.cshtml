@@ -6,27 +6,52 @@
     @foreach (var notification in Model)
     {
         <li>
-            <strong>User @notification.UserID </strong> - @notification.Message for <strong>Book @notification.BookID </strong> -  @notification.CreatedAt
+            <small class="text-muted">ID @notification.UserID</small> - <strong>@notification.Username</strong>  @notification.Message <strong>@notification.Title </strong> - <small class="text-muted">ID @notification.BookID</small> - <small class="text-muted">@notification.CreatedAt</small>  |
             @if (notification.IsHandled ?? false)
-             {
-                 if(notification.Status == "Accepted")
-                 {
+            {
+                if (notification.Status == "Accepted")
+                {
                     <p>Accepted</p>
-                 }
-                 else if(notification.Status == "Declined")
-                 {
+                }
+                else if (notification.Status == "Declined")
+                {
                     <p>Declined</p>
-                 }
-             }
+                }
+            }
             else
             {
-                <button class="btn btn-success" onclick="acceptRequest('@notification.NotificationID', '@notification.UserID', '@notification.BookID')">Accept</button>
-                <button class="btn btn-danger" onclick="declineRequest('@notification.NotificationID', '@notification.UserID', '@notification.BookID')">Decline</button>
+                <button class="btn btn-success fw-bold" onclick="acceptRequest('@notification.NotificationID', '@notification.UserID', '@notification.BookID')">Accept</button>
+                <button class="btn btn-danger fw-bold" onclick="declineRequest('@notification.NotificationID', '@notification.UserID', '@notification.BookID')">Decline</button>
             }
         </li>
         <hr class="w-100" />
     }
 </ul>
+
+<style>
+    .btn-success {
+        background-color: transparent;
+        color: deepskyblue;
+        border: none;
+        transition: transform background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
+    .btn-success:hover {
+        background-color: deepskyblue !important;
+        border: none;
+        color: white;
+    }
+    .btn-danger {
+        background-color: transparent;
+        color: red;
+        border: none;
+        transition: transform background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
+    .btn-danger:hover {
+        background-color: red !important;
+        color: white;
+        border: none;
+    }
+</style>
 
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")
@@ -35,48 +60,50 @@
     <script>
 
         function acceptRequest(notificationId, userId, bookId) {
-            var currentUser;
+            var currentUser = $("#currentUserId").val(); // ✅ Assign currentUser correctly
+
             if (!currentUser || currentUser === "0") {
-                currentUser = $("#currentUserId").val();
-            }
-            if (!currentUser) {
                 console.error('UserID is null or 0!');
                 return;
             }
+
             var notifications = {
                 UserID: currentUser, // Sender ID
                 ReceiverId: userId, // Receiver ID
                 NotificationID: notificationId,
                 BookID: bookId,
-                Message: 'Your exchange request has been accepted.',
+                Message: 'has accepted your exchange request for ',
             };
+
             var acceptButton = $(`button[onclick="acceptRequest('${notificationId}', '${userId}', '${bookId}')"]`);
-            acceptButton.prop('disabled', true);
 
             $.ajax({
                 url: "/api/notifications/accept",
                 method: "POST",
                 data: JSON.stringify(notifications),
                 contentType: 'application/json',
+                beforeSend: function () {
+                    acceptButton.prop('disabled', true);
+                },
                 success: function (response) {
                     toastr.success('Exchange request accepted.');
-                    
-                    var li = acceptButton.closest('li');
-                    li.find('.btn-danger').hide();
-                    li.append('<p>Exchange in Progress</p>');
+                    acceptButton.closest('li').find('.btn-danger').hide();
+                    acceptButton.after('<p>Exchange in Progress</p>');
                 },
                 error: function (error) {
                     toastr.error('Error accepting exchange request.');
+                    acceptButton.prop('disabled', false); // Re-enable on failure
                 }
             });
-        };
+        }
+
 
         function declineRequest(notificationId, userId, bookId) {
             var currentUser = $("#currentUserId").val();
 
             if (!currentUser || currentUser === "0") {
                 console.error('UserID is null or 0!');
-                return; 
+                return;
             }
 
             var notifications = {
@@ -87,22 +114,28 @@
                 Message: 'Your exchange request has been declined.',
             };
 
-            var button = $(`button[onclick="declineRequest(${notificationId}, ${userId}, ${bookId})"]`);
-            button.prop('disabled', true);
+            var declineButton = $(`button[onclick*="declineRequest('${notificationId}'"]`);
 
             $.ajax({
                 url: "/api/notifications/decline",
                 method: "POST",
                 data: JSON.stringify(notifications),
                 contentType: 'application/json',
+                beforeSend: function () {
+                    declineButton.prop('disabled', true);
+                },
                 success: function (response) {
                     toastr.success('Exchange request declined.');
+                    declineButton.siblings('.btn-success').hide();
+                    declineButton.after('<p>Declined</p>');
                 },
                 error: function (error) {
                     toastr.error('Error declining exchange request.');
+                    declineButton.prop('disabled', false);
                 }
             });
         };
+
 
     </script>
 }

@@ -61,91 +61,118 @@ namespace OnlineBookExchange.Controllers.Api
             else return StatusCode(HttpStatusCode.InternalServerError);
         }
 
+
+
         [HttpPost]
         [Route("api/notifications/accept")]
         public IHttpActionResult AcceptRequest(NotificationsViewModel notificationsViewModel)
         {
-            if (notificationsViewModel?.UserID == null)
+            if (notificationsViewModel?.NotificationID == null)
             {
                 return BadRequest("NotificationID is required.");
             }
-            var notifications = new NotificationDto().AcceptRequest
-                (
-                    new NotificationDto
-                    {
-                        UserID = notificationsViewModel.UserID,
-                        Message = notificationsViewModel.Message,
-                        ReadStatus = true,
-                        CreatedAt = DateTime.Now,
-                        ReceiverId = notificationsViewModel.ReceiverId,
-                        Status = "Accepted",
-                        BookID = notificationsViewModel.BookID,
-                        IsHandled = true,
 
-                    }
-                );
-            if (notifications)
+            using (var transaction = _context.Database.BeginTransaction())
             {
-                var exchange = new Exchanges
+                try
                 {
-                    BookID = notificationsViewModel.BookID,
-                    OwnerID = notificationsViewModel.UserID,
-                    RequestorID = notificationsViewModel.ReceiverId,
-                    ExchangeDate = DateTime.Now,
-                    ReturnDate = null,
-                    Status = "In Progress",
-                };
-                _context.Exchanges.Add( exchange );
-                _context.SaveChanges();
+                    // We only need NotificationID to update status
+                    var isUpdated = new NotificationDto().AcceptRequest(new NotificationDto
+                    {
+                        NotificationID = notificationsViewModel.NotificationID
+                    });
 
-                var receiver = _context.Users.Find(notificationsViewModel.ReceiverId);
-                if (receiver != null)
-                {
-                    string subject = "Your Request Accept";
-                    string body = $"Hello {receiver.Username}, <br><br> Your book request has been accepted. Please check your notifications.";
+                    if (isUpdated)
+                    {
+                        // Now create the exchange entry
+                        var exchange = new Exchanges
+                        {
+                            BookID = notificationsViewModel.BookID,
+                            OwnerID = notificationsViewModel.UserID,
+                            RequestorID = notificationsViewModel.ReceiverId,
+                            ExchangeDate = DateTime.Now,
+                            ReturnDate = null,
+                            Status = "In Progress",
+                        };
 
-                    EmailHelper.SendEmail(receiver.Email, subject, body);
+                        _context.Exchanges.Add(exchange);
+                        _context.SaveChanges();
+                        transaction.Commit();
+
+                        // Send notification email
+                        var receiver = _context.Users.Find(notificationsViewModel.ReceiverId);
+                        if (receiver != null)
+                        {
+                            string subject = "Your Request Accepted";
+                            string body = $"Hello {receiver.Username}, <br><br> Your book request has been accepted. Please check your notifications.";
+                            EmailHelper.SendEmail(receiver.Email, subject, body);
+                        }
+
+                        return Ok("Exchange request accepted.");
+                    }
+                    else
+                    {
+                        transaction.Rollback();
+                        return StatusCode(HttpStatusCode.InternalServerError);
+                    }
                 }
-                return Ok("Email sent successfully");
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    return InternalServerError(ex);
+                }
             }
-            else return StatusCode(HttpStatusCode.InternalServerError);
         }
-        
+
+
+
+
         [HttpPost]
         [Route("api/notifications/decline")]
-        public IHttpActionResult declineRequest(NotificationsViewModel notificationsViewModel)
+        public IHttpActionResult DeclineRequest(NotificationsViewModel notificationsViewModel)
         {
-            if (notificationsViewModel.UserID == null)
+            if (notificationsViewModel?.NotificationID == null)
             {
-                return BadRequest("Notification data is required.");
+                return BadRequest("NotificationID is required.");
             }
-            var notifications = new NotificationDto().DeclineRequest
-                (
-                    new NotificationDto
-                    {
-                        UserID = notificationsViewModel.UserID,
-                        Message = notificationsViewModel.Message,
-                        ReadStatus = true,
-                        CreatedAt = DateTime.Now,
-                        ReceiverId = notificationsViewModel.ReceiverId,
-                        Status = "Declined",
-                        BookID = notificationsViewModel.BookID,
-                        IsHandled = true,
-                    }
-                );
-            if (notifications)
-            {
-                var receiver = _context.Users.Find(notificationsViewModel.ReceiverId);
-                if(receiver != null)
-                {
-                    string subject = "Your Book request Declined";
-                    string body = $"Hello {receiver.Username}, <br><br> Your book request declined. Please check your Notifications";
 
-                    EmailHelper.SendEmail(receiver.Email, subject, body);
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    // Use DeclineRequest instead of AcceptRequest
+                    var isUpdated = new NotificationDto().DeclineRequest(new NotificationDto
+                    {
+                        NotificationID = notificationsViewModel.NotificationID
+                    });
+
+                    if (isUpdated)
+                    {
+                        // Send notification email
+                        var receiver = _context.Users.Find(notificationsViewModel.ReceiverId);
+                        if (receiver != null)
+                        {
+                            string subject = "Your Request Declined";
+                            string body = $"Hello {receiver.Username}, <br><br> Your book request has been Declined. Please check your notifications.";
+
+                            EmailHelper.SendEmail(receiver.Email, subject, body);
+                        }
+
+                        transaction.Commit();
+                        return Ok("Exchange request declined.");
+                    }
+                    else
+                    {
+                        transaction.Rollback();
+                        return StatusCode(HttpStatusCode.InternalServerError);
+                    }
                 }
-                return Ok("Email sent succesfully");
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    return InternalServerError(ex);
+                }
             }
-            else return StatusCode(HttpStatusCode.InternalServerError);
         }
     }
 }

@@ -11,12 +11,15 @@ namespace OnlineBookExchange.ViewModels
     {
         public int NotificationID { get; set; }
         public Nullable<int> UserID { get; set; }
+
+        public string Username { get; set; }
         public string Message { get; set; }
         public Nullable<bool> ReadStatus { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
         public int ReceiverId { get; set; }
         public string Status { get; set; }
         public Nullable<int> BookID { get; set; }
+        public string Title { get; set; }
         public Nullable<bool> IsHandled { get; set; }
 
         public virtual Users Users { get; set; }

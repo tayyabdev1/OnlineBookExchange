@@ -22,18 +22,22 @@ namespace OnlineBookExchange.Controllers
         {
             int userId = Convert.ToInt32(Session["UserID"]);
 
-            var notifications = _context.Notifications
-                .Where(n => n.ReceiverId == userId)
-                .Select(n => new NotificationsViewModel
+            var notifications = (from n in _context.Notifications
+                                 join u in _context.Users on n.UserID equals u.UserID
+                                 join b in _context.Books on n.BookID equals b.BookID
+                                 where n.ReceiverId == userId
+                                 select new NotificationsViewModel
                 {
                     NotificationID = n.NotificationID,
                     UserID = n.UserID,
+                    Username = u.Username,
                     Message = n.Message,
                     CreatedAt = n.CreatedAt,
                     ReceiverId = n.ReceiverId,
                     ReadStatus = n.ReadStatus,
                     Status = n.Status,
                     BookID = n.BookID,
+                    Title = b.Title,
                     IsHandled = n.IsHandled,
                     //Title = n.Book.Title, // Assuming Book entity is related
                 })
