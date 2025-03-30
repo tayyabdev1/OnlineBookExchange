@@ -22,7 +22,7 @@
                 <p class="tayyab text-white">- it's TAYYAB a .NET developer</p>
             </div>
             <div class="col-lg-4 col-md-4 col-12 d-flex justify-content-center">
-                <img class="img-fluid rounded-circle" src="~/Images/tayyabweb2.jpg" alt="Tayyab img" />
+                <img class="img-fluid rounded-circle" src="~/Images/tayyabweb2low1.jpg" alt="Tayyab img" />
             </div>
         </div>
 
@@ -281,10 +281,10 @@
         background: linear-gradient(135deg, #ffffff, #f8f9fa);
     }
 
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        }
+    .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
 
     .uni {
         font-size: 12px;
@@ -328,23 +328,23 @@
         cursor: pointer;
     }
 
-        .footer-names p::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            transform: scaleX(0);
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: wheat;
-            transition: transform 0.25s ease-out;
-            transform-origin: bottom center;
-        }
+    .footer-names p::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: wheat;
+        transition: transform 0.25s ease-out;
+        transform-origin: bottom center;
+    }
 
-        .footer-names p:hover::after {
-            transform: scaleX(0.5);
-            transform-origin: bottom center;
-        }
+    .footer-names p:hover::after {
+        transform: scaleX(0.5);
+        transform-origin: bottom center;
+    }
 
     .footer-hr {
         width: 5%;
@@ -375,14 +375,14 @@
         background-color: #EDEDED;
     }
 
-        .socialmedia img {
-            width: 5%;
-        }
+    .socialmedia img {
+        width: 5%;
+    }
 
-        .socialmedia p {
-            font-size: 12px;
-            font-weight: 600;
-        }
+    .socialmedia p {
+        font-size: 12px;
+        font-weight: 600;
+    }
 
     .visiondiv {
         height: 300px;
@@ -412,21 +412,21 @@
         cursor: pointer;
     }
 
-        .proj-imgs p {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-        }
+    .proj-imgs p {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+    }
 
-        .proj-imgs img {
-            filter: grayscale(0%);
-            transition: transform 0.3s ease-in-out;
-        }
+    .proj-imgs img {
+        filter: grayscale(0%);
+        transition: transform 0.3s ease-in-out;
+    }
 
-            .proj-imgs img:hover {
-                transform: scale(1.1);
-                cursor: pointer;
-            }
+    .proj-imgs img:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+    }
 
     .my-journey {
         font-size: 40px;
@@ -434,10 +434,10 @@
         font-weight: 500;
     }
 
-        .my-journey + p {
-            color: #7b7b7b;
-            font-size: 13px;
-        }
+    .my-journey + p {
+        color: #7b7b7b;
+        font-size: 13px;
+    }
 
     .my-projects {
         color: #222222;
@@ -457,13 +457,13 @@
         align-items: center;
     }
 
-        .bg-white h2 {
-            color: #222222;
-        }
+    .bg-white h2 {
+        color: #222222;
+    }
 
-        .bg-white p {
-            color: #7b7b7b;
-        }
+    .bg-white p {
+        color: #7b7b7b;
+    }
 
     .AboutMe {
         color: #4a7dc9;
@@ -503,6 +503,23 @@
         color: #222222;
         font-family: 'Poppins';
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </style>
 
 @section scripts{
@@ -515,137 +532,54 @@
     <script>
 
         document.addEventListener("DOMContentLoaded", function () {
-            let mainHead = document.querySelector(".main-head");
-            let textContent = document.querySelector(".main-head .w-50");
-            let image = document.querySelector(".main-head img");
-            let helloText = document.querySelector(".hello");
+            gsap.registerPlugin(ScrollTrigger);
 
-            mainHead.style.height = mainHead.offsetHeight + "px";
-            // GSAP Timeline
+            // 🔹 Step 1: Header Animation
             let tl = gsap.timeline();
 
-            // Step 1: Scale from center (width expanding left and right)
-            tl.from(mainHead, {
+            tl.from(".main-head", {
                 width: 0,
                 opacity: 0,
-                duration: 3,
+                duration: 1.5,
                 ease: "power4.inOut"
             });
 
-            // Step 2: Fade in text and image
-            tl.from([textContent, image], {
-                opacity: 0,
-                y: 0,
-                duration: 1,
-                stagger: 0.3,
-                ease: "power2.out"
-            }, "-=0.8"); // Overlapping with previous animation
-
-
-            let words = helloText.innerText.split(""); // Split text into letters
-            helloText.innerHTML = words.map(word => `<span class="word">${word}</span>`).join("");
-
-            let wordElements = document.querySelectorAll(".hello .word");
-
-            tl.from(wordElements, {
+            tl.from([".hello", ".tayyab", ".main-head img"], {
                 opacity: 0,
                 y: 30,
-                x: (index) => index * 10, // Move left with each word
+                duration: 1,
+                stagger: 0.3,
+                ease: "power2.out"
+            }, "-=0.8"); // Slight overlap for smooth animation
+
+            // 🔹 Step 2: Letter-by-Letter Animation (TAYYAB)
+            let helloText = document.querySelector(".hello");
+            let letters = helloText.innerText.split("");
+            helloText.innerHTML = letters.map(letter => `<span class="word">${letter}</span>`).join("");
+
+            gsap.from(".hello .word", {
+                opacity: 0,
+                y: 30,
+                x: (index) => index * 10, // Move left with each letter
                 duration: 0.6,
-                stagger: 0.2,
+                stagger: 0.1,
                 ease: "power4.out"
-            }, "-=0.5"); // Slight overlap with previous animation
-        });
+            }, "-=0.5");
 
-        // proj-imgs
-        document.addEventListener("DOMContentLoaded", function () {
-            let proj = document.querySelector(".proj-imgs");
-            let text = proj.querySelector("p");
-            let image = proj.querySelector("img");
-
-            // Hide text & image initially
-            gsap.set([text, image], { opacity: 0 });
-
-            // Step 1: Expand width from center
-            let tl = gsap.timeline();
-
-            gsap.set(proj, { scaleX: 0, opacity: 0, transformOrigin: "center center" });
-
-            tl.to(proj, {
-                scaleX: 1,  // Expands symmetrically
-                opacity: 1,
-                duration: 3,
-                ease: "power4.inOut"
+            // 🔹 Step 3: Scroll-triggered Animation for Project Images
+            gsap.utils.toArray(".proj-imgs").forEach((proj) => {
+                gsap.from(proj, {
+                    opacity: 0,
+                    scale: 0.8,
+                    duration: 1.5,
+                    ease: "power4.out",
+                    scrollTrigger: {
+                        trigger: proj,
+                        start: "top 80%", // Animation starts when 80% of element is in view
+                        toggleActions: "play none none reset"
+                    }
+                });
             });
-
-            // Step 2: Fade in text & image
-            tl.to([text, image], {
-                opacity: 1,
-                duration: 1,
-                stagger: 0.3,
-                ease: "power2.out"
-            }, "-=1"); // Overlap slightly
-        });
-
-
-        // proj-imgs-2
-        document.addEventListener("DOMContentLoaded", function () {
-            let proj = document.querySelector(".proj-imgs-2");
-            let text = proj.querySelector("p");
-            let image = proj.querySelector("img");
-
-            // Hide text & image initially
-            gsap.set([text, image], { opacity: 0 });
-
-            // Step 1: Expand width from center
-            let tl = gsap.timeline();
-
-            gsap.set(proj, { scaleX: 0, opacity: 0, transformOrigin: "center center" });
-
-            tl.to(proj, {
-                scaleX: 1,  // Expands symmetrically
-                duration: 3,
-                opacity: 1,
-                ease: "power4.inOut"
-            });
-
-            // Step 2: Fade in text & image
-            tl.to([text, image], {
-                opacity: 1,
-                duration: 1,
-                stagger: 0.3,
-                ease: "power2.out"
-            }, "-=1"); // Overlap slightly
-        });
-
-        // proj-imgs-3
-        document.addEventListener("DOMContentLoaded", function () {
-            let proj = document.querySelector(".proj-imgs-3");
-            let text = proj.querySelector("p");
-            let image = proj.querySelector("img");
-
-            // Hide text & image initially
-            gsap.set([text, image], { opacity: 0 });
-
-            // Step 1: Expand width from center
-            let tl = gsap.timeline();
-
-            gsap.set(proj, { scaleX: 0, opacity: 0, transformOrigin: "center center" });
-
-            tl.to(proj, {
-                scaleX: 1,  // Expands symmetrically
-                duration: 3,
-                opacity: 1,
-                ease: "power4.inOut"
-            });
-
-            // Step 2: Fade in text & image
-            tl.to([text, image], {
-                opacity: 1,
-                duration: 1,
-                stagger: 0.3,
-                ease: "power2.out"
-            }, "-=1"); // Overlap slightly
         });
 
 

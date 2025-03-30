@@ -4,17 +4,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Online Book Exchange</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light m-2">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-            <ul class="navbar-nav text-black fw-bold">
+            <ul class="navbar-nav fw-lighter">
                 @if (Request.Cookies["jwt"] != null)
                 {
                     <!-- Profile Dropdown -->
@@ -38,19 +41,34 @@
 
                     <!-- Other Nav Items -->
                     <li class="nav-item"><a class="nav-link" href="/Books/Index">Books</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Notifications/Index">Notifications</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Exchanges/Index">Exchanges</a></li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Exchanges/Index">
+                            <div class="notification-container position-relative">
+                                <span id="notificationCount" class="badge bg-danger position-absolute top-0 start-100 translate-middle">0</span>
+                            </div>
+                            Exchanges
+                        </a>
+                    </li>
                     <li class="nav-item"><a class="nav-link" href="/ReportIssues/UserView">Reported Issues</a></li>
                     <li class="nav-item"><a class="nav-link" href="/Message/ChatList">Chats</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Notifications/Index">
+                            <div class="notification-container position-relative">
+                                <i class="fa fa-bell fs-5" id="notificationBell"></i>
+                                <span id="notificationCount" class="badge bg-danger position-absolute top-0 start-100 translate-middle">0</span>
+                            </div>
+                        </a>
+                    </li>
                 }
                 else
                 {
-                     <li class="nav-item"><a class="nav-link" href="/Login/Login">Login</a></li>
-                     <li class="nav-item"><a class="nav-link" href="/Developer/Tayyab">Developer</a></li>
-                     <li class="nav-item"><a class="nav-link" href="/Default/Index">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Login/Login">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Developer/Tayyab">Developer</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Default/Index">About Us</a></li>
 
                 }
-                </ul>
+            </ul>
         </div>
     </nav>
 
@@ -67,6 +85,25 @@
 </html>
 <style>
 
+
+    /* Fixed Navbar */
+    .navbar {
+        width: 100%;
+        transition: background-color 0.3s ease-in-out;
+        z-index: 1000; /* Keep it on top */
+    }
+
+     /* Transparent Navbar on Top */
+     .navbar.transparent {
+         background: rgba(0, 0, 0, 0); /* Semi-transparent black */
+     }
+
+     /* Solid Navbar After Scroll */
+     .navbar.solid {
+         background: rgba(0, 0, 0, 1); /* Fully solid black */
+     }
+
+
     .nav-item.dropdown .nav-link::after {
         content: none;
     }
@@ -80,13 +117,8 @@
         width: 100%;
     }
 
-    /*.navbar {
-        transform: translateY(-100%);
-        opacity: 0;
-    }*/
-
     .nav-link {
-        
+        color:white;
         display: inline-block;
         position: relative;
         cursor: pointer;
@@ -126,14 +158,56 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
 
 <script>
-    // Wait for the DOM to be fully loaded before running the animation
-    //document.addEventListener("DOMContentLoaded", function () {
-    //    // Animate the navbar to come down
-    //    gsap.to(".navbar", {
-    //        duration: 1,  // Time in seconds
-    //        y: 0,  // Move from top to original position
-    //        opacity: 1,  // Fade in
-    //        ease: "power4.inOut"  // Smooth easing
-    //    });
-    //});
+
+    function fetchNotificationCount() {
+        $.ajax({
+            url: "/Notifications/GetUnreadCount",
+            type: "GET",
+            success: function (count) {
+                if (count > 0) {
+                    $("#notificationCount").text(count).show(); // Show badge with count
+                } else {
+                    $("#notificationCount").hide(); // Hide badge if no unread notifications
+                }
+            },
+            error: function () {
+                console.error("Failed to fetch notification count.");
+            }
+        });
+    }
+
+    $("#notificationBell").click(function () {
+        $.ajax({
+            url: "/Notifications/MarkAsRead",
+            type: "POST",
+            success: function () {
+                $("#notificationCount").hide(); // Hide badge after clicking
+            }
+        });
+    });
+
+
+    // Refresh every 5 seconds
+    setInterval(fetchNotificationCount, 5000);
+    $(document).ready(fetchNotificationCount);
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const navbar = document.querySelector(".navbar");
+
+        function toggleNavbar() {
+            if (window.scrollY > 50) {
+                navbar.classList.add("solid");
+                navbar.classList.remove("transparent");
+            } else {
+                navbar.classList.add("transparent");
+                navbar.classList.remove("solid");
+            }
+        }
+
+        window.addEventListener("scroll", toggleNavbar);
+        toggleNavbar(); // Call on page load
+    });
+
+
 </script>

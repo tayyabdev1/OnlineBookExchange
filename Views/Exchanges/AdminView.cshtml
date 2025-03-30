@@ -6,25 +6,58 @@
 }
 
 
-<h2>All Exchanges</h2>
-<table>
-    <tr>
-        <th>Exchange ID</th>
-        <th>Book ID</th>
-        <th>Owner ID</th>
-        <th>Requestor ID</th>
-        <th>Status</th>
-    </tr>
-    @foreach (var exchange in Model)
+<body class="container my-4">
+    <h2 class="text-center fw-bold mb-4">Admin Exchange Tracking</h2>
+
+    @if (!Model.Any())
     {
-        <tr>
-            <td>@exchange.ExchangeID</td>
-            <td>@exchange.BookID</td>
-            <td>@exchange.OwnerID</td>
-            <td>@exchange.RequestorID</td>
-            <td>@exchange.Status</td>
-        </tr>
+        <p class="text-center text-muted">No exchanges found.</p>
     }
+    else
+    {
+        <div class="accordion w-100" id="exchangeAccordion">
+            @foreach (var exchange in Model)
+            {
+                <div class="accordion-item mb-2">
+                    <h2 class="accordion-header" id="heading-@exchange.ExchangeID">
+                        <button class="accordion-button collapsed text-start w-100" type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapse-@exchange.ExchangeID" aria-expanded="false"
+                                aria-controls="collapse-@exchange.ExchangeID">
+                            📖 <strong class="ms-2">@exchange.Title</strong>
+                        </button>
+                    </h2>
+                    <div id="collapse-@exchange.ExchangeID" class="accordion-collapse collapse"
+                         aria-labelledby="heading-@exchange.ExchangeID" data-bs-parent="#exchangeAccordion">
+                        <div class="accordion-body">
+                            <p><strong>Exchange ID:</strong> @exchange.ExchangeID</p>
+                            <p><strong>Book ID:</strong> @exchange.BookID</p>
+                            <p><strong>Requester:</strong> @exchange.RequestorID</p>
+                            <p><strong>Owner:</strong> @exchange.OwnerID</p>
+                            <p><strong>Status:</strong> @exchange.Status</p>
+                            <p><strong>Exchange Date:</strong> @exchange.ExchangeDate</p>
+                            <p><strong>Return Date:</strong> @exchange.ReturnDate</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</body>
 
-</table>
-
+<script>
+    function updateStatus(exchangeId, newStatus) {
+        // Make an AJAX call to update exchange status
+        fetch(`/Admin/UpdateExchangeStatus?exchangeId=${exchangeId}&status=${newStatus}`, {
+            method: 'POST'
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload();
+                } else {
+                    alert("Failed to update status.");
+                }
+            });
+    }
+</script>

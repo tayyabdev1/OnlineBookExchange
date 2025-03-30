@@ -10,6 +10,7 @@ namespace OnlineBookExchange.ViewModels
     {
         public int ExchangeID { get; set; }
         public Nullable<int> BookID { get; set; }
+        public string Title { get; set; }
         public Nullable<int> OwnerID { get; set; }
         public Nullable<int> RequestorID { get; set; }
         public Nullable<System.DateTime> ExchangeDate { get; set; }

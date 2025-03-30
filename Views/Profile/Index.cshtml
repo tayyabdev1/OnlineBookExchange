@@ -40,7 +40,7 @@
         </div>
     </div>
 
-    <button type="button" class="btn btn-primary" onclick="editUser(@Model.UserID)">Edit Profile</button>
+   <!-- Edit Profile Modal-->
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -86,11 +86,8 @@
         </div>
     </div>
 
-    <a href="@Url.Action("MyBooks", "Profile")" class="btn btn-warning">My Books</a>
 
-    <!-- Report Issue -->
-    <button id="reportissue" type="button" class="btn btn-danger" onclick="showReportModal(@Model.UserID)">Report Issue</button>
-
+    <!-- Report Issue Modal-->
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -131,17 +128,28 @@
             </div>
         </div>
     </div>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
-        Change Password
-    </button>
-    <form class="d-flex flex-column" asp-action="UploadProfilePicture" asp-controller="User" enctype="multipart/form-data" method="post">
+    <div class="d-flex flex-wrap gap-2 my-3">
+        <button type="button" class="btn btn-primary fw-bold px-4" onclick="editUser(@Model.UserID)">Edit Profile</button>
+
+        <a href="@Url.Action("MyBooks", "Profile")" class="btn btn-warning fw-bold px-4">My Books</a>
+
+        <button id="reportissue" type="button" class="btn btn-danger fw-bold px-4" onclick="showReportModal(@Model.UserID)">Report Issue</button>
+
+        <button type="button" class="btn btn-secondary fw-bold px-4" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+            Change Password
+        </button>
+    </div>
+
+    <form class="d-flex flex-column align-items-center border p-3 rounded" asp-action="UploadProfilePicture" asp-controller="User" enctype="multipart/form-data" method="post">
         <input type="hidden" id="UserID" name="UserID" value="@Model.UserID" />
-        <input class="m-3" type="file" id="profilePictureInput" />
-        <button type="button" class="uploadbutton border-0 w-25 rounded-3 fw-medium" onclick="uploadProfilePicture()">Upload</button>
-        <p style="font-size: 10px;" class="p-2"><span>&#9888;</span> Kindly crop the image to square before upload</p>
+        <input class="form-control my-2" type="file" id="profilePictureInput" />
+        <button type="button" class="btn btn-success fw-bold px-4" onclick="uploadProfilePicture()">Upload</button>
+        <p class="text-muted small mt-2"><span>&#9888;</span> Kindly crop the image to square before upload</p>
     </form>
 
-    
+
+
+
     <!-- Reset Password -->
     <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
         <div class="modal-dialog">

@@ -2,31 +2,34 @@
 @{
     ViewBag.Title = "Message";
 }
+<body class="container my-4">
+    <div class="main w-100 d-flex flex-column">
+        <p class="text-center">Chat with <strong>@Model.Receivername</strong></p>
 
-<div class="main w-100 d-flex flex-column">
-    <p class="d-flex justify-content-center">Chat with <strong>@Model.Receivername</strong></p>
-    <div id="chatbox">
-        @foreach (var message in Model.Messages)
-        {
-            if (message.SenderID == Model.SenderID)
+        <div id="chatbox" class="border rounded p-3 mb-3 overflow-auto" style="max-height: 400px;">
+            @foreach (var message in Model.Messages)
             {
-                <div class="sent">
-                    <strong>You:</strong> @message.Content
-                </div>
+                if (message.SenderID == Model.SenderID)
+                {
+                    <div class="sent text-end bg-primary text-white p-2 rounded my-1">
+                        <strong>You:</strong> @message.Content
+                    </div>
+                }
+                else
+                {
+                    <div class="received text-start bg-light p-2 rounded my-1">
+                        @message.Content<strong>: @Model.Receivername</strong>
+                    </div>
+                }
             }
-            else
-            {
-                <div class="received">
-                    @message.Content<strong>: @Model.Receivername</strong>
-                </div>
-            }
-        }
+        </div>
+
+        <div class="msg-area d-flex gap-2">
+            <textarea id="message-content" class="form-control" placeholder="Type Your Message here..."></textarea>
+            <button class="btn btn-primary fw-medium" id="send-button">Send</button>
+        </div>
     </div>
-    <div class="msg-area">
-        <textarea id="message-content" placeholder="Type Your Message here..."></textarea>
-        <button class="rounded-3 fw-medium border-0 w-25" id="send-button">Send</button>
-    </div>
-</div>
+</body>
 
 <script>
     document.getElementById('send-button').addEventListener('click', function() {
@@ -54,22 +57,28 @@
 </script>
 
 <style>
+    body {
+        padding-top: 70px;
+    }
 
     .msg-area {
         display: flex;
         margin-top: 2%;
         gap: 1%;
     }
+
     textarea {
         resize: vertical;
         width: 30%;
         height: 30px;
         border-radius: 10px;
     }
+
     #chatbox {
         display: flex;
         flex-direction: column
     }
+
     .sent {
         text-align: left;
         background-color: #d1f7c4;

@@ -5,82 +5,110 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<body class="container my-4">
+    <h2 class="text-center fw-bold mb-4">Exchange Tracking</h2>
 
-<h2>Exchange Tracking</h2>
+    @if (!Model.Any())
+    {
+        <p class="text-center text-muted">No exchanges found.</p>
+    }
+    else
+    {
+        <input type="hidden" id="currentUserId" value="@Session["UserID"]" />
 
-@if (!Model.Any())
-{
-    <p>No exchanges found.</p>
-}
-else
-{
-    <input type="hidden" id="currentUserId" value="@Session["UserID"]" />
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Book</th>
-                <th>Requester</th>
-                <th>Owner</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+        <div class="accordion w-100" id="exchangeAccordion">
             @foreach (var exchange in Model)
             {
-                <tr>
-                    <td>@exchange.BookID</td>
-                    <td>@exchange.RequestorID</td>
-                    <td>@exchange.OwnerID</td>
-                    <td>@exchange.Status</td>
-                    <td>
-                        @if (Convert.ToInt32(Session["UserID"]) == exchange.RequestorID && exchange.Status == "In Progress")
-                        {
-                            <button class="btn btn-success" onclick="markAsDelivered(@exchange.ExchangeID)">Received</button>
-                        }
-                        @if (Convert.ToInt32(Session["UserID"]) == exchange.RequestorID && exchange.Status == "Delivered")
-                        {
-                            <button class="btn btn-warning" onclick="markAsOutForReturn(@exchange.ExchangeID)">Return</button>
-                        }
-                        @if (Convert.ToInt32(Session["UserID"]) == exchange.OwnerID && exchange.Status == "Out for Return")
-                        {
-                            <button class="btn btn-primary" onclick="markAsReturned(@exchange.ExchangeID)">Returned</button>
-                        }
-                        @if (exchange.Status == "Returned")
-                        {
-                            <button class="btn btn-info"
-                                    onclick="openReviewForm(@exchange.ExchangeID, @exchange.BookID, @exchange.OwnerID, @exchange.RequestorID)">
-                                Review
-                            </button>
-                        }
-                    </td>
-                </tr>
+                <div class="accordion-item mb-2">
+                    <h2 class="accordion-header" id="heading-@exchange.ExchangeID">
+                        <button class="accordion-button collapsed text-start w-100" type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapse-@exchange.ExchangeID" aria-expanded="false"
+                                aria-controls="collapse-@exchange.ExchangeID">
+                            📖 <strong class="ms-2">@exchange.Title</strong>
+                        </button>
+                    </h2>
+                    <div id="collapse-@exchange.ExchangeID" class="accordion-collapse collapse"
+                         aria-labelledby="heading-@exchange.ExchangeID" data-bs-parent="#exchangeAccordion">
+                        <div class="accordion-body">
+                            <p><strong>Exchange ID:</strong> @exchange.ExchangeID</p>
+                            <p><strong>Book ID:</strong> @exchange.BookID</p>
+                            <p><strong>Requester:</strong> @exchange.RequestorID</p>
+                            <p><strong>Owner:</strong> @exchange.OwnerID</p>
+                            <p><strong>Status:</strong> @exchange.Status</p>
+                            <p><strong>Exchange Date:</strong> @exchange.ExchangeDate</p>
+                            <p><strong>Return Date:</strong> @exchange.ReturnDate</p>
+
+                            <div class="d-flex flex-wrap gap-2 mt-2">
+                                @if (Convert.ToInt32(Session["UserID"]) == exchange.RequestorID && exchange.Status == "In Progress")
+                                {
+                                    <button class="btn btn-success btn-sm" onclick="markAsDelivered(@exchange.ExchangeID)">Received</button>
+                                }
+                                @if (Convert.ToInt32(Session["UserID"]) == exchange.RequestorID && exchange.Status == "Delivered")
+                                {
+                                    <button class="btn btn-warning btn-sm" onclick="markAsOutForReturn(@exchange.ExchangeID)">Return</button>
+                                }
+                                @if (Convert.ToInt32(Session["UserID"]) == exchange.OwnerID && exchange.Status == "Out for Return")
+                                {
+                                    <button class="btn btn-primary btn-sm" onclick="markAsReturned(@exchange.ExchangeID)">Returned</button>
+                                }
+                                @if (exchange.Status == "Returned")
+                                {
+                                    <button class="btn btn-info btn-sm"
+                                            onclick="openReviewForm(@exchange.ExchangeID, @exchange.BookID, @exchange.OwnerID, @exchange.RequestorID)">
+                                        Review
+                                    </button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
             }
-        </tbody>
-    </table>
+        </div>
 
-    <div id="reviewModal" style="display: none;">
-        <h3>Submit Review</h3>
-        <form id="reviewForm">
-            <input type="hidden" id="exchangeID" name="exchangeID" />
-            <input type="hidden" id="raterID" name="raterID" />
-            <input type="hidden" id="rateeID" name="rateeID" />
-            <input type="hidden" id="bookID" name="bookID" />
+        <!-- Review Modal -->
+        <div id="reviewModal" class="modal fade" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Submit Review</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="reviewForm">
+                            <input type="hidden" id="exchangeID" name="exchangeID" />
+                            <input type="hidden" id="raterID" name="raterID" />
+                            <input type="hidden" id="rateeID" name="rateeID" />
+                            <input type="hidden" id="bookID" name="bookID" />
 
-            <label for="bookCondition">Book Condition Rating (1-10):</label>
-            <input type="number" id="bookCondition" name="bookCondition" min="1" max="10" required />
+                            <label for="bookCondition" class="form-label">Book Condition Rating (1-10):</label>
+                            <input type="number" class="form-control" id="bookCondition" name="bookCondition" min="1" max="10" required />
 
-            <label for="partnerRating">Exchange Partner Rating (1-10):</label>
-            <input type="number" id="partnerRating" name="partnerRating" min="1" max="10" required />
+                            <label for="partnerRating" class="form-label mt-2">Exchange Partner Rating (1-10):</label>
+                            <input type="number" class="form-control" id="partnerRating" name="partnerRating" min="1" max="10" required />
 
-            <label for="review">Review:</label>
-            <textarea id="review" name="review"></textarea>
+                            <label for="review" class="form-label mt-2">Review:</label>
+                            <textarea id="review" class="form-control" name="review" rows="3"></textarea>
 
-            <button type="button" onclick="submitReview()">Submit</button>
-            <button type="button" onclick="closeReviewForm()">Cancel</button>
-        </form>
-    </div>
-}
+                            <div class="mt-3">
+                                <button type="button" class="btn btn-primary" onclick="submitReview()">Submit</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</body>
+
+
+
+<style>
+    body {
+        padding-top: 70px;
+    }
+</style>
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />

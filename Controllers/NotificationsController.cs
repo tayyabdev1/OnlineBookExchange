@@ -45,5 +45,31 @@ namespace OnlineBookExchange.Controllers
 
             return View(notifications);
         }
+
+
+        public JsonResult GetUnreadCount()
+        {
+            int userId = Convert.ToInt32(Session["UserID"]);
+            int count = _context.Notifications.Count(n => n.ReceiverId == userId && n.ReadStatus == false);
+            return Json(count, JsonRequestBehavior.AllowGet);
+        }
+
+
+        [HttpPost]
+        public ActionResult MarkAsRead()
+        {
+            int userId = Convert.ToInt32(Session["UserID"]);
+            var notifications = _context.Notifications.Where(n => n.ReceiverId == userId && n.ReadStatus == false).ToList();
+
+            foreach (var notification in notifications)
+            {
+                notification.ReadStatus = true;
+            }
+
+            _context.SaveChanges();
+            return new HttpStatusCodeResult(200);
+        }
+
+
     }
 }

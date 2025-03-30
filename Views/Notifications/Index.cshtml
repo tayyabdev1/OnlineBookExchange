@@ -137,5 +137,38 @@
         };
 
 
+
+        function fetchNotificationCount() {
+            $.ajax({
+                url: "/Notifications/GetUnreadCount",
+                type: "GET",
+                success: function (count) {
+                    if (count > 0) {
+                        $("#notificationCount").text(count).show(); // Show badge with count
+                    } else {
+                        $("#notificationCount").hide(); // Hide badge if no unread notifications
+                    }
+                },
+                error: function () {
+                    console.error("Failed to fetch notification count.");
+                }
+            });
+        }
+
+        $("#notificationBell").click(function () {
+            $.ajax({
+                url: "/Notifications/MarkAsRead",
+                type: "POST",
+                success: function () {
+                    $("#notificationCount").hide(); // Hide badge after clicking
+                }
+            });
+        });
+
+
+        // Refresh every 5 seconds
+        setInterval(fetchNotificationCount, 5000);
+        $(document).ready(fetchNotificationCount);
+
     </script>
 }

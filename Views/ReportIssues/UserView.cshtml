@@ -4,34 +4,46 @@
     ViewBag.Title = "Reported Issues";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<body class="container my-4">
+    <h2 class="text-center fw-bold">Reported Issues</h2>
 
-    <h2>Reported Issues</h2>
-
-        <table class="table w-75">
-            <thead>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
                 <tr>
-                    <th>IssueID</th>
-                    <th>ReporterID</th>
-                    <th>BookID</th>
-                    <th>UserID</th>
+                    <th>Issue ID</th>
+                    <th>Reporter ID</th>
+                    <th>Book ID</th>
+                    <th>User ID</th>
                     <th>Description</th>
                     <th>Status</th>
-                    <th>CreatedAt</th>
+                    <th>Created At</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var reports in Model)
+                @foreach (var report in Model)
                 {
                     <tr>
-                        <td>@reports.IssueID</td>
-                        <td>@reports.ReporterID</td>
-                        <td>@reports.BookID</td>
-                        <td>@reports.UserID</td>
-                        <td>@reports.Description</td>
-                        <td>@reports.Status</td>
-                        <td>@reports.CreatedAt</td>
+                        <td>@report.IssueID</td>
+                        <td>@report.ReporterID</td>
+                        <td>@report.BookID</td>
+                        <td>@report.UserID</td>
+                        <td>@report.Description</td>
+                        <td>
+                            <span class="badge @(report.Status == "Resolved" ? "bg-success" : "bg-warning")">
+                                @report.Status
+                            </span>
+                        </td>
+                        <td>@report.CreatedAt</td>
                     </tr>
                 }
             </tbody>
         </table>
+    </div>
+</body>
 
+<style>
+    body{
+        padding-top: 70px;
+    }
+</style>

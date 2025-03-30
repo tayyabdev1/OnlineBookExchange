@@ -3,24 +3,12 @@
   "WorkspaceRootPath": "D:\\CS519 Final Year Project\\OnlineBookExchange\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|d:\\cs519 final year project\\onlinebookexchange\\controllers\\notificationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|solutionrelative:controllers\\notificationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|d:\\cs519 final year project\\onlinebookexchange\\controllers\\exchangescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|solutionrelative:controllers\\exchangescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|d:\\cs519 final year project\\onlinebookexchange\\views\\notifications\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|solutionrelative:views\\notifications\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|d:\\cs519 final year project\\onlinebookexchange\\views\\books\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|solutionrelative:views\\books\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|d:\\cs519 final year project\\onlinebookexchange\\controllers\\api\\notificationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|solutionrelative:controllers\\api\\notificationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|d:\\cs519 final year project\\onlinebookexchange\\viewmodels\\notificationsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|solutionrelative:viewmodels\\notificationsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|d:\\cs519 final year project\\onlinebookexchange\\views\\exchanges\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|solutionrelative:views\\exchanges\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,67 +26,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Views\\Books\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\Books\\Index.cshtml",
-              "ToolTip": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Views\\Books\\Index.cshtml",
-              "RelativeToolTip": "Views\\Books\\Index.cshtml",
-              "ViewState": "AgIAAB8CAAAAAAAAAAAAADUCAABKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-26T08:17:57.089Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "NotificationsViewModel.cs",
-              "DocumentMoniker": "D:\\CS519 Final Year Project\\OnlineBookExchange\\ViewModels\\NotificationsViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModels\\NotificationsViewModel.cs",
-              "ToolTip": "D:\\CS519 Final Year Project\\OnlineBookExchange\\ViewModels\\NotificationsViewModel.cs",
-              "RelativeToolTip": "ViewModels\\NotificationsViewModel.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABEAAABAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "ExchangesController.cs",
+              "DocumentMoniker": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Controllers\\ExchangesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ExchangesController.cs",
+              "ToolTip": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Controllers\\ExchangesController.cs",
+              "RelativeToolTip": "Controllers\\ExchangesController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwCQAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-26T08:05:42.201Z",
+              "WhenOpened": "2025-03-30T08:40:11.535Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Views\\Notifications\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\Notifications\\Index.cshtml",
-              "ToolTip": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Views\\Notifications\\Index.cshtml",
-              "RelativeToolTip": "Views\\Notifications\\Index.cshtml",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAACYAAAASAAAAAAAAAA==",
+              "DocumentMoniker": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Views\\Exchanges\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Exchanges\\Index.cshtml",
+              "ToolTip": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Views\\Exchanges\\Index.cshtml",
+              "RelativeToolTip": "Views\\Exchanges\\Index.cshtml",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAACcAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-26T08:00:52.41Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "NotificationsController.cs",
-              "DocumentMoniker": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Controllers\\NotificationsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\NotificationsController.cs",
-              "ToolTip": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Controllers\\NotificationsController.cs",
-              "RelativeToolTip": "Controllers\\NotificationsController.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAAwBsAAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-26T08:00:45.558Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "NotificationsController.cs",
-              "DocumentMoniker": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Controllers\\Api\\NotificationsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\Api\\NotificationsController.cs",
-              "ToolTip": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Controllers\\Api\\NotificationsController.cs",
-              "RelativeToolTip": "Controllers\\Api\\NotificationsController.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-26T08:00:42.366Z",
+              "WhenOpened": "2025-03-30T08:39:58.784Z",
               "EditorCaption": ""
             }
           ]

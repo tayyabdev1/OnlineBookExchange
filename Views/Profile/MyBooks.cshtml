@@ -3,48 +3,46 @@
 @{
     ViewBag.Title = "MyBooks";
 }
-
+<body>
     <h2>My Books</h2>
 
-        <table class="table">
-            <thead>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Genre</th>
+                <th>Condition</th>
+                <th>Status</th>
+                <th>Upload Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Model)
+            {
                 <tr>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Genre</th>
-                    <th>Condition</th>
-                    <th>Status</th>
-                    <th>Upload Date</th>
-                    <th>Actions</th>
+                    <td>@book.Title</td>
+                    <td>@book.Author</td>
+                    <td>@book.Genre</td>
+                    <td>@book.Condition</td>
+                    <td>@book.Status</td>
+                    <td>@book.AddedDate</td>
+                    <td>
+                        <button class="btn btn-warning" onclick="editBook(@book.BookID)"><i class="fa-solid fa-pen"></i></button>
+                        <button class="btn btn-danger" onclick="deleteBook(@book.BookID)"><i class="fa-solid fa-trash-can"></i></button>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach (var book in Model)
-                {
-                    <tr>
-                        <td>@book.Title</td>
-                        <td>@book.Author</td>
-                        <td>@book.Genre</td>
-                        <td>@book.Condition</td>
-                        <td>@book.Status</td>
-                        <td>@book.AddedDate</td>
-                        <td>
-                            <button class="btn btn-warning" onclick="editBook(@book.BookID)">Edit</button>
-                            <button class="btn btn-danger" onclick="deleteBook(@book.BookID)">Delete</button>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+            }
+        </tbody>
+    </table>
 
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Edit Book</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="editForm" method="post">
@@ -52,7 +50,7 @@
 
                         <div class="form-group">
                             <label for="title">Title</label>
-                            <input type="text" class="form-control" id="edit_title" name="title" required placeholder="Enter Title">
+                            <input type="text" class="form-control" id="edit_title" name="title" value="" required placeholder="Enter Title">
                         </div>
 
                         <div class="form-group">
@@ -64,12 +62,12 @@
                             <label for="genre">Genre</label>
                             <input type="text" class="form-control" id="edit_genre" name="genre" required placeholder="Enter Genre">
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="condition">Condition</label>
                             <input type="text" class="form-control" id="edit_condition" name="condition" required placeholder="Enter Condition">
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="status">Status</label>
                             <input type="text" class="form-control" id="edit_status" name="status" required placeholder="Enter Status">
@@ -79,12 +77,18 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
+</body>
 
+<style>
+    body{
+        padding-top: 70px;
+    }
+</style>
 @section scripts {
     @Scripts.Render("~/bundles/jqueryval")
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -131,51 +135,55 @@
                 url: "/api/books/" + id,
                 method: "GET",
                 success: function (data) {
-                    $("#edit_bookid").val(id);
+                    $("#edit_bookid").val(data.bookID); // Ensure this matches API response key
                     $("#edit_title").val(data.title);
                     $("#edit_author").val(data.author);
                     $("#edit_genre").val(data.genre);
                     $("#edit_condition").val(data.condition);
                     $("#edit_status").val(data.status);
 
-                    $('#editModal').modal('show');
+                    $("#editModal").modal("show"); // Open modal after setting values
                 },
                 error: function () {
-                    toastr.error("Please Try Again");
+                    toastr.error("Failed to fetch book details. Please try again.");
                 }
             });
         }
 
+
         $("#editForm").validate({
             submitHandler: function () {
                 var vm = {
-                    Books: {
-                        bookid: $("#edit_bookid").val(),
-                        Title: $("#edit_title").val(),
-                        Author: $("#edit_author").val(),
-                        Genre: $("#edit_genre").val(),
-                        Condition: $("#edit_condition").val(),
-                        Status: $("#edit_status").val(),
-                    }
+                    bookID: $("#edit_bookid").val(), // Make sure this matches your backend model
+                    title: $("#edit_title").val(),
+                    author: $("#edit_author").val(),
+                    genre: $("#edit_genre").val(),
+                    condition: $("#edit_condition").val(),
+                    status: $("#edit_status").val(),
                 };
 
                 $.ajax({
-                    url: "/api/books/",
+                    url: "/api/books/" + vm.bookID,  // API should receive ID in URL
                     method: "PUT",
-                    data: vm, // Serialize the data to JSON
+                    data: JSON.stringify(vm),  // Convert data to JSON
+                    contentType: "application/json",
                     success: function () {
-                        toastr.success("Updated Successfully");
+                        toastr.success("Book updated successfully!");
                         $("#editForm")[0].reset();
-                        $('#editModal').modal('hide');
-                        location.reload(null, false);
+                        $("#editModal").modal("hide");
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 1500); // Reload after success message
                     },
                     error: function () {
-                        toastr.error("Please Try Again");
+                        toastr.error("Update failed. Please try again.");
                     }
                 });
-                console.log(vm);
+
+                console.log("Submitting Data: ", vm);
             }
         });
+
 
     </script>
 }
