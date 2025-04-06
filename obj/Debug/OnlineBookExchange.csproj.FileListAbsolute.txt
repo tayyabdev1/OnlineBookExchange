@@ -113,8 +113,6 @@ D:\FYP\OnlineBookExchange\obj\Debug\OnlineBookExchange.csproj.CoreCompileInputs.
 D:\FYP\OnlineBookExchange\obj\Debug\OnlineBo.E52A3A5D.Up2Date
 D:\FYP\OnlineBookExchange\obj\Debug\OnlineBookExchange.dll
 D:\FYP\OnlineBookExchange\obj\Debug\OnlineBookExchange.pdb
-D:\CS519 Final Year Project\OnlineBookExchange\obj\Debug\OnlineBookExchange.csproj.AssemblyReference.cache
-D:\CS519 Final Year Project\OnlineBookExchange\obj\Debug\OnlineBookExchange.csproj.CoreCompileInputs.cache
 D:\CS519 Final Year Project\OnlineBookExchange\bin\OnlineBookExchange.dll.config
 D:\CS519 Final Year Project\OnlineBookExchange\bin\OnlineBookExchange.dll
 D:\CS519 Final Year Project\OnlineBookExchange\bin\OnlineBookExchange.pdb
@@ -262,6 +260,8 @@ D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Web.WebPages.Razor.xml
 D:\CS519 Final Year Project\OnlineBookExchange\bin\System.Web.Optimization.xml
 D:\CS519 Final Year Project\OnlineBookExchange\bin\Newtonsoft.Json.xml
 D:\CS519 Final Year Project\OnlineBookExchange\bin\Antlr3.Runtime.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\obj\Debug\OnlineBookExchange.csproj.AssemblyReference.cache
+D:\CS519 Final Year Project\OnlineBookExchange\obj\Debug\OnlineBookExchange.csproj.CoreCompileInputs.cache
 D:\CS519 Final Year Project\OnlineBookExchange\obj\Debug\OnlineBo.E52A3A5D.Up2Date
 D:\CS519 Final Year Project\OnlineBookExchange\obj\Debug\OnlineBookExchange.dll
 D:\CS519 Final Year Project\OnlineBookExchange\obj\Debug\OnlineBookExchange.pdb

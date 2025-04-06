@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace OnlineBookExchange.Controllers
 {
-
+    [AllowAnonymous]
     public class DashboardController : Controller
     {
         // GET: Dashboard

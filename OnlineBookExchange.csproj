@@ -702,6 +702,7 @@
     <Content Include="Views\Default\Index.cshtml" />
     <Content Include="Views\Shared\DefaultLayout.cshtml" />
     <Content Include="Views\ForgotPass\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutDashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

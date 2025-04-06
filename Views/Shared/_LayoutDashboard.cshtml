@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="~/dashboard/assets/css/argon-dashboard.css" />
+    <link rel="stylesheet" href="~/dashboard/assets/css/custom.css" /> <!-- (if any) -->
+
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+
+    <div class="main-content">
+        @RenderBody()
+    </div>
+
+    <!-- Dashboard JS -->
+    <script src="~/dashboard/assets/js/argon-dashboard.js"></script>
+    <script src="~/dashboard/assets/js/custom.js"></script> <!-- (if any) -->
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>
