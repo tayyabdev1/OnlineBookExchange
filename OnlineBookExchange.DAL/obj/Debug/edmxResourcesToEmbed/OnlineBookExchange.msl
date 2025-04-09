@@ -73,6 +73,7 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="OnlineBookExchangeModel.Users">
         <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
           <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
@@ -97,6 +98,32 @@
           <ScalarProperty Name="Subject" ColumnName="Subject" />
           <ScalarProperty Name="ReporterID" ColumnName="ReporterID" />
           <ScalarProperty Name="IssueID" ColumnName="IssueID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserVerifications">
+      <EntityTypeMapping TypeName="OnlineBookExchangeModel.UserVerifications">
+        <MappingFragment StoreEntitySet="UserVerifications">
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CNICBackImage" ColumnName="CNICBackImage" />
+          <ScalarProperty Name="CNICFrontImage" ColumnName="CNICFrontImage" />
+          <ScalarProperty Name="CNICNumber" ColumnName="CNICNumber" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserAddresses">
+      <EntityTypeMapping TypeName="OnlineBookExchangeModel.UserAddresses">
+        <MappingFragment StoreEntitySet="UserAddresses">
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="VerificationStatus" ColumnName="VerificationStatus" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

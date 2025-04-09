@@ -35,6 +35,9 @@ namespace OnlineBookExchange.Controllers
                 return HttpNotFound(); // Handle the case where the user is not found
             }
 
+            var cnicVerification = db.UserVerifications.FirstOrDefault(v => v.UserId == userId);
+            var addressVerification = db.UserAddresses.FirstOrDefault(a => a.UserId == userId);
+
             // Create the UserViewModel and populate it with the profile data
             var userViewModel = new UserViewModel()
             {
@@ -46,6 +49,8 @@ namespace OnlineBookExchange.Controllers
                 Role = profile.Role,
                 CreatedAt = profile.CreatedAt,
                 ProfilePicture = profile.ProfilePicture,
+                CNICStatus = cnicVerification != null ? cnicVerification.Status : "Not Submitted",
+                AddressStatus = addressVerification != null ? addressVerification.VerificationStatus : "Not Submitted",
             };
 
             return View(userViewModel);
@@ -53,11 +58,10 @@ namespace OnlineBookExchange.Controllers
 
 
         // To see someone's Profile
-        public ActionResult UserProfile()
+        public ActionResult UserProfile(int id)
         {
-            int userId = Convert.ToInt32(Session["UserID"]);
-            var userDto = new OnlineBookExchange.BLL.UserDto();
-            var profile = userDto.GetProfile(userId);
+            var userDto = new UserDto();
+            var profile = userDto.GetProfile(id);
 
             if (profile == null)
             {
@@ -74,6 +78,7 @@ namespace OnlineBookExchange.Controllers
                 Role = profile.Role,
                 CreatedAt = profile.CreatedAt,
                 ProfilePicture = profile.ProfilePicture,
+                IsVerified = profile.IsVerified
             };
 
             return View(userViewModel);

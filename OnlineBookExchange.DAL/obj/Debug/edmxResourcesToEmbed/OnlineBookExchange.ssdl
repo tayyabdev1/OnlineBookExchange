@@ -77,6 +77,18 @@
     <Property Name="Status" Type="nvarchar" MaxLength="50" />
     <Property Name="CreatedAt" Type="datetime" />
   </EntityType>
+  <EntityType Name="UserAddresses">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="Address" Type="nvarchar" MaxLength="255" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+    <Property Name="PostalCode" Type="varchar" MaxLength="10" />
+    <Property Name="VerificationStatus" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedAt" Type="datetime" />
+  </EntityType>
   <EntityType Name="Users">
     <Key>
       <PropertyRef Name="UserID" />
@@ -91,6 +103,19 @@
     <Property Name="CreatedAt" Type="datetime" />
     <Property Name="IsActive" Type="bit" />
     <Property Name="ProfilePicture" Type="varchar" MaxLength="200" />
+    <Property Name="IsVerified" Type="bit" />
+  </EntityType>
+  <EntityType Name="UserVerifications">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="CNICNumber" Type="nvarchar" MaxLength="15" />
+    <Property Name="CNICFrontImage" Type="varchar" MaxLength="255" />
+    <Property Name="CNICBackImage" Type="varchar" MaxLength="255" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedAt" Type="datetime" />
   </EntityType>
   <Association Name="FK__Books__UserID__4E88ABD4">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1">
@@ -252,6 +277,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__UserAddre__UserI__7B264821">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="UserAddresses" Type="Self.UserAddresses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserAddresses">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserVerif__UserI__76619304">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="UserVerifications" Type="Self.UserVerifications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserVerifications">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="OnlineBookExchangeModelStoreContainer">
     <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Exchanges" EntityType="Self.Exchanges" Schema="dbo" store:Type="Tables" />
@@ -259,7 +308,9 @@
     <EntitySet Name="Notifications" EntityType="Self.Notifications" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Ratings" EntityType="Self.Ratings" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ReportedIssues" EntityType="Self.ReportedIssues" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserAddresses" EntityType="Self.UserAddresses" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserVerifications" EntityType="Self.UserVerifications" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__Books__UserID__4E88ABD4" Association="Self.FK__Books__UserID__4E88ABD4">
       <End Role="Users" EntitySet="Users" />
       <End Role="Books" EntitySet="Books" />
@@ -311,6 +362,14 @@
     <AssociationSet Name="FK__ReportedI__Repor__3C34F16F" Association="Self.FK__ReportedI__Repor__3C34F16F">
       <End Role="Users" EntitySet="Users" />
       <End Role="ReportedIssues" EntitySet="ReportedIssues" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserAddre__UserI__7B264821" Association="Self.FK__UserAddre__UserI__7B264821">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserAddresses" EntitySet="UserAddresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserVerif__UserI__76619304" Association="Self.FK__UserVerif__UserI__76619304">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserVerifications" EntitySet="UserVerifications" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

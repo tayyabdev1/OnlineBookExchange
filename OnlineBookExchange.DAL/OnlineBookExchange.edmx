@@ -82,6 +82,18 @@
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
           <Property Name="CreatedAt" Type="datetime" />
         </EntityType>
+        <EntityType Name="UserAddresses">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="PostalCode" Type="varchar" MaxLength="10" />
+          <Property Name="VerificationStatus" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedAt" Type="datetime" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="UserID" />
@@ -96,6 +108,19 @@
           <Property Name="CreatedAt" Type="datetime" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="ProfilePicture" Type="varchar" MaxLength="200" />
+          <Property Name="IsVerified" Type="bit" />
+        </EntityType>
+        <EntityType Name="UserVerifications">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="CNICNumber" Type="nvarchar" MaxLength="15" />
+          <Property Name="CNICFrontImage" Type="varchar" MaxLength="255" />
+          <Property Name="CNICBackImage" Type="varchar" MaxLength="255" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedAt" Type="datetime" />
         </EntityType>
         <Association Name="FK__Books__UserID__4E88ABD4">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1">
@@ -257,6 +282,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__UserAddre__UserI__7B264821">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="UserAddresses" Type="Self.UserAddresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserAddresses">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserVerif__UserI__76619304">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="UserVerifications" Type="Self.UserVerifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserVerifications">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="OnlineBookExchangeModelStoreContainer">
           <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Exchanges" EntityType="Self.Exchanges" Schema="dbo" store:Type="Tables" />
@@ -264,7 +313,9 @@
           <EntitySet Name="Notifications" EntityType="Self.Notifications" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ratings" EntityType="Self.Ratings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReportedIssues" EntityType="Self.ReportedIssues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserAddresses" EntityType="Self.UserAddresses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserVerifications" EntityType="Self.UserVerifications" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Books__UserID__4E88ABD4" Association="Self.FK__Books__UserID__4E88ABD4">
             <End Role="Users" EntitySet="Users" />
             <End Role="Books" EntitySet="Books" />
@@ -316,6 +367,14 @@
           <AssociationSet Name="FK__ReportedI__Repor__3C34F16F" Association="Self.FK__ReportedI__Repor__3C34F16F">
             <End Role="Users" EntitySet="Users" />
             <End Role="ReportedIssues" EntitySet="ReportedIssues" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserAddre__UserI__7B264821" Association="Self.FK__UserAddre__UserI__7B264821">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserAddresses" EntitySet="UserAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserVerif__UserI__76619304" Association="Self.FK__UserVerif__UserI__76619304">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserVerifications" EntitySet="UserVerifications" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -425,6 +484,9 @@
           <NavigationProperty Name="ReportedIssues" Relationship="OnlineBookExchangeModel.FK__ReportedI__Repor__3C34F16F" FromRole="Users" ToRole="ReportedIssues" />
           <NavigationProperty Name="Ratings1" Relationship="OnlineBookExchangeModel.FK__Ratings__RateeID__4D5F7D71" FromRole="Users" ToRole="Ratings" />
           <Property Name="ProfilePicture" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UserVerifications" Relationship="OnlineBookExchangeModel.FK__UserVerif__UserI__76619304" FromRole="Users" ToRole="UserVerifications" />
+          <NavigationProperty Name="UserAddresses" Relationship="OnlineBookExchangeModel.FK__UserAddre__UserI__7B264821" FromRole="Users" ToRole="UserAddresses" />
+          <Property Name="IsVerified" Type="Boolean" />
         </EntityType>
         <Association Name="FK__Books__UserID__4E88ABD4">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1">
@@ -596,6 +658,16 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Ratings" EntitySet="Ratings" />
           </AssociationSet>
+          <EntitySet Name="UserVerifications" EntityType="OnlineBookExchangeModel.UserVerifications" />
+          <AssociationSet Name="FK__UserVerif__UserI__76619304" Association="OnlineBookExchangeModel.FK__UserVerif__UserI__76619304">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserVerifications" EntitySet="UserVerifications" />
+          </AssociationSet>
+          <EntitySet Name="UserAddresses" EntityType="OnlineBookExchangeModel.UserAddresses" />
+          <AssociationSet Name="FK__UserAddre__UserI__7B264821" Association="OnlineBookExchangeModel.FK__UserAddre__UserI__7B264821">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserAddresses" EntitySet="UserAddresses" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK__Notificat__BookI__02FC7413">
           <End Type="OnlineBookExchangeModel.Books" Role="Books" Multiplicity="0..1" />
@@ -658,6 +730,56 @@
             </Principal>
             <Dependent Role="Ratings">
               <PropertyRef Name="RateeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UserVerifications">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="CNICNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="CNICFrontImage" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CNICBackImage" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Users" Relationship="OnlineBookExchangeModel.FK__UserVerif__UserI__76619304" FromRole="UserVerifications" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK__UserVerif__UserI__76619304">
+          <End Type="OnlineBookExchangeModel.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="OnlineBookExchangeModel.UserVerifications" Role="UserVerifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserVerifications">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UserAddresses">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="VerificationStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Users" Relationship="OnlineBookExchangeModel.FK__UserAddre__UserI__7B264821" FromRole="UserAddresses" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK__UserAddre__UserI__7B264821">
+          <End Type="OnlineBookExchangeModel.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="OnlineBookExchangeModel.UserAddresses" Role="UserAddresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserAddresses">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -739,6 +861,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="OnlineBookExchangeModel.Users">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
                 <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
@@ -763,6 +886,32 @@
                 <ScalarProperty Name="Subject" ColumnName="Subject" />
                 <ScalarProperty Name="ReporterID" ColumnName="ReporterID" />
                 <ScalarProperty Name="IssueID" ColumnName="IssueID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserVerifications">
+            <EntityTypeMapping TypeName="OnlineBookExchangeModel.UserVerifications">
+              <MappingFragment StoreEntitySet="UserVerifications">
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CNICBackImage" ColumnName="CNICBackImage" />
+                <ScalarProperty Name="CNICFrontImage" ColumnName="CNICFrontImage" />
+                <ScalarProperty Name="CNICNumber" ColumnName="CNICNumber" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAddresses">
+            <EntityTypeMapping TypeName="OnlineBookExchangeModel.UserAddresses">
+              <MappingFragment StoreEntitySet="UserAddresses">
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="VerificationStatus" ColumnName="VerificationStatus" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

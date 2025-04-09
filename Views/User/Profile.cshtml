@@ -10,7 +10,7 @@
          id="user-profile" style="background-color: #f4f4f4; max-width: 600px;">
 
         <!-- Profile Picture -->
-        <div class="profile-header d-flex justify-content-center align-items-center">
+        <div class="profile-header d-flex flex-column justify-content-center align-items-center">
             @if (!string.IsNullOrEmpty(Model?.ProfilePicture))
             {
                 <img class="rounded-circle border" src="@Model.ProfilePicture" alt="Profile Picture" width="100" height="100" />
@@ -19,6 +19,16 @@
             {
                 <p class="text-muted">No Profile Picture</p>
             }
+            @*<div class="d-flex justify-content-center align-items-center gap-1 pt-2">
+                @if (Model.IsVerified == true)
+                {
+                    <i class="fa-solid fa-circle-check" style="color: #00ff04;"></i><strong style="color: #00ff04;">Verified User</strong>
+                }
+                else
+                {
+                    <i class="fa-solid fa-circle-xmark" style="color: #ff0000;"></i><strong style="color: #ff0000;">Not Verified</strong>
+                }
+            </div>*@
         </div>
 
         <!-- Profile Details -->

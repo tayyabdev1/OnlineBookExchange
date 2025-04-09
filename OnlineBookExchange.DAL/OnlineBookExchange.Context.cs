@@ -32,5 +32,7 @@ namespace OnlineBookExchange.DAL
         public DbSet<Ratings> Ratings { get; set; }
         public DbSet<Users> Users { get; set; }
         public DbSet<ReportedIssues> ReportedIssues { get; set; }
+        public DbSet<UserVerifications> UserVerifications { get; set; }
+        public DbSet<UserAddresses> UserAddresses { get; set; }
     }
 }

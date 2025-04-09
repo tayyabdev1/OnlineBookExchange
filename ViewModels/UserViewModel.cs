@@ -21,8 +21,13 @@ namespace OnlineBookExchange.ViewModels
         public string ProfilePicture { get; set; }
         public List<BooksDto> Books { get; set; }
 
+        public Nullable<bool> IsVerified { get; set; }
+
         public string CurrentPassword { get; set; }  // Used for validation only
         public string NewPassword { get; set; }
         public string ConfirmPassword { get; set; }
+
+        public string CNICStatus { get; set; }
+        public string AddressStatus { get; set;}
     }
 }

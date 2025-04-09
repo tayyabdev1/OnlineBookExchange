@@ -29,6 +29,7 @@ namespace OnlineBookExchange.BLL
         public Nullable<System.DateTime> CreatedAt { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public string ProfilePicture { get; set; }
+        public Nullable<bool> IsVerified { get; set; }
 
 
         // User's List, will use in Admin Controller
@@ -95,11 +96,9 @@ namespace OnlineBookExchange.BLL
             }
         }
 
-
+        // To see somone's profile picture
         public UserDto GetProfile(int userId)
         {
-            var Genre = new UserDto();
-            Console.WriteLine("Looking up user with ID:", userId);
             var objInDb = db.Users.FirstOrDefault(x => x.UserID == userId);
             if (objInDb != null)
             {
@@ -113,6 +112,7 @@ namespace OnlineBookExchange.BLL
                     Role = objInDb.Role,
                     CreatedAt = objInDb.CreatedAt,
                     ProfilePicture = objInDb.ProfilePicture,
+                    IsVerified = objInDb.IsVerified
                 };
             }
             return null;

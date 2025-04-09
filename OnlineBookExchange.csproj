@@ -239,6 +239,7 @@
     <Compile Include="Controllers\Api\RatingsController.cs" />
     <Compile Include="Controllers\Api\ReportIssuesController.cs" />
     <Compile Include="Controllers\Api\SignupController.cs" />
+    <Compile Include="Controllers\Api\UserVerificationController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
@@ -253,6 +254,7 @@
     <Compile Include="Controllers\ReportIssuesController.cs" />
     <Compile Include="Controllers\SignupController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserVerificationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -267,6 +269,8 @@
     <Compile Include="ViewModels\NotificationsViewModel.cs" />
     <Compile Include="ViewModels\RatingsViewModel.cs" />
     <Compile Include="ViewModels\ReportedIssuesViewModel.cs" />
+    <Compile Include="ViewModels\UserAddressesViewModel.cs" />
+    <Compile Include="ViewModels\UserVerificationsViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -703,11 +707,13 @@
     <Content Include="Views\Shared\DefaultLayout.cshtml" />
     <Content Include="Views\ForgotPass\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutDashboard.cshtml" />
+    <Content Include="Views\Admin\PendingCNIC.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
+    <Folder Include="Images\CNIC\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\UserVerification\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

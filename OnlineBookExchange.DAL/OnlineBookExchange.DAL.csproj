@@ -149,7 +149,13 @@
     <Compile Include="ReportedIssues.cs">
       <DependentUpon>OnlineBookExchange.tt</DependentUpon>
     </Compile>
+    <Compile Include="UserAddresses.cs">
+      <DependentUpon>OnlineBookExchange.tt</DependentUpon>
+    </Compile>
     <Compile Include="Users.cs">
+      <DependentUpon>OnlineBookExchange.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserVerifications.cs">
       <DependentUpon>OnlineBookExchange.tt</DependentUpon>
     </Compile>
   </ItemGroup>

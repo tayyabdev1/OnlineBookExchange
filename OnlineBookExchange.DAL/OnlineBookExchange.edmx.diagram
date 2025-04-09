@@ -25,6 +25,10 @@
         <AssociationConnector Association="OnlineBookExchangeModel.FK__ReportedI__Repor__3C34F16F" />
         <AssociationConnector Association="OnlineBookExchangeModel.FK__Ratings__BookID__4E53A1AA" />
         <AssociationConnector Association="OnlineBookExchangeModel.FK__Ratings__RateeID__4D5F7D71" />
+        <EntityTypeShape EntityType="OnlineBookExchangeModel.UserVerifications" Width="1.5" PointX="3" PointY="17" />
+        <AssociationConnector Association="OnlineBookExchangeModel.FK__UserVerif__UserI__76619304" />
+        <EntityTypeShape EntityType="OnlineBookExchangeModel.UserAddresses" Width="1.5" PointX="3" PointY="21.125" />
+        <AssociationConnector Association="OnlineBookExchangeModel.FK__UserAddre__UserI__7B264821" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

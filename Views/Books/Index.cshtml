@@ -27,12 +27,18 @@
         <hr class="w-50 mx-auto" />
 
         <div class="d-flex justify-content-center m-1">
-            @if (Request.Cookies["jwt"] != null)
+            @if (ViewBag.IsVerified == true)
             {
                 <button type="button" id="addModalButton" class="btn btn-primary m-2 border"
                         data-bs-toggle="modal" data-bs-target="#addModal">
                     Add Book
                 </button>
+            }
+            else
+            {
+                <div class="alert alert-warning text-center m-2 p-2">
+                    Your account is not verified. You cannot add books yet.
+                </div>
             }
         </div>
 
@@ -42,7 +48,7 @@
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-4">
                     <!-- Adjusted column sizes -->
                     <div class="card book-card" onclick="showDetails(@item.BookID)">
-                        <img class="card-img-top rounded-4 border border-black"
+                        <img class="card-img-top rounded-4 border border-black book-img"
                              src="@Url.Action("GetBookPicture", "Books", new {bookID = item.BookID})"
                              alt="Book Cover Image" />
                         <div class="card-body">
@@ -68,7 +74,7 @@
                 <div class="modal-body container-fluid">
                     <div class="form-group mb-3">
                         <a id="userProfile" class="form-control text-primary text-decoration-underline text-truncate"
-                           href="#" target="_blank">View Profile</a>
+                           href="/User/UserProfile/@Model.UserID" target="_blank">View Profile</a>
                     </div>
 
                     <div class="form-group mb-3">
@@ -128,7 +134,7 @@
 
                     <div class="form-group d-flex flex-wrap gap-2 mt-4 justify-content-center">
                         <a href="#" id="messageButton" class="btn btn-primary">Message</a>
-                        @if (Request.Cookies["jwt"] != null)
+                        @if (ViewBag.IsVerified == true)
                         {
                             <button id="exchangeRequestButton" class="btn btn-danger" name="exchangeRequestButton">Exchange Request</button>
                         }
@@ -247,7 +253,12 @@
 
 <style>
 
-
+    .book-img {
+        width: 100%; /* Fill the container */
+        max-width: 200px; /* Limit size */
+        aspect-ratio: 2 / 3; /* Keeps 800:1200 ratio */
+        object-fit: cover;
+    }
     .social {
         transition: color 0.3s ease-in-out;
     }

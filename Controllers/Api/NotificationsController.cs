@@ -10,6 +10,9 @@ using OnlineBookExchange.ViewModels;
 using System.Net.Mail;
 using OnlineBookExchange.Helpers;
 using OnlineBookExchange.Services;
+using System.Web.ModelBinding;
+using Microsoft.AspNet.Identity;
+using System.Runtime.CompilerServices;
 
 
 namespace OnlineBookExchange.Controllers.Api
@@ -24,13 +27,28 @@ namespace OnlineBookExchange.Controllers.Api
             _context = new OnlineBookExchangeEntities();
         }
 
+
+        public int GetCurrentUserId()
+        {
+            string currentUserID = User.Identity.GetUserId();
+            int u = Int32.Parse(currentUserID);
+            return u;
+        }
+
+        public bool IsUserVerified(int UserId)
+        {
+            var UserVerification = _context.UserVerifications.FirstOrDefault(u => u.UserId == UserId && u.Status == "Approved");
+            var UserAddress = _context.UserAddresses.FirstOrDefault(a => a.UserId == UserId && a.VerificationStatus == "Approved");
+            return (UserVerification != null && UserAddress != null);
+        }
+
         [HttpPost]
         [Route("api/notifications/send")]
         public IHttpActionResult SendNotification(NotificationsViewModel notificationsViewModel)
         {
-            if (notificationsViewModel.UserID == null)
+            if (!IsUserVerified(GetCurrentUserId()))
             {
-                return BadRequest("Notification data is required.");
+                return Redirect("VerificationRequired");
             }
             var notifications = new NotificationDto().SendNotification
                 (

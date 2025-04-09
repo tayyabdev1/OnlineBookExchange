@@ -25,6 +25,8 @@ namespace OnlineBookExchange.DAL
             this.Ratings = new HashSet<Ratings>();
             this.ReportedIssues = new HashSet<ReportedIssues>();
             this.Ratings1 = new HashSet<Ratings>();
+            this.UserVerifications = new HashSet<UserVerifications>();
+            this.UserAddresses = new HashSet<UserAddresses>();
         }
     
         public int UserID { get; set; }
@@ -37,6 +39,7 @@ namespace OnlineBookExchange.DAL
         public Nullable<System.DateTime> CreatedAt { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public string ProfilePicture { get; set; }
+        public Nullable<bool> IsVerified { get; set; }
     
         public virtual ICollection<Books> Books { get; set; }
         public virtual ICollection<Exchanges> Exchanges { get; set; }
@@ -47,5 +50,7 @@ namespace OnlineBookExchange.DAL
         public virtual ICollection<Ratings> Ratings { get; set; }
         public virtual ICollection<ReportedIssues> ReportedIssues { get; set; }
         public virtual ICollection<Ratings> Ratings1 { get; set; }
+        public virtual ICollection<UserVerifications> UserVerifications { get; set; }
+        public virtual ICollection<UserAddresses> UserAddresses { get; set; }
     }
 }

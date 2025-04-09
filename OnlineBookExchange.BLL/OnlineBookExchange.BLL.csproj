@@ -122,7 +122,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RatingsDto.cs" />
     <Compile Include="ReportedIssuesDto.cs" />
+    <Compile Include="UserAddressesDto.cs" />
     <Compile Include="UserDto.cs" />
+    <Compile Include="UserVerificationsDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnlineBookExchange.DAL\OnlineBookExchange.DAL.csproj">

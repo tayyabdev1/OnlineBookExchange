@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity;
 using System.Web.Http.Results;
 using OnlineBookExchange.DAL;
 using OnlineBookExchange.Services;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace OnlineBookExchange.Controllers
 {
@@ -25,22 +26,36 @@ namespace OnlineBookExchange.Controllers
         }
         public ActionResult Index()
         {
-            var vm = new ViewModels.BooksViewModel
+            bool isVerified = false;
+            int userId = Convert.ToInt32(Session["UserID"]);
+
+            var user = db.Users.FirstOrDefault(u => u.UserID == userId);
+            if (user?.IsVerified ?? false)
             {
-                UserID = Convert.ToInt32(Session["UserID"])
+                isVerified = true;
+            }
+
+            var allBooks = new BooksDto().GetBooks();
+            var filterBooks = allBooks.Where(b => b.UserID != userId).ToList();
+
+            var vm = new BooksViewModel
+            {
+                UserID = userId,
+                books = filterBooks
             };
-            vm.books = new BooksDto().GetBooks();
+
+            ViewBag.IsVerified = isVerified;
+
             return View(vm);
         }
+
 
         // Fetch Current User Profile picture
         public ActionResult GetBookPicture(int bookID)
         {
-            // Retrieve profile picture from database
             var book = db.Books.Find(bookID);
             string imagePath = book?.BookPicture;
 
-            // If user has no profile picture, set the default image path
             if (string.IsNullOrEmpty(imagePath) || !System.IO.File.Exists(Server.MapPath(imagePath)))
             {
                 imagePath = "~/Images/BookDefault.jpg";
