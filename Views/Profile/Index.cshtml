@@ -461,6 +461,8 @@
         });
 
 
+
+        // Change Password
         $(document).ready(function () {
             $("#changePasswordForm").submit(function (event) {
                 event.preventDefault();
@@ -538,8 +540,11 @@
                 contentType: false,
                 processData: false,
                 success: function (response) {
-                    alert(response.messages);
-                    location.reload();
+                    Swal.fire({
+                        title: "Verification Submitted!",
+                        text: "Your verification submitted succesfully!",
+                        icon: "success"
+                    });
                 },
                 error: function () {
                     alert("Error in CNIC verification submission.");

@@ -9,6 +9,10 @@ using OnlineBookExchange.BLL;
 using System.IO;
 using System.Runtime.CompilerServices;
 using Microsoft.AspNet.Identity;
+using OnlineBookExchange.Services;
+using OnlineBookExchange.Helpers;
+using System.Net.Mail;
+using System.Net;
 
 namespace OnlineBookExchange.Controllers
 {
@@ -48,7 +52,7 @@ namespace OnlineBookExchange.Controllers
 
 
         [HttpPost]
-        public JsonResult Approve(int userId, string status)
+        public JsonResult Approve(int userId, string status, UserVerificationsViewModel user)
         {
             var cnicVerification = db.UserVerifications.FirstOrDefault(v => v.UserId == userId && v.Status == "Pending");
             var addressVerification = db.UserAddresses.FirstOrDefault(v => v.UserId == userId && v.VerificationStatus == "Pending");
@@ -71,17 +75,36 @@ namespace OnlineBookExchange.Controllers
 
                 db.SaveChanges();
 
-                return Json(new { success = true, message = $"CNIC status updated to {status}." });
+                if (addressVerification != null)
+                {
+                    var receiver = db.Users.Find(user.UserId);
+                    if (receiver != null)
+                    {
+                        string subject = $"Verification Request";
+                        string body = $"Hello {receiver.Username}, Your Verification request is {addressVerification.VerificationStatus}";
+                        try
+                        {
+                            EmailHelper.SendEmail(receiver.Email, subject, body);
+                        }
+                        catch (Exception ex)
+                        {
+                            return Json(new { success = false, message = "Error sending email: " + ex.Message });
+                        }
+                    }
+                    return Json(new { success = true, message = "Email sent successfully." });
+                }
+            return Json(new { success = true, message = $"CNIC status updated to {status}." });
             }
-
             return Json(new { success = false, message = "Verification not found or already processed." });
         }
-        
+
+
         [HttpPost]
-        public JsonResult Reject(int userId, string status)
+        public JsonResult Reject(int userId, string status, string reason, UserVerificationsViewModel user)
         {
             var cnicVerification = db.UserVerifications.FirstOrDefault(v => v.UserId == userId && v.Status == "Pending");
             var addressVerification = db.UserAddresses.FirstOrDefault(v => v.UserId == userId && v.VerificationStatus == "Pending");
+            var userVerified = db.Users.FirstOrDefault(v => v.UserID == userId);
 
             if (cnicVerification != null || addressVerification != null)
             {
@@ -89,16 +112,37 @@ namespace OnlineBookExchange.Controllers
                 {
                     cnicVerification.Status = status;
                 }
-
                 if (addressVerification != null)
                 {
                     addressVerification.VerificationStatus = status;
                 }
+                if (userVerified != null)
+                {
+                    userVerified.IsVerified = false;
+                }
 
                 db.SaveChanges();
-                return Json(new { success = true, message = $"Verification status updated to {status}." });
-            }
 
+                if (addressVerification != null)
+                {
+                    var receiver = db.Users.Find(user.UserId);
+                    if (receiver != null)
+                    {
+                        string subject = $"Verification Request";
+                        string body = $"Hello {receiver.Username}, Your Verification request is {addressVerification.VerificationStatus}\n\n Reason:\n\n{reason}";
+                        try
+                        {
+                            EmailHelper.SendEmail(receiver.Email, subject, body);
+                        }
+                        catch (Exception ex)
+                        {
+                            return Json(new { success = false, message = "Error sending email: " + ex.Message });
+                        }
+                    }
+                    return Json(new { success = true, message = "Email sent successfully." });
+                }
+                return Json(new { success = true, message = $"CNIC status updated to {status}." });
+            }
             return Json(new { success = false, message = "Verification not found or already processed." });
         }
 

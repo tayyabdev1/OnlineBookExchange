@@ -8,13 +8,9 @@
 <div class="container my-5">
     <!-- Dropdown for Verification Requests -->
     <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-            Verification Requests
+        <button class="btn btn-warning" type="button">
+            <a class="text-dark text-decoration-none" href="@Url.Action("PendingCNIC", "Admin")">CNIC Requests</a>
         </button>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="@Url.Action("PendingCNIC", "Admin")">CNIC Requests</a>
-            <a class="dropdown-item" href="@Url.Action("PendingAddress", "Admin")">Address Requests</a>
-        </div>
     </div>
 
 

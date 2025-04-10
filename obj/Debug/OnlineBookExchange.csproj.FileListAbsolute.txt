@@ -265,3 +265,11 @@ D:\CS519 Final Year Project\OnlineBookExchange\obj\Debug\OnlineBookExchange.cspr
 D:\CS519 Final Year Project\OnlineBookExchange\obj\Debug\OnlineBo.E52A3A5D.Up2Date
 D:\CS519 Final Year Project\OnlineBookExchange\obj\Debug\OnlineBookExchange.dll
 D:\CS519 Final Year Project\OnlineBookExchange\obj\Debug\OnlineBookExchange.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNet.SignalR.Core.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNet.SignalR.Core.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNet.SignalR.Core.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNet.SignalR.SystemWeb.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Owin.Host.SystemWeb.xml

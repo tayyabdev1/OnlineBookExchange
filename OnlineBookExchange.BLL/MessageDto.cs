@@ -18,8 +18,8 @@ namespace OnlineBookExchange.BLL
         }
         public int MessageID { get; set; }
         public string Username { get; set; }
-        public Nullable<int> SenderID { get; set; }
-        public Nullable<int> ReceiverID { get; set; }
+        public int SenderID { get; set; }
+        public int ReceiverID { get; set; }
         public string Content { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
 

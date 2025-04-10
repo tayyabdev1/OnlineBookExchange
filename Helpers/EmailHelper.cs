@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Net;
 using System.Net.Mail;
+using System.Configuration;
 
 
 
@@ -14,19 +15,21 @@ namespace OnlineBookExchange.Helpers
         // Method to send email
         public static void SendEmail(string toEmail, string subject, string body)
         {
+            string email = ConfigurationManager.AppSettings["EmailAddress"];
+            string password = ConfigurationManager.AppSettings["EmailPassword"];
             try
             {
                 // Configure the email settings
                 var smtpClient = new SmtpClient("smtp.gmail.com")
                 {
                     Port = 587,
-                    Credentials = new NetworkCredential("tmirza217@gmail.com", "ypccdqjavsnkdcpv"),
+                    Credentials = new NetworkCredential(email, password),
                     EnableSsl = true,
                 };
 
                 var mailMessage = new MailMessage
                 {
-                    From = new MailAddress("tmirza217@gmail.com", "Online Book Exchange"),
+                    From = new MailAddress(email, "Online Book Exchange"),
                     Subject = subject,
                     Body = body,
                     IsBodyHtml = true,

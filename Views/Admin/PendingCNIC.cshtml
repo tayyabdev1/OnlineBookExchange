@@ -27,10 +27,13 @@
                 <p><strong>City:</strong> @item.City</p>
                 <p><strong>Postal Code:</strong> @item.PostalCode</p>
                 <p><strong>Submitted At:</strong> @item.AddressCreatedAt</p>
+                <label>Reason</label>
+                <textarea id="reject-reason-@item.UserId" class="form-control">
 
+                </textarea>
                 <div class="d-flex justify-content-end mt-3">
                     <button class="btn btn-success btn-sm mr-2" onclick="UpdateStatus(@item.UserId, 'Approved')">Approve</button>
-                    <button class="btn btn-danger btn-sm" onclick="UpdateStatus(@item.UserId, 'Rejected')">Reject</button>
+                    <button class="btn btn-danger btn-sm" onclick="RejectCNIC(@item.UserId, 'Rejected')">Reject</button>
                 </div>
             </div>
         </div>
@@ -55,7 +58,7 @@
 
         function UpdateStatus(userId, status) {
             $.ajax({
-                url: '@Url.Action("Approve", "UserVerification")', // same action handles both approve/reject
+                url: '@Url.Action("Approve", "UserVerification")',
                 type: 'POST',
                 data: { userId: userId, status: status },
                 success: function (response) {
@@ -69,10 +72,11 @@
         }
 
         function RejectCNIC(userId, status) {
+            var reason = $("#reject-reason-" + userId).val();
             $.ajax({
                 url: '@Url.Action("Reject", "UserVerification")',
                 type: 'POST',
-                data: { userId: userId, status: status },
+                data: { userId: userId, status: status, reason: reason },
                 success: function (response) {
                     alert(response.message);
                     location.reload();

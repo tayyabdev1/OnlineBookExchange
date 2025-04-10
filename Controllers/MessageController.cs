@@ -39,8 +39,8 @@ namespace OnlineBookExchange.Controllers
                 .OrderBy(m => m.CreatedAt)
                 .Select(m => new MessageDto
                 {
-                    SenderID = m.SenderID,
-                    ReceiverID = m.ReceiverID,
+                    SenderID = m.SenderID ?? 0,
+                    ReceiverID = m.ReceiverID ?? 0,
                     Content = m.Content,
                     CreatedAt = m.CreatedAt
                 })
@@ -57,27 +57,26 @@ namespace OnlineBookExchange.Controllers
             return View(viewModel);
         }
 
-        public ActionResult Index()
-        {
-            // Get the current logged-in user ID
-            var userId = Convert.ToInt32(Session["UserID"]);
 
-            // Get all messages where the user is either the sender or receiver
-            var chats = db.Message
+        public ActionResult ChatList()
+        {
+            int userId = Convert.ToInt32(Session["UserID"]); // Logged-in User
+
+            var chatUsers = db.Message
                 .Where(m => m.SenderID == userId || m.ReceiverID == userId)
-                .GroupBy(m => m.SenderID == userId ? m.ReceiverID : m.SenderID)  // Group by the other person
-                .Select(group => new MessageViewModel
+                .Select(m => m.SenderID == userId ? m.ReceiverID : m.SenderID)
+                .Distinct()
+                .Join(db.Users, id => id, user => user.UserID, (id, user) => new MessageDto
                 {
-                    SenderID = group.Key, // This will be the other user's ID
-                    Message = group.OrderBy(m => m.CreatedAt).ToList()  // Order messages by timestamp
+                    SenderID = user.UserID,
+                    Username = user.Username
                 })
                 .ToList();
 
-            return View(chats);  // Pass the chats to the view
+            return View(chatUsers);
         }
-
-
-        public ActionResult ChatList()
+        
+        public ActionResult AdminChatList()
         {
             int userId = Convert.ToInt32(Session["UserID"]); // Logged-in User
 

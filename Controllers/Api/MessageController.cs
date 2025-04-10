@@ -10,6 +10,7 @@ using OnlineBookExchange.ViewModels;
 using OnlineBookExchange.DAL;
 using OnlineBookExchange.Helpers;
 using OnlineBookExchange.Services;
+using OnlineBookExchange.Hubs;
 
 namespace OnlineBookExchange.Controllers.Api
 {
@@ -33,8 +34,8 @@ namespace OnlineBookExchange.Controllers.Api
                 .OrderBy(m => m.CreatedAt)
                 .Select(m => new MessageDto
                 {
-                    SenderID = m.SenderID,
-                    ReceiverID = m.ReceiverID,
+                    SenderID = m.SenderID ?? 0,
+                    ReceiverID = m.ReceiverID ?? 0,
                     Content = m.Content,
                     CreatedAt = m.CreatedAt
                     
@@ -60,20 +61,8 @@ namespace OnlineBookExchange.Controllers.Api
             db.Message.Add(message);
             db.SaveChanges();
 
-            var receiver = db.Users.Find(messageDto.ReceiverID);
-            if (receiver != null)
-            {
-                String subject = "New Message Notification";
-                string body = $"Hello {receiver.Username},<br><br>You have received a new message:<br><br><i>{messageDto.Content}</i><br><br>Please log in to your account to reply.";
-                try
-                {
-                    EmailHelper.SendEmail(receiver.Email, subject, body);
-                }
-                catch (Exception ex)
-                {
-                    return StatusCode(HttpStatusCode.InternalServerError);
-                }
-            }
+            ChatHub.SendPrivateMessage(messageDto.ReceiverID, messageDto.Content);
+
             return Ok("Message sent successfully");
         }
 

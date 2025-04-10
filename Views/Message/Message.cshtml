@@ -31,7 +31,30 @@
     </div>
 </body>
 
-<script>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery.signalR-2.4.3.min.js"></script>
+    <script src="/signalr/hubs"></script>
+    <script>
+
+        const userId = @Model.SenderID;
+        const receiverId = @Model.ReceiverID;
+
+        const chatbox = document.getElementById("chatbox");
+        const connection = $.hubConnection();
+        connection.qs = { "userId": userId.toString() };
+        const chatHub = connection.createHubProxy("chatHub");
+
+        chatHub.on("receiveMessage", function (message) {
+        const newMessage = document.createElement('div');
+        newMessage.className = 'received text-start bg-light p-2 rounded my-1';
+        newMessage.textContent = message + ": @Model.Receivername";
+        chatbox.appendChild(newMessage);
+    });
+
+        connection.start().done(function () {
+            console.log("Connected to SignalR.");
+        });
     document.getElementById('send-button').addEventListener('click', function() {
         const content = document.getElementById('message-content').value;
 
@@ -39,63 +62,61 @@
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                SenderID: @Model.SenderID,
-                ReceiverID: @Model.ReceiverID,
+                SenderID: userId,
+                ReceiverID: receiverId,
                 Content: content
             })
         }).then(() => {
             // Append the new message to the chat box
             const newMessage = document.createElement('div');
-            newMessage.className = 'sent';
-            newMessage.textContent = content;
+            newMessage.className = 'sent text-end bg-primary text-white p-2 rounded my-1';
+            newMessage.textContent = "You: " + content;
             chatbox.appendChild(newMessage);
-
-            // Clear the message input field
             document.getElementById('message-content').value = '';
         });
     });
-</script>
+    </script>
+}
+    <style>
+        body {
+            padding-top: 70px;
+        }
 
-<style>
-    body {
-        padding-top: 70px;
-    }
+        .msg-area {
+            display: flex;
+            margin-top: 2%;
+            gap: 1%;
+        }
 
-    .msg-area {
-        display: flex;
-        margin-top: 2%;
-        gap: 1%;
-    }
+        textarea {
+            resize: vertical;
+            width: 30%;
+            height: 30px;
+            border-radius: 10px;
+        }
 
-    textarea {
-        resize: vertical;
-        width: 30%;
-        height: 30px;
-        border-radius: 10px;
-    }
+        #chatbox {
+            display: flex;
+            flex-direction: column
+        }
 
-    #chatbox {
-        display: flex;
-        flex-direction: column
-    }
+        .sent {
+            text-align: left;
+            background-color: #d1f7c4;
+            padding: 5px;
+            margin: 5px;
+            border-radius: 10px;
+            display: inline-block;
+        }
 
-    .sent {
-        text-align: left;
-        background-color: #d1f7c4;
-        padding: 5px;
-        margin: 5px;
-        border-radius: 10px;
-        display: inline-block;
-    }
-
-    .received {
-        text-align: right;
-        background-color: #f1f1f1;
-        padding: 5px;
-        margin: 5px;
-        border-radius: 10px;
-        display: inline-block;
-    }
-</style>
+        .received {
+            text-align: right;
+            background-color: #f1f1f1;
+            padding: 5px;
+            margin: 5px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+    </style>
 
 

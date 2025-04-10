@@ -3,12 +3,32 @@
   "WorkspaceRootPath": "D:\\CS519 Final Year Project\\OnlineBookExchange\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|d:\\cs519 final year project\\onlinebookexchange\\views\\books\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|solutionrelative:views\\books\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|d:\\cs519 final year project\\onlinebookexchange\\controllers\\messagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|solutionrelative:controllers\\messagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|d:\\cs519 final year project\\onlinebookexchange\\controllers\\bookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|solutionrelative:controllers\\bookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|d:\\cs519 final year project\\onlinebookexchange\\views\\message\\adminchatlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|solutionrelative:views\\message\\adminchatlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|d:\\cs519 final year project\\onlinebookexchange\\views\\notifications\\adminnotification.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|solutionrelative:views\\notifications\\adminnotification.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|d:\\cs519 final year project\\onlinebookexchange\\views\\message\\chatlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|solutionrelative:views\\message\\chatlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|d:\\cs519 final year project\\onlinebookexchange\\controllers\\notificationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|solutionrelative:controllers\\notificationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|d:\\cs519 final year project\\onlinebookexchange\\views\\shared\\adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|solutionrelative:views\\shared\\adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|d:\\cs519 final year project\\onlinebookexchange\\views\\notifications\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|solutionrelative:views\\notifications\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,27 +47,92 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "BooksController.cs",
-              "DocumentMoniker": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Controllers\\BooksController.cs",
-              "RelativeDocumentMoniker": "Controllers\\BooksController.cs",
-              "ToolTip": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Controllers\\BooksController.cs",
-              "RelativeToolTip": "Controllers\\BooksController.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAACsAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T10:47:30.622Z",
+              "Title": "AdminChatList.cshtml",
+              "DocumentMoniker": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Views\\Message\\AdminChatList.cshtml",
+              "RelativeDocumentMoniker": "Views\\Message\\AdminChatList.cshtml",
+              "ToolTip": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Views\\Message\\AdminChatList.cshtml",
+              "RelativeToolTip": "Views\\Message\\AdminChatList.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-10T10:46:41.305Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Views\\Books\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\Books\\Index.cshtml",
-              "ToolTip": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Views\\Books\\Index.cshtml",
-              "RelativeToolTip": "Views\\Books\\Index.cshtml",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAAC0AAAAuAAAAAAAAAA==",
+              "Title": "MessageController.cs",
+              "DocumentMoniker": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Controllers\\MessageController.cs",
+              "RelativeDocumentMoniker": "Controllers\\MessageController.cs",
+              "ToolTip": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Controllers\\MessageController.cs",
+              "RelativeToolTip": "Controllers\\MessageController.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAgwE4AAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T10:46:01.535Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ChatList.cshtml",
+              "DocumentMoniker": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Views\\Message\\ChatList.cshtml",
+              "RelativeDocumentMoniker": "Views\\Message\\ChatList.cshtml",
+              "ToolTip": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Views\\Message\\ChatList.cshtml",
+              "RelativeToolTip": "Views\\Message\\ChatList.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-09T09:57:55.046Z",
+              "WhenOpened": "2025-04-10T10:45:56.715Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AdminNotification.cshtml",
+              "DocumentMoniker": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Views\\Notifications\\AdminNotification.cshtml",
+              "RelativeDocumentMoniker": "Views\\Notifications\\AdminNotification.cshtml",
+              "ToolTip": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Views\\Notifications\\AdminNotification.cshtml",
+              "RelativeToolTip": "Views\\Notifications\\AdminNotification.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-10T10:37:03.19Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "NotificationsController.cs",
+              "DocumentMoniker": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Controllers\\NotificationsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\NotificationsController.cs",
+              "ToolTip": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Controllers\\NotificationsController.cs",
+              "RelativeToolTip": "Controllers\\NotificationsController.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAYwDAAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T10:36:08.298Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Views\\Notifications\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Notifications\\Index.cshtml",
+              "ToolTip": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Views\\Notifications\\Index.cshtml",
+              "RelativeToolTip": "Views\\Notifications\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJ0AAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-10T10:36:00.072Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AdminLayout.cshtml",
+              "DocumentMoniker": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Views\\Shared\\AdminLayout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\AdminLayout.cshtml",
+              "ToolTip": "D:\\CS519 Final Year Project\\OnlineBookExchange\\Views\\Shared\\AdminLayout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\AdminLayout.cshtml",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAC8AAABWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-10T10:35:30.51Z",
               "EditorCaption": ""
             }
           ]

@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "AdminChatList";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<body class="container my-4">
+    <h2 class="text-center fw-bold">Recent Chats</h2>
+
+    <div class="list-group w-100">
+        @foreach (var user in Model)
+        {
+            <a href="@Url.Action("Message", "Message", new { receiverId = user.SenderID })"
+               class="list-group-item list-group-item-action d-flex align-items-center py-3 w-100">
+                <span class="fw-bold text-dark">@user.Username</span>
+            </a>
+        }
+    </div>
+</body>
+
+
+<style>
+    body {
+        padding-top: 70px;
+    }
+
+    .chat-div:hover {
+        background-color: #f2f2f2
+    }
+</style>
+
+
