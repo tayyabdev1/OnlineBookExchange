@@ -29,7 +29,7 @@ namespace OnlineBookExchange.Controllers
                                  select new NotificationsViewModel
                 {
                     NotificationID = n.NotificationID,
-                    UserID = n.UserID,
+                    UserID = n.UserID ?? 0,
                     Username = u.Username,
                     Message = n.Message,
                     CreatedAt = n.CreatedAt,
@@ -57,7 +57,7 @@ namespace OnlineBookExchange.Controllers
                                  select new NotificationsViewModel
                 {
                     NotificationID = n.NotificationID,
-                    UserID = n.UserID,
+                    UserID = n.UserID ?? 0,
                     Username = u.Username,
                     Message = n.Message,
                     CreatedAt = n.CreatedAt,

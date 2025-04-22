@@ -1,4 +1,5 @@
 ﻿using Microsoft.IdentityModel.Tokens;
+using OnlineBookExchange.DAL;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -12,71 +13,65 @@ namespace OnlineBookExchange.Services
 {
     public class Authentication
     {
-        public static string GenerateJWTAuthetication(string userName, string role)
+        public static string GenerateJWTAuthetication(int userId, string userName, string role)
         {
             var claims = new List<Claim>
-            {
-                new Claim(JwtHeaderParameterNames.Jku, userName),
-                new Claim(JwtHeaderParameterNames.Kid, Guid.NewGuid().ToString()),
-                new Claim(ClaimTypes.NameIdentifier, userName),
-                new Claim(ClaimTypes.NameIdentifier, role)
-            };
-
-
-            //claims.Add(new Claim(ClaimTypes.Role, role));
-
+        {
+             new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
+             new Claim(ClaimTypes.Name, userName),
+             new Claim(ClaimTypes.Role, role),
+             // Additional standard claims if needed
+        };
 
             var key = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(Convert.ToString(ConfigurationManager.AppSettings["config:JwtKey"])));
+                Encoding.UTF8.GetBytes(ConfigurationManager.AppSettings["config:JwtKey"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var expires =
-                DateTime.Now.AddDays(
-                    Convert.ToDouble(Convert.ToString(ConfigurationManager.AppSettings["config:JwtExpireDays"])));
+            var expires = DateTime.Now.AddDays(
+                Convert.ToDouble(ConfigurationManager.AppSettings["config:JwtExpireDays"]));
 
             var token = new JwtSecurityToken(
-                Convert.ToString(ConfigurationManager.AppSettings["config:JwtIssuer"]),
-                Convert.ToString(ConfigurationManager.AppSettings["config:JwtAudience"]),
-                claims,
+                issuer: ConfigurationManager.AppSettings["config:JwtIssuer"],
+                audience: ConfigurationManager.AppSettings["config:JwtAudience"],
+                claims: claims,
                 expires: expires,
                 signingCredentials: creds
             );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
-
         }
 
-
-        public static string ValidateToken(string token)
+        public static ClaimsPrincipal ValidateToken(string token)
         {
             if (token == null)
                 return null;
 
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(Convert.ToString(ConfigurationManager.AppSettings["config:JwtKey"]));
+            var key = Encoding.UTF8.GetBytes(ConfigurationManager.AppSettings["config:JwtKey"]);
             try
             {
-                tokenHandler.ValidateToken(token, new TokenValidationParameters
+                var validationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
+                    ValidateIssuer = true,
+                    ValidIssuer = ConfigurationManager.AppSettings["config:JwtIssuer"],
+                    ValidateAudience = true,
+                    ValidAudience = ConfigurationManager.AppSettings["config:JwtAudience"],
+                    ValidateLifetime = true,
                     ClockSkew = TimeSpan.Zero
+                };
 
-                }, out SecurityToken validatedToken);
+                // Validate and get principal
+                //var principal = tokenHandler.ValidateToken(token, validationParameters, out var validatedToken);
 
-                // Corrected access to the validatedToken
-                var jwtToken = (JwtSecurityToken)validatedToken;
-                var jku = jwtToken.Claims.First(claim => claim.Type == "jku").Value;
-                var userName = jwtToken.Claims.First(claim => claim.Type == "kid").Value;
-
-                return userName;
+                //// Retrieve username from the correct claim
+                //var userName = principal.FindFirst(ClaimTypes.Name)?.Value;
+                return tokenHandler.ValidateToken(token, validationParameters, out _);
             }
             catch
             {
                 return null;
             }
         }
-
     }
 }

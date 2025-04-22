@@ -7,24 +7,35 @@
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 </head>
 <body class="body overflow-x-hidden">
-    <div class="container-fluid bg-light">
-        <div class="row main d-flex justify-content-end text-end gap-5">
-            <div class="col-md-6 col-12 d-flex flex-column align-items-end p-5">
-                <h2 class="fw-medium animated-text sequence leFlyInBottom">Welcome to</h2>
-                <h1 class="fw-bold animated-text sequence leFlyInBottom">ONLINE BOOK EXCHANGE</h1>
+    <!-- Hero Section -->
+    <section class="hero container-fluid bg-light min-vh-100 d-flex align-items-center">
+        <div class="row w-100 align-items-center">
+            <!-- Image Left -->
+            <div class="col-lg-6 col-12 text-center mb-4 mb-lg-0">
+                <img src="~/Images/butterfly.png"
+                     class="img-fluid animate-float"
+                     alt="Butterfly"
+                     style="max-height: 400px;">
+            </div>
 
-                <p class="fade-in">
-                    Your Online Book Exchange Platform is a web application built using ASP .NET MVC that allows users to buy, sell, and exchange books with others.
-                    The platform provides a user-friendly interface where people can list books they no longer need and find books they want
-                    at affordable prices or through direct exchange.
-                </p>
-                <div class="d-flex gap-3 fade-in">
-                    <a class="signin d-flex justify-content-center align-items-center p-3 rounded-5 text-decoration-none" href="/Login/Login">Sign In</a>
-                    <a class="signup d-flex justify-content-center align-items-center p-3 rounded-5 text-decoration-none" href="/Signup/Signup">Sign Up</a>
+            <!-- Text Right -->
+            <div class="col-lg-6 col-12 p-5">
+                <div class="content-wrapper">
+                    <h2 class="fw-medium animate-slide-up">Welcome to</h2>
+                    <h1 class="display-3 fw-bold animate-slide-up mb-4">ONLINE BOOK EXCHANGE</h1>
+                    <p class="lead mb-4 animate-fade-in">
+                        Your gateway to sustainable reading. Connect with fellow book lovers to
+                        exchange books seamlessly through our intuitive platform.
+                    </p>
+                    <div class="d-flex gap-3 animate-fade-in flex-wrap">
+                        <a class="btn border-dark border-1 btn-lg rounded-pill px-4" href="/Login/Login">Sign In</a>
+                        <a class="btn btn-info text-white btn-lg rounded-pill px-4" href="/Signup/Signup">Sign Up</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
 
     <div class="container my-5">
         <div class="row justify-content-center gap-4">
@@ -83,7 +94,7 @@
     </div>
 
 
-    @*Our Services*@
+    <!-- Our Services -->
     <div class="container py-5">
         <div class="text-center text-white bg-dark py-4 rounded-3 shadow">
             <h2 class="fw-bold">Our Services</h2>
@@ -299,6 +310,28 @@
 
 </body>
 <style>
+
+    .animate-slide-up {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: slideUp 1s ease forwards;
+    }
+
+    .animate-fade-in {
+        opacity: 0;
+        animation: fadeIn 1s ease 0.5s forwards;
+    }
+
+    @@keyframes slideUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .hero {
+        background: linear-gradient(45deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7)), url("http://img.freepik.com/free-vector/hand-drawn-flat-design-mountain-landscape_23-2149158786.jpg") center/cover;
+    }
 
     /* Strenghtn Animation */
     .reveal {

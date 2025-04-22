@@ -1,24 +1,64 @@
-﻿<body class="container my-4">
-    <h2 class="text-center fw-bold">Recent Chats</h2>
+﻿@using System.Linq
 
-    <div class="list-group w-100">
-        @foreach (var user in Model)
-        {
-            <a href="@Url.Action("Message", "Message", new { receiverId = user.SenderID })"
-               class="list-group-item list-group-item-action d-flex align-items-center py-3 w-100">
-                <span class="fw-bold text-dark">@user.Username</span>
-            </a>
-        }
+<body class="container-fluid my-4">
+    <!-- Main Fullscreen Container -->
+    <div class="container-fluid p-0 m-0 vh-100 d-flex flex-column bg-white">
+
+        <!-- Optional Header -->
+        <div class="p-3 border-bottom bg-light">
+            <h5 class="mb-0">Chats</h5>
+        </div>
+
+        <!-- Chat List (Scrollable) -->
+        <div class="list-group rounded-0 flex-grow-1 overflow-auto">
+            @foreach (var user in Model)
+            {
+                <a href="@Url.Action("Message", "Message", new { receiverId = user.SenderID })"
+                   class="list-group-item list-group-item-action d-flex align-items-center p-3 border-0 border-bottom hover-highlight">
+
+                    <!-- Avatar -->
+                    <div class="position-relative me-3 flex-shrink-0">
+                        <div class="avatar-placeholder bg-primary text-white rounded-circle d-flex align-items-center justify-content-center overflow-hidden"
+                             style="width: 48px; height: 48px;">
+                            <img src="@Url.Content(string.IsNullOrEmpty(user.ProfilePicture) ? "~/Images/default.png" : user.ProfilePicture)"
+                                 alt="@user.Username"
+                                 class="img-fluid rounded-circle"
+                                 style="width: 100%; height: 100%; object-fit: cover;" />
+                        </div>
+                    </div>
+
+                    <!-- Username -->
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h6 class="mb-0 fw-semibold text-truncate">@user.Username</h6>
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
     </div>
+
+
 </body>
 
-
 <style>
-    body {
-        padding-top: 70px;
+    .hover-highlight:hover {
+        background-color: #f8f9fa;
+        transform: translateX(4px);
+        transition: all 0.2s ease;
     }
 
-    .chat-div:hover {
-        background-color: #f2f2f2
+    .avatar-placeholder {
+        background: linear-gradient(135deg, #6c5ce7, #a8a4e6);
+    }
+
+    .list-group-item {
+        border-radius: 0 !important;
+        border-color: #f1f3f5 !important;
+    }
+
+    body {
+        padding-top: 70px;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 </style>

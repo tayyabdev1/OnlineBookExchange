@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.IdentityModel.JsonWebTokens;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -20,24 +22,24 @@ namespace OnlineBookExchange.Services
                 return;
             }
 
-            var request = filterContext.HttpContext.Request;
+            var token = filterContext.HttpContext.Request.Cookies["jwt"]?.Value;
 
-            if (request.Cookies["jwt"] == null)
+            if (string.IsNullOrEmpty(token))
             {
                 filterContext.Result = new HttpStatusCodeResult(401, "Unauthorized");
                 return;
             }
 
-            var token = request.Cookies["jwt"].Value;
-            var userName = Authentication.ValidateToken(token);
+            var principal = Authentication.ValidateToken(token);
 
-            if (userName == null)
+            if (principal == null)
             {
                 filterContext.Result = new HttpStatusCodeResult(401, "Invalid token");
                 return;
             }
 
-            base.OnActionExecuting(filterContext);
+            filterContext.HttpContext.User = principal;
+             base.OnActionExecuting(filterContext);
         }
     }
 }

@@ -18,6 +18,7 @@ namespace OnlineBookExchange.BLL
         }
         public int MessageID { get; set; }
         public string Username { get; set; }
+        public string ProfilePicture { get; set; }
         public int SenderID { get; set; }
         public int ReceiverID { get; set; }
         public string Content { get; set; }
@@ -27,20 +28,6 @@ namespace OnlineBookExchange.BLL
         public virtual Users Users1 { get; set; }
 
 
-        //public MessageDto GetChatHistory(int msgID)
-        //{
-        //    var msgs = (from m in db.Message
-        //      join u in db.Users on m.SenderID equals u.UserID
-        //      where m.MessageID == msgID
-        //      select new MessageDto
-        //      {
-        //          MessageID = m.MessageID,
-        //          Username = u.Username,
-        //          SenderID = m.SenderID,
-        //          ReceiverID = m.ReceiverID,
-        //          Content = m.Content,
-        //      }).FirstOrDefault();
-        //    return msgs;
-        //}
+
     }
 }

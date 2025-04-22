@@ -158,6 +158,8 @@ D:\CS519 Final Year Project\OnlineBookExchange\bin\MediaBrowser.Common.dll
 D:\CS519 Final Year Project\OnlineBookExchange\bin\MediaBrowser.Model.dll
 D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNet.Identity.Core.dll
 D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNet.SignalR.Core.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
 D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNetCore.Http.Features.dll
 D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Configuration.ConfigurationBuilders.Base.dll
@@ -167,6 +169,7 @@ D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.IdentityModel.JsonW
 D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.IdentityModel.Logging.dll
 D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.IdentityModel.Tokens.dll
 D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Owin.dll
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Owin.Host.SystemWeb.dll
 D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Owin.Security.Cookies.dll
 D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Owin.Security.dll
 D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Owin.Security.Jwt.dll
@@ -218,6 +221,10 @@ D:\CS519 Final Year Project\OnlineBookExchange\bin\MediaBrowser.Model.pdb
 D:\CS519 Final Year Project\OnlineBookExchange\bin\MediaBrowser.Model.xml
 D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNet.Identity.Core.xml
 D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNet.SignalR.Core.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNet.SignalR.Core.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNet.SignalR.SystemWeb.pdb
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
 D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNetCore.Http.Features.xml
 D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Configuration.ConfigurationBuilders.Base.xml
@@ -230,6 +237,7 @@ D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.IdentityModel.Loggi
 D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.IdentityModel.Tokens.pdb
 D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.IdentityModel.Tokens.xml
 D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Owin.xml
+D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Owin.Host.SystemWeb.xml
 D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Owin.Security.xml
 D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Owin.Security.Cookies.xml
 D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Owin.Security.Jwt.xml
@@ -265,11 +273,3 @@ D:\CS519 Final Year Project\OnlineBookExchange\obj\Debug\OnlineBookExchange.cspr
 D:\CS519 Final Year Project\OnlineBookExchange\obj\Debug\OnlineBo.E52A3A5D.Up2Date
 D:\CS519 Final Year Project\OnlineBookExchange\obj\Debug\OnlineBookExchange.dll
 D:\CS519 Final Year Project\OnlineBookExchange\obj\Debug\OnlineBookExchange.pdb
-D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNet.SignalR.Core.dll
-D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
-D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Owin.Host.SystemWeb.dll
-D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNet.SignalR.Core.pdb
-D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNet.SignalR.Core.xml
-D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNet.SignalR.SystemWeb.pdb
-D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
-D:\CS519 Final Year Project\OnlineBookExchange\bin\Microsoft.Owin.Host.SystemWeb.xml

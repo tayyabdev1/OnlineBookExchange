@@ -10,7 +10,7 @@ namespace OnlineBookExchange.ViewModels
     public class NotificationsViewModel
     {
         public int NotificationID { get; set; }
-        public Nullable<int> UserID { get; set; }
+        public int UserID { get; set; }
 
         public string Username { get; set; }
         public string Message { get; set; }

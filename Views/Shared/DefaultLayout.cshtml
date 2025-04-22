@@ -13,7 +13,7 @@
 </head>
 <body>
     <div class="bg-light d-flex justify-content-center">
-        <h5 class="p-4">Book Exchange</h5>
+        <a class="navbar-brand fw-bold p-4">Book Exchange</a>
     </div>
     <nav class="navbar navbar-expand-lg navbar-light m-2 rounded-4">
 
@@ -45,6 +45,13 @@
 </body>
 </html>
 <style>
+    .navbar-brand {
+        font-size: 1.5rem;
+        background: linear-gradient(45deg, #6366f1, #8b5cf6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
     .nav-item.dropdown .nav-link::after {
         content: none;
     }

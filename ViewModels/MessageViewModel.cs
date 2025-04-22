@@ -13,11 +13,13 @@ namespace OnlineBookExchange.ViewModels
         public List<Message> Message { get; set; }
         public int MessageID { get; set; }
 
+        public string ProfilePicture { get; set; }
         public string Receivername { get; set; }
         public Nullable<int> SenderID { get; set; }
         public Nullable<int> ReceiverID { get; set; }
         public string Content { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
+
 
         public virtual Users Users { get; set; }
         public virtual Users Users1 { get; set; }

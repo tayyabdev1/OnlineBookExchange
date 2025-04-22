@@ -36,7 +36,9 @@ namespace OnlineBookExchange.Controllers
                     ExchangeDate = e.ExchangeDate,
                     ReturnDate = e.ReturnDate,
                     Ratings = e.Ratings,
-                }).ToList();
+                })
+                .OrderByDescending(e => e.ExchangeDate)
+                .ToList();
             return View(exchanges);
         }
 

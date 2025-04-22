@@ -13,11 +13,13 @@ using OnlineBookExchange.Services;
 using System.Web.ModelBinding;
 using Microsoft.AspNet.Identity;
 using System.Runtime.CompilerServices;
+using System.Security.Claims;
+using System.Threading;
+using System.Web;
 
 
 namespace OnlineBookExchange.Controllers.Api
 {
-    
     public class NotificationsController : ApiController
     {
         private readonly OnlineBookExchangeEntities _context;
@@ -28,12 +30,12 @@ namespace OnlineBookExchange.Controllers.Api
         }
 
 
-        public int GetCurrentUserId()
-        {
-            string currentUserID = User.Identity.GetUserId();
-            int u = Int32.Parse(currentUserID);
-            return u;
-        }
+        //public int? GetCurrentUserId()
+        //{
+        //    var identity = User.Identity as ClaimsIdentity;
+        //    var userIdClaim = identity?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        //    return userIdClaim != null ? int.Parse(userIdClaim) : (int?)null;
+        //}
 
         public bool IsUserVerified(int UserId)
         {
@@ -46,10 +48,13 @@ namespace OnlineBookExchange.Controllers.Api
         [Route("api/notifications/send")]
         public IHttpActionResult SendNotification(NotificationsViewModel notificationsViewModel)
         {
-            if (!IsUserVerified(GetCurrentUserId()))
+            var httpRequest = HttpContext.Current.Request;
+            var currentUserID = Convert.ToInt32(httpRequest.Form["UserID"]);
+            if (currentUserID == null)
             {
-                return Redirect("VerificationRequired");
+                return Content(HttpStatusCode.Forbidden, "User not logged in.");
             }
+
             var notifications = new NotificationDto().SendNotification
                 (
                     new NotificationDto

@@ -1,61 +1,108 @@
 ﻿@model IEnumerable<OnlineBookExchange.ViewModels.NotificationsViewModel>
 
-<body>
-    <h2>Notifications</h2>
-    <input type="hidden" id="currentUserId" value="@Session["UserID"]" />
-    <ul class="d-flex flex-column gap-3">
-        @foreach (var notification in Model)
-        {
-            <li>
-                <small class="text-muted">ID @notification.UserID</small> - <strong>@notification.Username</strong>  @notification.Message <strong>@notification.Title </strong> - <small class="text-muted">ID @notification.BookID</small> - <small class="text-muted">@notification.CreatedAt</small>  |
-                @if (notification.IsHandled ?? false)
-                {
-                    if (notification.Status == "Accepted")
-                    {
-                        <p>Accepted</p>
-                    }
-                    else if (notification.Status == "Declined")
-                    {
-                        <p>Declined</p>
-                    }
-                }
-                else
-                {
-                    <button class="btn btn-success fw-bold" onclick="acceptRequest('@notification.NotificationID', '@notification.UserID', '@notification.BookID')">Accept</button>
-                    <button class="btn btn-danger fw-bold" onclick="declineRequest('@notification.NotificationID', '@notification.UserID', '@notification.BookID')">Decline</button>
-                }
-            </li>
-            <hr class="w-100" />
-        }
-    </ul>
+<body class="bg-light">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="h4 fw-bold text-dark">Notifications</h2>
+            <input type="hidden" id="currentUserId" value="@Session["UserID"]" />
+        </div>
 
+        <ul class="list-unstyled">
+            @foreach (var notification in Model)
+            {
+                <li class="bg-white p-3 mb-3 rounded-3 shadow-sm">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="flex-grow-1">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <small class="text-muted">ID @notification.UserID</small>
+                                <strong class="text-primary">@notification.Username</strong>
+                                <span class="text-dark">@notification.Message</span>
+                                <strong class="text-dark">@notification.Title</strong>
+                            </div>
+
+                            <div class="d-flex align-items-center gap-2 text-muted">
+                                <small>ID @notification.BookID</small>
+                                <span class="text-muted">•</span>
+                                <small>@notification.CreatedAt</small>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column align-items-end gap-2 ms-4">
+                            @if (notification.IsHandled ?? false)
+                            {
+                                if (notification.Status == "Accepted")
+                                {
+                                    <span class="badge bg-success bg-opacity-10 text-success fs-6">Accepted</span>
+                                }
+                                else if (notification.Status == "Declined")
+                                {
+                                    <span class="badge bg-danger bg-opacity-10 text-danger fs-6">Declined</span>
+                                }
+                            }
+                            else
+                            {
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-success fw-bold px-3 py-1"
+                                            onclick="acceptRequest('@notification.NotificationID', '@notification.UserID', '@notification.BookID')">
+                                        <i class="bi bi-check-lg me-1"></i>Accept
+                                    </button>
+                                    <button class="btn btn-danger fw-bold px-3 py-1"
+                                            onclick="declineRequest('@notification.NotificationID', '@notification.UserID', '@notification.BookID')">
+                                        <i class="bi bi-x-lg me-1"></i>Decline
+                                    </button>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
 </body>
-<style>
 
-    body{
+<style>
+    body {
         padding-top: 70px;
+        background-color: #f8f9fa;
     }
+
+    .container {
+        max-width: 800px;
+    }
+
     .btn-success {
         background-color: transparent;
-        color: deepskyblue;
-        border: none;
-        transition: transform background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        color: #0d6efd;
+        border: 1px solid rgba(13, 110, 253, 0.3);
+        transition: all 0.2s ease;
     }
-    .btn-success:hover {
-        background-color: deepskyblue !important;
-        border: none;
-        color: white;
-    }
+
+        .btn-success:hover {
+            background-color: #0d6efd !important;
+            color: white !important;
+            transform: translateY(-1px);
+        }
+
     .btn-danger {
         background-color: transparent;
-        color: red;
-        border: none;
-        transition: transform background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        color: #dc3545;
+        border: 1px solid rgba(220, 53, 69, 0.3);
+        transition: all 0.2s ease;
     }
-    .btn-danger:hover {
-        background-color: red !important;
-        color: white;
-        border: none;
+
+        .btn-danger:hover {
+            background-color: #dc3545 !important;
+            color: white !important;
+            transform: translateY(-1px);
+        }
+
+    .badge {
+        padding: 0.5em 0.75em;
+        border-radius: 8px;
+    }
+
+    .shadow-sm {
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.04) !important;
     }
 </style>
 

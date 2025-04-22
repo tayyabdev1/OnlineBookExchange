@@ -69,7 +69,8 @@ namespace OnlineBookExchange.Controllers
                 .Join(db.Users, id => id, user => user.UserID, (id, user) => new MessageDto
                 {
                     SenderID = user.UserID,
-                    Username = user.Username
+                    Username = user.Username,
+                    ProfilePicture = user.ProfilePicture,
                 })
                 .ToList();
 

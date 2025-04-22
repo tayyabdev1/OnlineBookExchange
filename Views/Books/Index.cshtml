@@ -6,60 +6,76 @@
 }
 <body class="overflow-x-hidden body">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <div class="top-img bg-dark container-fluid d-flex flex-column justify-content-center align-items-center p-5">
+    <!-- Hero Section -->
+    <section class="hero bg-gradient-primary container-fluid d-flex flex-column justify-content-center align-items-center p-5">
         <div class="row align-items-center text-center text-md-start">
-            <div class="col-md-6">
-                <h1 class="fw-bolder text-info">
+            <div class="col-md-6 pe-lg-5">
+                <h1 class="display-4 fw-bold text-white mb-4">
                     <span class="animate-word">Swap, </span>
                     <span class="animate-word">Share, </span>
                     <span class="animate-word">Read</span>
                 </h1>
-                <h1 class="fw-bolder text-white">Your Gateway to a Smarter Book Exchange!</h1>
-            </div>
-            <div class="col-md-6 d-flex justify-content-center">
-                <img class="img-fluid w-100" src="~/Images/bookmockup.png" alt="Book Exchange Image" style="max-width: 300px;">
-            </div>
-        </div>
-    </div>
-
-    <div class="container text-center mt-5">
-        <h1 class="fw-bolder">BOOKS</h1>
-        <hr class="w-50 mx-auto" />
-
-        <div class="d-flex justify-content-center m-1">
-            @if (ViewBag.IsVerified == true)
-            {
-                <button type="button" id="addModalButton" class="btn btn-primary m-2 border"
-                        data-bs-toggle="modal" data-bs-target="#addModal">
-                    Add Book
-                </button>
-            }
-            else
-            {
-                <div class="alert alert-warning text-center m-2 p-2">
-                    Your account is not verified. You cannot add books yet.
+                <p class="lead text-light opacity-75 mb-4">Discover & Exchange Books Seamlessly</p>
+                <div class="d-flex gap-3">
+                    <a href="#exploreBooks" class="btn btn-light btn-lg scroll-btn rounded-pill px-4">Browse Books</a>
+                    <button class="btn btn-outline-light btn-lg rounded-pill px-4">How It Works</button>
                 </div>
-            }
+            </div>
+                <div class="col-md-6 d-flex justify-content-center mt-5 mt-md-0">
+                    <img class="img-fluid floating" src="~/Images/bookmockup.png" alt="Book Exchange" style="max-width: 400px;">
+                </div>
+        </div>
+    </section>
+
+
+    <!-- Books Section -->
+    <main id="exploreBooks" class="container py-6">
+        <div class="text-center mb-6">
+            <h2 class="display-5 fw-bold m-3">Explore Books</h2>
+            <div class="d-flex justify-content-center">
+                <div class="divider-line"></div>
+            </div>
+
+            <div class="d-flex justify-content-center m-3">
+                @if (ViewBag.IsVerified == true)
+                {
+                    <button type="button" id="addModalButton" class="btn btn-primary px-5 py-3 rounded-pill shadow"
+                            data-bs-toggle="modal" data-bs-target="#addModal">
+                        + Add New Book
+                    </button>
+                }
+                else
+                {
+                    <div class="alert alert-warning alert-modern rounded-pill text-center m-2 px-5">
+                        <i class="bi bi-exclamation-circle me-2"></i>Account verification required to add books
+                    </div>
+                }
+            </div>
         </div>
 
-        <div class="row justify-content-center w-75 mx-auto">
+        <!-- Book Grid -->
+        <div class="row g-4 justify-content-center">
             @foreach (var item in Model.books)
             {
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-4">
-                    <!-- Adjusted column sizes -->
-                    <div class="card book-card" onclick="showDetails(@item.BookID)">
-                        <img class="card-img-top rounded-4 border border-black book-img"
-                             src="@Url.Action("GetBookPicture", "Books", new {bookID = item.BookID})"
-                             alt="Book Cover Image" />
-                        <div class="card-body">
-                            <h6 class="card-title fw-bolder">@item.Title</h6>
-                            <p class="card-text text-secondary">@item.Genre</p>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="card book-card shadow-sm border-0 h-100" onclick="showDetails(@item.BookID)">
+                        <div class="card-img-top">
+                            <img class="img-fluid rounded-3 object-fit-cover"
+                                 src="@Url.Action("GetBookPicture", "Books", new {bookID = item.BookID})"
+                                 alt="Book Cover" style="height: 300px; width: 100%;">
+                        </div>
+                        <div class="card-body pb-0">
+                            <h6 class="card-title fw-bold mb-1 text-truncate">@item.Title</h6>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-primary-soft text-primary rounded-pill">@item.Genre</span>
+                                <small class="text-muted">★ 4.8</small>
+                            </div>
                         </div>
                     </div>
                 </div>
             }
         </div>
-    </div>
+    </main>
 
 
     <!-- Details Modal -->
@@ -222,29 +238,33 @@
     </div>
 
 
-    <footer class="container-fluid bg-dark py-5">
-        <div class="container text-center text-white my-5">
-
-            <h5 class="fw-bold">Online Book Exchange</h5>
-
-            <div class="d-flex flex-wrap justify-content-center gap-3 my-3">
-                <a href="https://www.instagram.com/m.tayyab.0/" target="_blank" class="social text-secondary text-decoration-none">Instagram</a>
-                <a href="https://www.facebook.com/mirza.tayyab.9028" target="_blank" class="social text-secondary text-decoration-none">Facebook</a>
-                <a href="" class="social text-secondary text-decoration-none">Twitter</a>
-                <a href="https://www.linkedin.com/in/tayyab-softwaredeveloper/" target="_blank" class="social text-secondary text-decoration-none">LinkedIn</a>
-            </div>
-
-            <div class="row justify-content-center my-2">
-                <div class="col-12 col-md-auto">
-                    <p class="mb-0 text-secondary">EMAIL:</p>
+    <footer class="bg-dark-2 container-fluid py-6 mt-5">
+        <div class="container my-5">
+            <div class="row g-5">
+                <div class="col-md-4">
+                    <h5 class="text-white mb-4">Online Book Exchange</h5>
+                    <p class="text-secondary">Connecting readers worldwide through shared stories and knowledge exchange.</p>
                 </div>
-                <div class="col-12 col-md-auto">
-                    <a class="email-link text-decoration-none text-secondary" href="mailto:tmirza217@gmail.com">
-                        tmirza217@gmail.com
-                    </a>
+                <div class="col-md-4">
+                    <h5 class="text-white mb-4">Quick Links</h5>
+                    <div class="d-flex flex-column gap-2">
+                        <a href="/Default/Index" class="text-secondary text-decoration-none hover-primary">About Us</a>
+                        <a href="mailto:tmirza217@gmail.com"  class="text-secondary text-decoration-none hover-primary">Contact</a>
+                        <a href="#" class="text-secondary text-decoration-none hover-primary">FAQ</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="text-white mb-4">Connect</h5>
+                    <div class="d-flex gap-3">
+                        <a href="https://www.linkedin.com/in/tayyab-softwaredeveloper/" class="social-link text-decoration-none"><i class="fa-brands fa-linkedin" style="color: #ffffff;"></i></a>
+                        <a href="https://www.instagram.com/m.tayyab.0/" class="social-link text-decoration-none"><i class="fa-brands fa-instagram" style="color: #ffffff;"></i></a>
+                        <a href="https://www.facebook.com/mirza.tayyab.9028" class="social-link text-decoration-none"><i class="fa-brands fa-facebook" style="color: #ffffff;"></i></a>
+                        <a href="#" class="social-link text-decoration-none"><i class="fa-brands fa-x-twitter" style="color: #ffffff;"></i></a>
+                    </div>
                 </div>
             </div>
-            <p class="my-5 text-secondary">&copy; @DateTime.Now.Year - Online Book Exchange</p>
+            <hr class="my-5 border-secondary">
+            <p class="text-center text-secondary mb-0">&copy; @DateTime.Now.Year - Online Book Exchange</p>
         </div>
     </footer>
 
@@ -253,31 +273,97 @@
 
 <style>
 
-    .book-img {
-        width: 100%; /* Fill the container */
-        max-width: 200px; /* Limit size */
-        aspect-ratio: 2 / 3; /* Keeps 800:1200 ratio */
+    html{
+        scroll-behavior: smooth;
+    }
+
+    :root {
+        --primary: #6366f1;
+        --primary-soft: #e0e7ff;
+        --dark: #0f172a;
+        --dark-2: #1e293b;
+    }
+
+    .hero {
+        background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+        min-height: 80vh;
+    }
+
+    .book-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        overflow: hidden;
+    }
+
+    .book-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 24px -6px rgba(0,0,0,0.15);
+    }
+
+    .floating {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    @@keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+    }
+
+    .divider-line {
+        width: 100px;
+        height: 4px;
+        background: var(--primary);
+        border-radius: 2px;
+    }
+
+    .btn-primary {
+        background: var(--primary);
+        border: none;
+        padding: 12px 28px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background: #4f46e5;
+        transform: translateY(-2px);
+    }
+
+    .alert-modern {
+        background: rgba(255, 193, 7, 0.15);
+        border: 1px solid rgba(255, 193, 7, 0.2);
+        backdrop-filter: blur(4px);
+    }
+
+    .social-link {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: white !important;
+        background: var(--dark-2);
+        transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+        background: var(--primary);
+        transform: scale(1.1);
+    }
+
+    .hover-primary:hover {
+        color: var(--primary) !important;
+    }
+
+    .bg-dark-2 {
+        background: var(--dark-2);
+    }
+
+    .object-fit-cover {
         object-fit: cover;
-    }
-    .social {
-        transition: color 0.3s ease-in-out;
+        object-position: center;
     }
 
-    .social:hover {
-        color: white !important;
-    }
-
-    .email-link{
-        transition: color 0.3s ease-in-out;
-    }
-
-    .email-link:hover {
-        color: white !important;
-    }
-
-    .top-img{
-        background-image: url(~/Images/bg1.jpg);
-    }
     .animate-word {
         opacity: 0;
         transform: translateY(20px);
@@ -288,72 +374,6 @@
     .animate-word.visible {
         opacity: 1;
         transform: translateY(0);
-    }
-
-
-    .books {
-        font-weight: 700;
-    }
-    .card-img-top{
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    }
-    .card-img-top:hover {
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    }
-
-    .card {
-        border: none;
-        transition: transform 0.3s ease, border 0.3s ease;
-    }
-
-    .card:hover {
-        transform: scale(1.1);
-        cursor: pointer;
-    }
-
-    .bookbtn {
-        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-    }
-
-    .bookbtn:hover {
-        background-color: lightgray;
-    }
-
-    .label {
-        color: grey;
-    }
-
-    .form-group {
-        align-items: baseline;
-        display: flex;
-        gap: 2%;
-    }
-
-    .form-control {
-        width: 50%;
-        font-size: 17px;
-        font-weight: 700;
-        border: none;
-    }
-
-        .form-control:focus {
-            box-shadow: none;
-        }
-
-    #messageButton {
-        width: 25%;
-    }
-
-    #exchangeRequestButton {
-        width: 26%;
-    }
-
-    bg-remove:focus {
-        background-color: transparent !important;
-    }
-
-    .body {
-        font-family: 'Poppins';
     }
 </style>
 
@@ -558,28 +578,37 @@
         }
 
 
+        function getCookie(name) {
+            let value = ";" + document.cookie
+            let parts = value.split("; " + name + "=");
+            if (parts.length === 2) return parts.pop().split(";").shift();
+        }
 
         $('#exchangeRequestButton').click(function () {
             var notifications = {
-                UserID: @Model.UserID, // Sender ID
-                ReceiverId: $("#userID").val(), // Receiver ID
+                userID: @Model.UserID,
+                ReceiverId: $("#userID").val(),
                 BookID: $("#bookID").val(),
                 Message: 'sent a new exchange request for your book',
-            };
-
-            $.ajax({
-                url: "/api/notifications/send",
-                method: "POST",
-                data: JSON.stringify(notifications),
-                contentType: 'application/json',
-                success: function (response) {
-                    toastr.success('Exchange request sent successfully.');
-                },
-                error: function (error) {
-                    toastr.error('Error sending exchange request.');
-                }
-            });
+        };
+    
+        const token = getCookie("jwt");
+    
+        $.ajax({
+            url: "/api/notifications/send",
+            method: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(notifications),
+            success: function (response) {
+                toastr.success("Request sent!");
+            },
+            error: function (xhr) {
+                toastr.error(xhr.responseText);
+                console.error(xhr);
+            }
         });
+        });
+
 
 
         // Swap Share Read animation

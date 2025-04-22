@@ -54,10 +54,10 @@ namespace OnlineBookExchange.Controllers
 
             // User authenticated - proceed with login
             var role = appUserInfo.Role;
-            var jwtToken = Authentication.GenerateJWTAuthetication(username, role);
+            var jwtToken = Authentication.GenerateJWTAuthetication(appUserInfo.UserID, username, role);
             var validUserName = Authentication.ValidateToken(jwtToken);
 
-            if (string.IsNullOrEmpty(validUserName))
+            if (validUserName == null)
             {
                 ModelState.AddModelError("", "Unauthorized login attempt");
                 return View(user);
