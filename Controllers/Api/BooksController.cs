@@ -14,6 +14,7 @@ using OnlineBookExchange.DAL;
 
 namespace OnlineBookExchange.Controllers.Api
 {
+    [RoutePrefix("api/Books")]
     public class BooksController : ApiController
     {
         OnlineBookExchangeEntities db;
@@ -29,6 +30,7 @@ namespace OnlineBookExchange.Controllers.Api
 
         // Book List
         [HttpGet]
+        [Route("")]
         public IHttpActionResult GetBooks()
         {
             var list = new BooksDto().GetBooks();

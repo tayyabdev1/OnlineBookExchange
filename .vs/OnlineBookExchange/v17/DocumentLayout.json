@@ -1,7 +1,48 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\CS519 Final Year Project\\OnlineBookExchange\\",
-  "Documents": [],
+  "WorkspaceRootPath": "F:\\CS519 Final Year Project\\OnlineBookExchange\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|F:\\CS519 Final Year Project\\OnlineBookExchange\\views\\login\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|solutionrelative:views\\login\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|f:\\cs519 final year project\\onlinebookexchange\\controllers\\api\\notificationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|solutionrelative:controllers\\api\\notificationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|F:\\CS519 Final Year Project\\OnlineBookExchange\\helpers\\emailhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|solutionrelative:helpers\\emailhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|F:\\CS519 Final Year Project\\OnlineBookExchange\\controllers\\notificationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|solutionrelative:controllers\\notificationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|F:\\CS519 Final Year Project\\OnlineBookExchange\\controllers\\bookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|solutionrelative:controllers\\bookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|F:\\CS519 Final Year Project\\OnlineBookExchange\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|solutionrelative:controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|F:\\CS519 Final Year Project\\OnlineBookExchange\\services\\jwtmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|solutionrelative:services\\jwtmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|F:\\CS519 Final Year Project\\OnlineBookExchange\\services\\authentication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|solutionrelative:services\\authentication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|F:\\CS519 Final Year Project\\OnlineBookExchange\\controllers\\api\\signupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|solutionrelative:controllers\\api\\signupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|F:\\CS519 Final Year Project\\OnlineBookExchange\\controllers\\signupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B52BEB28-71F2-4E85-839E-1F5F6090C717}|OnlineBookExchange.csproj|solutionrelative:controllers\\signupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +50,133 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EmailHelper.cs",
+              "DocumentMoniker": "F:\\CS519 Final Year Project\\OnlineBookExchange\\Helpers\\EmailHelper.cs",
+              "RelativeDocumentMoniker": "Helpers\\EmailHelper.cs",
+              "ToolTip": "F:\\CS519 Final Year Project\\OnlineBookExchange\\Helpers\\EmailHelper.cs",
+              "RelativeToolTip": "Helpers\\EmailHelper.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwAwAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-06T18:01:11.506Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "NotificationsController.cs",
+              "DocumentMoniker": "F:\\CS519 Final Year Project\\OnlineBookExchange\\Controllers\\Api\\NotificationsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\Api\\NotificationsController.cs",
+              "ToolTip": "F:\\CS519 Final Year Project\\OnlineBookExchange\\Controllers\\Api\\NotificationsController.cs",
+              "RelativeToolTip": "Controllers\\Api\\NotificationsController.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAgwBMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-06T18:00:36.07Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "NotificationsController.cs",
+              "DocumentMoniker": "F:\\CS519 Final Year Project\\OnlineBookExchange\\Controllers\\NotificationsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\NotificationsController.cs",
+              "ToolTip": "F:\\CS519 Final Year Project\\OnlineBookExchange\\Controllers\\NotificationsController.cs",
+              "RelativeToolTip": "Controllers\\NotificationsController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABQAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-06T18:00:11.219Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BooksController.cs",
+              "DocumentMoniker": "F:\\CS519 Final Year Project\\OnlineBookExchange\\Controllers\\BooksController.cs",
+              "RelativeDocumentMoniker": "Controllers\\BooksController.cs",
+              "ToolTip": "F:\\CS519 Final Year Project\\OnlineBookExchange\\Controllers\\BooksController.cs",
+              "RelativeToolTip": "Controllers\\BooksController.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAkwBYAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-06T17:59:57.1Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "F:\\CS519 Final Year Project\\OnlineBookExchange\\Views\\Login\\Login.cshtml",
+              "RelativeDocumentMoniker": "Views\\Login\\Login.cshtml",
+              "ToolTip": "F:\\CS519 Final Year Project\\OnlineBookExchange\\Views\\Login\\Login.cshtml",
+              "RelativeToolTip": "Views\\Login\\Login.cshtml",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAABgAAAB4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-12T14:53:36.237Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "SignupController.cs",
+              "DocumentMoniker": "F:\\CS519 Final Year Project\\OnlineBookExchange\\Controllers\\Api\\SignupController.cs",
+              "RelativeDocumentMoniker": "Controllers\\Api\\SignupController.cs",
+              "ToolTip": "F:\\CS519 Final Year Project\\OnlineBookExchange\\Controllers\\Api\\SignupController.cs",
+              "RelativeToolTip": "Controllers\\Api\\SignupController.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAQwCsAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T09:52:51.279Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "SignupController.cs",
+              "DocumentMoniker": "F:\\CS519 Final Year Project\\OnlineBookExchange\\Controllers\\SignupController.cs",
+              "RelativeDocumentMoniker": "Controllers\\SignupController.cs",
+              "ToolTip": "F:\\CS519 Final Year Project\\OnlineBookExchange\\Controllers\\SignupController.cs",
+              "RelativeToolTip": "Controllers\\SignupController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T09:52:45.276Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "F:\\CS519 Final Year Project\\OnlineBookExchange\\Controllers\\LoginController.cs",
+              "RelativeDocumentMoniker": "Controllers\\LoginController.cs",
+              "ToolTip": "F:\\CS519 Final Year Project\\OnlineBookExchange\\Controllers\\LoginController.cs",
+              "RelativeToolTip": "Controllers\\LoginController.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAAwC4AAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T18:48:03.074Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "JwtMiddleware.cs",
+              "DocumentMoniker": "F:\\CS519 Final Year Project\\OnlineBookExchange\\Services\\JwtMiddleware.cs",
+              "RelativeDocumentMoniker": "Services\\JwtMiddleware.cs",
+              "ToolTip": "F:\\CS519 Final Year Project\\OnlineBookExchange\\Services\\JwtMiddleware.cs",
+              "RelativeToolTip": "Services\\JwtMiddleware.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T18:47:52.89Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Authentication.cs",
+              "DocumentMoniker": "F:\\CS519 Final Year Project\\OnlineBookExchange\\Services\\Authentication.cs",
+              "RelativeDocumentMoniker": "Services\\Authentication.cs",
+              "ToolTip": "F:\\CS519 Final Year Project\\OnlineBookExchange\\Services\\Authentication.cs",
+              "RelativeToolTip": "Services\\Authentication.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAQwDYAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T18:47:50.974Z"
             }
           ]
         }
